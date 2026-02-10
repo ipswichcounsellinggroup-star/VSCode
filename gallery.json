@@ -1,0 +1,29 @@
+{
+  "images": [
+    {
+      "id": "gallery1",
+      "filename": "gallery1.jpg",
+      "alt": "Gallery Image 1"
+    },
+    {
+      "id": "gallery2",
+      "filename": "gallery2.jpg",
+      "alt": "Gallery Image 2"
+    },
+    {
+      "id": "gallery3",
+      "filename": "gallery3.jpg",
+      "alt": "Gallery Image 3"
+    },
+    {
+      "id": "gallery4",
+      "filename": "gallery4.jpg",
+      "alt": "Gallery Image 4"
+    },
+    {
+      "id": "gallery5",
+      "filename": "gallery5.jpg",
+      "alt": "Gallery Image 5"
+    }
+  ]
+}

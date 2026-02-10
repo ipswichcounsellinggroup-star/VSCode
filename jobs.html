@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs - GTP Tech Recruitment</title>
+    <link rel="icon" type="image/png" href="assets/images/GTP Favicon.png">
+    <link rel="shortcut icon" type="image/png" href="assets/images/GTP Favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Cabin:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: rgb(34, 41, 51);
+            --text-gray: rgb(185, 189, 195);
+            --white: #ffffff;
+            --copper: #C9978B;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: var(--primary-dark);
+            background: #f5f5f6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cabin', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--primary-dark);
+            padding: 1.5rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--copper);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #2a3540 100%);
+            color: var(--white);
+            padding: 150px 5% 80px;
+            margin-top: 70px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--copper), transparent);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Jobs Content */
+        .jobs-content {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 5%;
+        }
+
+        .jobs-intro {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .jobs-intro h2 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--copper);
+            display: inline-block;
+        }
+
+        .jobs-intro p {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            line-height: 1.8;
+            margin-top: 1rem;
+        }
+
+        /* Iframe Container */
+        .iframe-container {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+        }
+
+        .iframe-wrapper {
+            position: relative;
+            width: 100%;
+            min-height: 800px;
+            border: 3px solid var(--copper);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .iframe-wrapper iframe {
+            width: 100%;
+            min-height: 800px;
+            border: none;
+        }
+
+        /* Custom styling for iframe content (if accessible) */
+        .iframe-overlay {
+            position: relative;
+        }
+
+        /* Call to Action */
+        .jobs-cta {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 3rem 2.5rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .jobs-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .jobs-cta p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--copper);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(201,151,139,0.4);
+            background: #b38679;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1f29;
+            color: var(--text-gray);
+            text-align: center;
+            padding: 2rem 5%;
+        }
+
+        footer a {
+            color: var(--copper);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .logo img {
+                height: 50px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .jobs-intro {
+                padding: 2rem;
+            }
+
+            .iframe-container {
+                padding: 1rem;
+            }
+
+            .iframe-wrapper {
+                min-height: 600px;
+            }
+
+            .iframe-wrapper iframe {
+                min-height: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <a href="gtp-tech-recruitment.html">
+                    <img src="assets/images/GTP-Tech.png" alt="GTP Tech Recruitment">
+                </a>
+            </div>
+            <ul>
+                <li><a href="gtp-tech-recruitment.html#about">About</a></li>
+                <li><a href="gtp-tech-recruitment.html#services">Services</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+                <li><a href="gtp-tech-recruitment.html#reviews">Reviews</a></li>
+                <li><a href="gtp-tech-recruitment.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Current Opportunities</h1>
+        <p>Explore the latest Microsoft Dynamics and Power Platform roles</p>
+    </section>
+
+    <!-- Jobs Content -->
+    <div class="jobs-content">
+        <div class="jobs-intro">
+            <h2>Find Your Next Role</h2>
+            <p>Browse our current job openings below. We specialize in Microsoft Dynamics, Power Platform, and Azure recruitment across the UK, Ireland, and Europe. Can't find the perfect role? Register your CV and we'll keep you updated with new opportunities.</p>
+        </div>
+
+        <!-- Iframe Container -->
+        <div class="iframe-container">
+            <div class="iframe-wrapper">
+                <iframe src="https://recruitcrm.io/jobs/GTP_Tech_1_jobs"></iframe>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="jobs-cta">
+            <h2>Don't See the Right Role?</h2>
+            <p>Register your CV with us and we'll notify you when relevant opportunities become available</p>
+            <a href="gtp-tech-recruitment.html#contact" class="cta-button">Register Your Interest</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 GTP Tech Recruitment. All Rights Reserved. | <a href="gtp-tech-recruitment.html">Home</a> | <a href="privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
