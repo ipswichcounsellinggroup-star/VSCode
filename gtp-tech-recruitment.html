@@ -27,6 +27,9 @@
             font-family: 'Lato', sans-serif;
             line-height: 1.6;
             color: var(--primary-dark);
+            background: linear-gradient(135deg, #222933 0%, #3b2d5e 50%, #6a0dad 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
         }
 
         h1, h2, h3, h4 {
@@ -66,19 +69,46 @@
         nav ul {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav li {
+            position: relative;
         }
 
         nav a {
             color: var(--white);
             text-decoration: none;
             font-weight: 400;
-            transition: color 0.3s;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--copper);
+            transition: width 0.3s ease;
         }
 
         nav a:hover {
-            color: var(--accent);
+            color: var(--copper);
         }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
 
         /* Hero Section */
         .hero {
@@ -337,8 +367,18 @@
             content: "●";
             position: absolute;
             left: 0;
+            top: 1.7rem;
             color: var(--copper);
-            font-size: 1.2rem;
+            font-size: 0.8rem;
+            line-height: 1;
+        }
+
+        .founder-info li:first-child:before {
+            top: 1.0rem;
+        }
+
+        .founder-info li:last-child:before {
+            top: 1.0rem;
         }
 
         .founder-info a {
@@ -365,6 +405,24 @@
             width: 24px;
             height: 24px;
             fill: currentColor;
+        }
+
+        .nppug-link {
+            font-weight: 700;
+            color: var(--copper);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            background: transparent !important;
+            padding: 0 !important;
+            border: none !important;
+            display: inline;
+            font-size: inherit;
+            box-shadow: none !important;
+        }
+
+        .nppug-link:hover {
+            color: #6a0dad !important;
+            text-decoration: underline;
         }
 
         /* Gallery Section */
@@ -1097,6 +1155,7 @@
                 <img src="assets/images/GTP-Tech.png" alt="GTP Tech Recruitment">
             </div>
             <ul>
+                <li><a href="#">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="jobs.html">Jobs</a></li>
@@ -1109,9 +1168,36 @@
     <!-- Hero Section -->
     <section class="hero">
         <h1>Microsoft Dynamics & Power Platform Recruitment Specialists</h1>
-        <p>Your trusted recruitment partner for Microsoft Dynamics, Power Platform, and Azure talent across the UK, Ireland, and Europe</p>
-        <p class="tagline">"Quality over quantity"</p>
+        <p>Trusted recruitment partner for Microsoft-aligned businesses</p>
         <a href="#contact" class="cta-button">Get In Touch</a>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="founder" id="founder">
+        <div class="container">
+            <h2>Meet the Founder</h2>
+
+            <div class="founder-content">
+                <div class="founder-image">
+                    <img src="assets/images/Gemma Peck.jpeg" alt="Gemma Peck">
+                </div>
+                <div class="founder-info">
+                    <h3>Gemma Peck</h3>
+                    <p class="title">GTP Tech Director and Microsoft Headhunter</p>
+                    <ul>
+                        <li>Consultative, professional, high-quality recruitment approach</li>
+                        <li>Co-Founder of <a href="https://www.nppug.co.uk/" target="_blank" class="nppug-link">Norfolk Power Platform User Group</a> & <a href="https://eoepps.co.uk/" target="_blank" class="nppug-link">East of England Power Platform Summit</a></li>
+                        <li>Deep understanding & relationships within the Microsoft eco-system</li>
+                    </ul>
+                    <p><a href="https://www.linkedin.com/in/gemmapeck" target="_blank">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        Connect on LinkedIn
+                    </a></p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- About Section -->
@@ -1145,35 +1231,6 @@
                         <h4>10+</h4>
                         <p>Years Experience</p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Founder Section -->
-    <section class="founder" id="founder">
-        <div class="container">
-            <h2>Meet the Founder</h2>
-            <p>Leadership with expertise in Microsoft recruitment</p>
-
-            <div class="founder-content">
-                <div class="founder-image">
-                    <img src="assets/images/Gemma Peck.jpeg" alt="Gemma Peck">
-                </div>
-                <div class="founder-info">
-                    <h3>Gemma Peck</h3>
-                    <p class="title">GTP Tech Director and Microsoft Headhunter</p>
-                    <ul>
-                        <li>Consultative, relationship-first recruitment approach</li>
-                        <li>Co-Founder & Sponsor of Norfolk Power Platform User Group</li>
-                        <li>Deep expertise in the Microsoft ecosystem</li>
-                    </ul>
-                    <p><a href="https://www.linkedin.com/in/gemmapeck" target="_blank">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                        </svg>
-                        Connect on LinkedIn
-                    </a></p>
                 </div>
             </div>
         </div>
