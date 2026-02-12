@@ -1,19 +1,9 @@
 {
   "images": [
     {
-      "id": "gallery1",
-      "filename": "gallery1.jpg",
-      "alt": "Gallery Image 1"
-    },
-    {
       "id": "gallery2",
       "filename": "gallery2.jpg",
       "alt": "Gallery Image 2"
-    },
-    {
-      "id": "gallery3",
-      "filename": "gallery3.jpg",
-      "alt": "Gallery Image 3"
     },
     {
       "id": "gallery4",
@@ -24,6 +14,91 @@
       "id": "gallery5",
       "filename": "gallery5.jpg",
       "alt": "Gallery Image 5"
+    },
+    {
+      "id": "gallery",
+      "filename": "gallery.jpg",
+      "alt": "Gallery Image"
+    },
+    {
+      "id": "dinner1",
+      "filename": "dinner1.jpg",
+      "alt": "Dinner Event"
+    },
+    {
+      "id": "girls",
+      "filename": "girls.jpg",
+      "alt": "Team Photo"
+    },
+    {
+      "id": "tammy",
+      "filename": "tammy.jpg",
+      "alt": "Tammy"
+    },
+    {
+      "id": "1000051787",
+      "filename": "1000051787.jpg",
+      "alt": "Gallery Photo"
+    },
+    {
+      "id": "1000050719",
+      "filename": "1000050719.jpg",
+      "alt": "Gallery Photo"
+    },
+    {
+      "id": "1000048096",
+      "filename": "1000048096.jpg",
+      "alt": "Gallery Photo"
+    },
+    {
+      "id": "img-20250704",
+      "filename": "IMG-20250704-WA0024.jpg",
+      "alt": "Gallery Photo"
+    },
+    {
+      "id": "a8780138",
+      "filename": "A8780138-F19B-48A8-8C78-613CE5D7E1F1.JPG",
+      "alt": "Gallery Photo"
+    },
+    {
+      "id": "5a1ee0b8",
+      "filename": "5A1EE0B8-ED2C-4515-B030-D69EE5D8B182.JPG",
+      "alt": "Gallery Photo"
+    },
+    {
+      "id": "whatsapp-2025-11-07",
+      "filename": "WhatsApp Image 2025-11-07 at 09.11.17_dcfde85b.jpg",
+      "alt": "Gallery Photo"
+    },
+    {
+      "id": "whatsapp-2025-12-11",
+      "filename": "WhatsApp Image 2025-12-11 at 17.26.44.jpeg",
+      "alt": "Gallery Photo"
+    },
+    {
+      "id": "whatsapp-2026-02-06a",
+      "filename": "WhatsApp Image 2026-02-06 at 07.44.44.jpeg",
+      "alt": "Gallery Photo"
+    },
+    {
+      "id": "whatsapp-2026-02-06b",
+      "filename": "WhatsApp Image 2026-02-06 at 07.44.45.jpeg",
+      "alt": "Gallery Photo"
+    },
+    {
+      "id": "whatsapp-2026-02-06c",
+      "filename": "WhatsApp Image 2026-02-06 at 09.05.34.jpeg",
+      "alt": "Gallery Photo"
+    },
+    {
+      "id": "whatsapp-2026-02-09",
+      "filename": "WhatsApp Image 2026-02-09 at 19.42.49.jpeg",
+      "alt": "Gallery Photo"
+    },
+    {
+      "id": "gallery1",
+      "filename": "gallery1.jpg",
+      "alt": "Gallery Image 1"
     }
   ]
 }

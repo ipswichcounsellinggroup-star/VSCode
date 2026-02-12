@@ -39,7 +39,7 @@
 
         /* Navigation */
         nav {
-            background: var(--primary-dark);
+            background: linear-gradient(90deg, var(--primary-dark) 0%, #2a3242 50%, var(--primary-dark) 100%);
             padding: 1.5rem 5%;
             position: fixed;
             width: 100%;
@@ -62,8 +62,9 @@
         }
 
         .logo img {
-            height: 60px;
+            height: 75px;
             width: auto;
+            mix-blend-mode: lighten;
         }
 
         nav ul {
@@ -112,7 +113,7 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, #2a3540 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #2a3540 40%, #3b2d5e 70%, #4a3068 100%);
             color: var(--white);
             padding: 150px 5% 100px;
             margin-top: 70px;
@@ -159,7 +160,7 @@
             color: var(--white);
             padding: 1rem 2.5rem;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 6px;
             font-weight: 700;
             font-size: 1.1rem;
             transition: transform 0.3s, box-shadow 0.3s;
@@ -218,14 +219,29 @@
 
         /* About Section */
         .about {
-            background: #e8e9eb;
+            background: linear-gradient(180deg, #e8e9eb 0%, #d8dae0 40%, #c8cad4 100%);
         }
 
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            grid-template-columns: 2.5fr 1fr;
+            gap: 2rem;
             margin-top: 2rem;
+            align-items: stretch;
+        }
+
+        .tech-areas {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .tech-areas .service-card {
+            padding: 1rem 1.25rem;
+        }
+
+        .tech-areas .service-card ul {
+            margin-top: 0.5rem;
         }
 
         .about-text {
@@ -258,20 +274,46 @@
             color: var(--primary-dark);
         }
 
+        .about-text ul {
+            list-style: none;
+            margin: 1rem 0;
+            text-align: left;
+        }
+
+        .about-text li {
+            padding: 0.5rem 0;
+            color: var(--primary-dark);
+            position: relative;
+            padding-left: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text li:before {
+            content: "\25CF";
+            position: absolute;
+            left: 0;
+            color: var(--copper);
+            font-size: 0.8rem;
+        }
+
         .stats {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
         }
 
         .stat-card {
-            background: var(--primary-dark);
+            background: linear-gradient(135deg, #222933 0%, #2a3540 30%, #3b2d5e 70%, #4a3068 100%);
             color: var(--white);
-            padding: 2rem;
+            padding: 1rem 1.25rem;
             border-radius: 10px;
-            text-align: center;
+            text-align: left;
             border: 3px solid var(--copper);
             transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .stat-card:hover {
@@ -279,18 +321,21 @@
         }
 
         .stat-card h4 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
             color: var(--copper);
         }
 
         .stat-card p {
             color: var(--text-gray);
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: left;
         }
 
         /* Founder Section */
         .founder {
-            background: var(--primary-dark);
+            background: linear-gradient(135deg, #222933 0%, #2a3540 30%, #3b2d5e 70%, #4a3068 100%);
         }
 
         .founder h2 {
@@ -311,7 +356,7 @@
             align-items: center;
             text-align: center;
             margin-top: 1.5rem;
-            background: #f5f5f6;
+            background: linear-gradient(135deg, #f5f5f6 0%, #edeef0 50%, #e5e6ea 100%);
             padding: 1.5rem;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
@@ -381,26 +426,6 @@
             top: 1.0rem;
         }
 
-        .founder-info a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #0A66C2;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            padding: 0.6rem 1rem;
-            background: var(--white);
-            border-radius: 8px;
-            border: 2px solid #0A66C2;
-            margin-top: 0.7rem;
-        }
-
-        .founder-info a:hover {
-            background: #0A66C2;
-            color: var(--white);
-        }
-
         .founder-info a svg {
             width: 24px;
             height: 24px;
@@ -427,7 +452,7 @@
 
         /* Gallery Section */
         .gallery {
-            background: #e8e9eb;
+            background: linear-gradient(180deg, #c8cad4 0%, #d5d7de 50%, #e2e3e8 100%);
         }
 
         .gallery-carousel-container {
@@ -452,6 +477,7 @@
         .gallery-slide {
             min-width: 100%;
             position: relative;
+            background: var(--primary-dark);
         }
 
         .gallery-slide img {
@@ -459,7 +485,7 @@
             height: auto;
             display: block;
             aspect-ratio: 16/9;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         .gallery-nav {
@@ -529,7 +555,7 @@
 
         /* Services Section */
         .services {
-            background: #e8e9eb;
+            background: linear-gradient(180deg, #e2e3e8 0%, #d3d5dc 50%, #c5c8d2 100%);
         }
 
         .services-grid {
@@ -540,7 +566,7 @@
         }
 
         .service-card {
-            background: var(--primary-dark);
+            background: linear-gradient(135deg, #222933 0%, #2a3540 30%, #3b2d5e 70%, #4a3068 100%);
             padding: 2.5rem;
             border-radius: 10px;
             border: 3px solid var(--copper);
@@ -600,7 +626,7 @@
 
         /* Why Choose Us Section */
         .why-choose {
-            background: #e8e9eb;
+            background: linear-gradient(180deg, #c5c8d2 0%, #d0d2da 50%, #dcdee4 100%);
         }
 
         .features-grid {
@@ -643,7 +669,7 @@
 
         /* Reviews Section */
         .reviews {
-            background: var(--primary-dark);
+            background: linear-gradient(135deg, #222933 0%, #2a3540 30%, #3b2d5e 70%, #4a3068 100%);
             color: var(--white);
         }
 
@@ -841,7 +867,7 @@
 
         /* Contact Section */
         .contact {
-            background: #e8e9eb;
+            background: linear-gradient(180deg, #dcdee4 0%, #d0d2da 50%, #c5c8d2 100%);
             color: var(--primary-dark);
             text-align: center;
         }
@@ -1055,7 +1081,7 @@
 
         /* Footer */
         footer {
-            background: #1a1f29;
+            background: linear-gradient(135deg, #3b2d5e 0%, #2a3540 50%, #222933 100%);
             color: var(--text-gray);
             text-align: center;
             padding: 2rem 5%;
@@ -1172,6 +1198,64 @@
         <a href="#contact" class="cta-button">Get In Touch</a>
     </section>
 
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>Strategic headhunting for high&#8209;impact Microsoft talent</h2>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Why Choose Us?</h3>
+                    <p>At GTP Tech, we don't do generic recruitment. We deliver <strong>precision headhunting</strong> for Microsoft Partners who need high&#8209;calibre people that elevate capability, strengthen delivery, and accelerate growth.</p>
+                    <p>We've built a reputation for securing game&#8209;changing hires across the Microsoft Dynamics and Power Platform ecosystem - the people who don't apply to job ads, aren't on the market long, and genuinely move the needle.</p>
+                    <p>We understand the challenges you face:</p>
+                    <ul>
+                        <li><em>Talent shortages and fierce competition</em></li>
+                        <li><em>The rare blend of consulting, technical depth, and customer&#8209;facing skills</em></li>
+                        <li><em>Costly project delays caused by skill gaps</em></li>
+                        <li><em>The pressure to scale sustainably with the right people, not just those available</em></li>
+                    </ul>
+                    <p>Our approach is deliberately different: targeted, relationship&#8209;driven, and built on deep sector expertise.</p>
+                </div>
+
+                <div class="tech-areas">
+                    <div class="service-card">
+                        <div style="height: 65px; display: flex; align-items: center; margin-bottom: 0.25rem;">
+                            <img src="assets/images/Power Platform.png" alt="Power Platform" style="height: 65px; width: auto; mix-blend-mode: lighten;">
+                        </div>
+                        <ul>
+                            <li>Power Automate</li>
+                            <li>Power Pages</li>
+                            <li>Power Apps</li>
+                            <li>Power BI</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div style="height: 65px; display: flex; align-items: center; justify-content: flex-start; margin-bottom: 0.25rem;">
+                            <img src="assets/images/D365.png" alt="Dynamics 365" style="height: 65px; width: auto; mix-blend-mode: lighten;">
+                        </div>
+                        <ul>
+                            <li>D365 CE</li>
+                            <li>Business Central (NAV)</li>
+                            <li>Finance & Operations</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div style="height: 55px; display: flex; align-items: center; margin-bottom: 0.25rem;">
+                            <img src="assets/images/Copilot.png" alt="Copilot" style="height: 50px; width: auto; mix-blend-mode: lighten;">
+                        </div>
+                        <ul>
+                            <li>Azure</li>
+                            <li>AI Copilot</li>
+                            <li>Azure Foundry</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- Founder Section -->
     <section class="founder" id="founder">
         <div class="container">
@@ -1189,48 +1273,26 @@
                         <li>Co-Founder of <a href="https://www.nppug.co.uk/" target="_blank" class="nppug-link">Norfolk Power Platform User Group</a> & <a href="https://eoepps.co.uk/" target="_blank" class="nppug-link">East of England Power Platform Summit</a></li>
                         <li>Deep understanding & relationships within the Microsoft eco-system</li>
                     </ul>
-                    <p><a href="https://www.linkedin.com/in/gemmapeck" target="_blank">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                        </svg>
-                        Connect on LinkedIn
-                    </a></p>
+                    <p><a href="https://www.linkedin.com/in/gemmapeck" target="_blank" class="cta-button" style="margin-top: 0.5rem; font-size: 1rem; padding: 0.8rem 2rem;">Connect on LinkedIn</a></p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2>About GTP Tech Recruitment</h2>
-            <p>We are a specialist recruitment partner dedicated to the Microsoft ecosystem</p>
-
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Who We Are</h3>
-                    <p>GTP Tech positions itself as a trusted Microsoft Dynamics and Power Platform specialist recruitment partner serving organizations across the UK, Ireland, and Europe.</p>
-                    <p>We focus on technical hiring within the Microsoft ecosystem, connecting exceptional talent with leading organizations.</p>
-                    <p>Our philosophy of "quality over quantity" ensures we prioritize candidate quality and optimize the hiring experience for both clients and candidates.</p>
+            <div class="stats">
+                <div class="stat-card">
+                    <h4>Deep Microsoft expertise</h4>
+                    <p>Pre&#8209;qualified networks across Dynamics 365, Power Platform & Copilot&#8209;aligned Consultancy roles.</p>
                 </div>
-
-                <div class="stats">
-                    <div class="stat-card">
-                        <h4>100+</h4>
-                        <p>Successful Placements</p>
-                    </div>
-                    <div class="stat-card">
-                        <h4>50+</h4>
-                        <p>Partner Companies</p>
-                    </div>
-                    <div class="stat-card">
-                        <h4>3</h4>
-                        <p>Countries Covered</p>
-                    </div>
-                    <div class="stat-card">
-                        <h4>10+</h4>
-                        <p>Years Experience</p>
-                    </div>
+                <div class="stat-card">
+                    <h4>Specialist headhunting, not CV&#8209;pushing</h4>
+                    <p>We proactively identify, engage, and secure high&#8209;impact experts who align with your culture, capability needs, & long&#8209;term growth plans.</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Proven track record of transformative hires</h4>
+                    <p>We've helped Partners build high&#8209;performing technical, consulting, and sales teams that directly improve delivery quality and revenue growth.</p>
+                </div>
+                <div class="stat-card">
+                    <h4>A personalised, high&#8209;touch service</h4>
+                    <p>You work directly with a specialist who understands your business, your challenges, and the calibre of talent required to solve them.</p>
                 </div>
             </div>
         </div>
@@ -1239,7 +1301,7 @@
     <!-- Gallery Section -->
     <section class="gallery" id="gallery">
         <div class="container">
-            <h2>Deeply embedded in the Microsoft Ecosystem</h2>
+            <h2>Embedded in the Microsoft Ecosystem</h2>
 
             <div class="gallery-carousel-container">
                 <div class="gallery-carousel">
@@ -1257,135 +1319,10 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2>Our Specialist Services</h2>
-            <p>Founded in 2016, GTP Tech is a highly specialised permanent recruitment firm focused entirely on Microsoft Dynamics and Power Platform. With proven success helping Microsoft Partners and businesses grow high-performing technical and sales teams, we bring deep understanding and relationships within the Microsoft ecosystem alongside pre-qualified networks. Our personalised, professional, and high-quality recruitment approach is tailored to your unique business needs.</p>
-
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <img src="https://learn.microsoft.com/en-us/power-platform/media/power-platform-icon.svg" alt="Power Platform" style="filter: brightness(0) invert(1);">
-                    </div>
-                    <h3>Power Platform & Data</h3>
-                    <ul>
-                        <li>Power Platform Developers</li>
-                        <li>Power BI Specialists</li>
-                        <li>Data Engineers</li>
-                        <li>AI & Machine Learning</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">🔄</div>
-                    <h3>Dynamics 365</h3>
-                    <ul>
-                        <li>Dynamics 365 CE (Sales, Service)</li>
-                        <li>Dynamics 365 F&O</li>
-                        <li>Business Central</li>
-                        <li>Solution Architects</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">☁️</div>
-                    <h3>Microsoft Cloud</h3>
-                    <ul>
-                        <li>Microsoft 365 Consultants</li>
-                        <li>Azure Developers</li>
-                        <li>Copilot Specialists</li>
-                        <li>Cloud Architects</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">📊</div>
-                    <h3>Management</h3>
-                    <ul>
-                        <li>Project Managers</li>
-                        <li>Programme Managers</li>
-                        <li>Delivery Managers</li>
-                        <li>Technical Leads</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">📈</div>
-                    <h3>Enterprise Sales</h3>
-                    <ul>
-                        <li>Business Development Managers</li>
-                        <li>Account Executives</li>
-                        <li>Pre-Sales Consultants</li>
-                        <li>Partnership Specialists</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">🎯</div>
-                    <h3>Custom Solutions</h3>
-                    <ul>
-                        <li>Bespoke Recruitment</li>
-                        <li>Executive Search</li>
-                        <li>Contract & Permanent</li>
-                        <li>Team Building</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us Section -->
-    <section class="why-choose" id="why-choose">
-        <div class="container">
-            <h2>Why Choose GTP Tech</h2>
-            <p>We combine technical expertise with a commitment to quality and efficiency</p>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Specialist Focus</h3>
-                    <p>Dedicated exclusively to the Microsoft ecosystem, ensuring deep technical understanding</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Quality First</h3>
-                    <p>Our "quality over quantity" approach means every candidate is carefully vetted and screened before submission</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🌍</div>
-                    <h3>European Reach</h3>
-                    <p>Coverage across UK, Ireland, and Europe with local market expertise</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🤝</div>
-                    <h3>Partnership Approach</h3>
-                    <p>We build long-term relationships with clients and candidates alike</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🔗</div>
-                    <h3>Pre-Qualified Network</h3>
-                    <p>We bring deep understanding and relationships within the Microsoft ecosystem alongside pre-qualified networks</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">✨</div>
-                    <h3>Tailored Approach</h3>
-                    <p>Personalised, professional & high-quality recruitment approach tailored to your unique business needs</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Reviews Section -->
     <section class="reviews" id="reviews">
         <div class="container">
             <h2>Reviews</h2>
-            <p>See what our clients and candidates say about working with GTP Tech</p>
 
             <div class="carousel-container">
                 <div class="carousel-border-overlay" id="carouselBorderOverlay"></div>
@@ -1666,9 +1603,6 @@
             try {
                 const response = await fetch('gallery.json');
                 galleryData = await response.json();
-
-                // Sort images alphabetically by filename
-                galleryData.images.sort((a, b) => a.filename.localeCompare(b.filename));
 
                 renderGallery();
             } catch (error) {
