@@ -14,6 +14,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-padding-top: 130px;
+        }
+
         :root {
             --primary-dark: rgb(34, 41, 51);
             --text-gray: rgb(185, 189, 195);
@@ -217,7 +221,7 @@
         /* Section Styles */
         section {
             padding: 80px 5%;
-            scroll-margin-top: 80px;
+            scroll-margin-top: 130px;
         }
 
         section h2 {
@@ -1496,6 +1500,27 @@
             });
         });
 
+        // Handle anchor scroll with fixed nav offset
+        function scrollToHash(smooth) {
+            if (window.location.hash) {
+                const target = document.querySelector(window.location.hash);
+                if (target) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight - 20;
+                    window.scrollTo({ top: targetPosition, behavior: smooth ? 'smooth' : 'instant' });
+                }
+            }
+        }
+
+        // Prevent browser's premature scroll to hash (before dynamic content loads)
+        if (window.location.hash) {
+            history.scrollRestoration = 'manual';
+            window.scrollTo(0, 0);
+        }
+
+        // Run when hash changes (for same-page anchor clicks)
+        window.addEventListener('hashchange', () => scrollToHash(true));
+
         // Load and initialize reviews carousel
         async function loadReviews() {
             try {
@@ -1677,8 +1702,12 @@
             window.addEventListener('resize', adjustCarouselHeight);
         }
 
-        // Load reviews when page loads
-        loadReviews();
+        // Load dynamic content, then scroll to hash if needed
+        Promise.all([loadReviews(), loadGallery()]).then(() => {
+            if (window.location.hash) {
+                requestAnimationFrame(() => scrollToHash(false));
+            }
+        });
 
         // Gallery Carousel
         let galleryData = { images: [] };
@@ -1787,8 +1816,7 @@
             autoAdvanceInterval = setInterval(nextSlide, 7000);
         }
 
-        // Load gallery when page loads
-        loadGallery();
+        // Gallery is loaded via Promise.all above
 
         // Contact Modal Functions
         function openModal() {
