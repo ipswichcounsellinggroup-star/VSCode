@@ -111,6 +111,37 @@
         }
 
 
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--primary-dark) 0%, #2a3540 40%, #3b2d5e 70%, #4a3068 100%);
@@ -1089,8 +1120,39 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
             nav ul {
                 display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-dark);
+                padding: 1rem 5%;
+                gap: 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li a {
+                padding: 0.75rem 0;
+                display: block;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            nav ul li:last-child a {
+                border-bottom: none;
+            }
+
+            nav .container {
+                position: relative;
             }
 
             .logo img {
@@ -1178,12 +1240,18 @@
     <nav>
         <div class="container">
             <div class="logo">
-                <img src="assets/images/GTP-Tech.png" alt="GTP Tech Recruitment">
+                <a href="index.html">
+                    <img src="assets/images/GTP-Tech.png" alt="GTP Tech Recruitment">
+                </a>
             </div>
-            <ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navMenu">
                 <li><a href="#">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
                 <li><a href="jobs.html">Jobs</a></li>
                 <li><a href="#reviews">Reviews</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -1411,6 +1479,23 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
         // Load and initialize reviews carousel
         async function loadReviews() {
             try {
