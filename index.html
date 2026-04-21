@@ -809,6 +809,21 @@
             height: 100%;
         }
 
+        .review-avatar-tick {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background: #3b2d5e;
+            border-radius: 50%;
+        }
+
+        .review-avatar-tick svg {
+            width: 55%;
+            height: 55%;
+        }
+
         .review-body {
             flex: 1;
         }
@@ -1537,11 +1552,13 @@
                     // Get initials from name for fallback
                     const initials = review.name.split(' ').map(word => word[0]).join('').substring(0, 2);
 
-                    // Create avatar element (image if available, initials as fallback)
+                    const tickSVG = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="4,13 9,18 20,7" stroke="#B38679" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+                    // Create avatar element (image if available, tick icon if no avatar)
                     const avatarContent = review.avatar
                         ? `<img src="${review.avatar}" alt="${review.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                            <div class="review-avatar-initials" style="display:none;">${initials}</div>`
-                        : `<div class="review-avatar-initials">${initials}</div>`;
+                        : `<div class="review-avatar-tick">${tickSVG}</div>`;
 
                     reviewCard.innerHTML = `
                         <div class="review-content">
