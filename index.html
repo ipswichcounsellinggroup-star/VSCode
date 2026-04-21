@@ -1696,7 +1696,7 @@
 
             function resetAutoAdvance() {
                 clearInterval(autoAdvanceInterval);
-                autoAdvanceInterval = setInterval(nextSlide, 20000);
+                autoAdvanceInterval = setInterval(nextSlide, 40000);
             }
 
             nextButton.addEventListener('click', () => {
@@ -1709,8 +1709,8 @@
                 resetAutoAdvance();
             });
 
-            // Auto-advance carousel every 20 seconds
-            autoAdvanceInterval = setInterval(nextSlide, 20000);
+            // Auto-advance carousel every 40 seconds
+            autoAdvanceInterval = setInterval(nextSlide, 40000);
 
             // Set initial height
             setTimeout(adjustCarouselHeight, 100);
