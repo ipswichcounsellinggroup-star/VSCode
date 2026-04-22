@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Hire for the Microsoft Power Platform in a Talent-Short Market | GTP Tech Recruitment Blog</title>
+    <meta name="description" content="Practical advice for hiring managers on what to look for, how to assess Power Platform candidates, and why traditional job specs are costing you the best people.">
+    <link rel="icon" type="image/png" href="assets/images/GTP-Tech.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-dark: rgb(34, 41, 51);
+            --text-gray: rgb(185, 189, 195);
+            --white: #ffffff;
+            --copper: #B38679;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-dark);
+            background: #f8f9fa;
+        }
+
+        nav {
+            background: linear-gradient(90deg, var(--primary-dark) 0%, #2a3242 50%, var(--primary-dark) 100%);
+            padding: 1.5rem 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img { height: 45px; width: auto; }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--copper);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover { color: var(--copper); }
+        nav a:hover::after { width: 100%; }
+        nav a.active { color: var(--copper); }
+        nav a.active::after { width: 100%; }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .post-hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #2a3540 40%, #3b2d5e 70%, #4a3068 100%);
+            color: var(--white);
+            padding: 140px 5% 80px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--copper), transparent);
+        }
+
+        .post-hero .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .post-category {
+            color: var(--copper);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .post-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 1.2rem;
+        }
+
+        .post-meta {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .post-body {
+            padding: 4rem 5%;
+        }
+
+        .post-body .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .post-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+        }
+
+        .post-content p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .post-content h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 2.5rem 0 1rem;
+            text-align: left;
+            padding-left: 1rem;
+            border-left: 4px solid var(--copper);
+        }
+
+        .post-content h2::after { display: none; }
+
+        .post-content ul {
+            list-style: none;
+            margin: 1rem 0 1.5rem 0;
+            padding: 0;
+        }
+
+        .post-content ul li {
+            position: relative;
+            padding: 0.6rem 0 0.6rem 1.8rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .post-content ul li:last-child { border-bottom: none; }
+
+        .post-content ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background: #3b2d5e;
+            border-radius: 50%;
+        }
+
+        .post-content .highlight-box {
+            background: linear-gradient(135deg, #3b2d5e 0%, #4a3068 100%);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: var(--white);
+        }
+
+        .post-content .highlight-box p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0;
+            font-size: 1.05rem;
+        }
+
+        .post-divider {
+            border: none;
+            border-top: 2px solid #f0f0f0;
+            margin: 2.5rem 0;
+        }
+
+        .post-author {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2.5rem;
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .post-author a {
+            color: var(--copper);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .post-author a:hover { text-decoration: underline; }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--copper);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            transition: opacity 0.2s ease;
+        }
+
+        .back-link:hover { opacity: 0.7; }
+
+        footer {
+            background: var(--primary-dark);
+            color: var(--text-gray);
+            text-align: center;
+            padding: 2rem 5%;
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--copper); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-dark);
+                padding: 1rem 5%;
+                gap: 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            nav ul.active { display: flex; }
+
+            nav ul li a {
+                padding: 0.75rem 0;
+                display: block;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+            }
+
+            nav ul li:last-child a { border-bottom: none; }
+
+            .post-hero h1 { font-size: 2rem; }
+            .post-content { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/GTP-Tech.png" alt="GTP Tech Recruitment">
+                </a>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+                <li><a href="index.html#reviews">Reviews</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="post-hero">
+        <div class="container">
+            <div class="post-category">Hiring Advice</div>
+            <h1>How to Hire for the Microsoft Power Platform in a Talent-Short Market</h1>
+            <div class="post-meta">By Gemma Peck &nbsp;·&nbsp; 22 April 2026</div>
+        </div>
+    </section>
+
+    <section class="post-body">
+        <div class="container">
+            <a href="blog.html" class="back-link">- Back to Blog</a>
+
+            <div class="post-content">
+
+                <p>Demand for Microsoft Power Platform talent has never been higher. Organisations across every sector are investing in Power Apps, Power Automate, Power BI, and Copilot Studio to transform their operations - and they need skilled people to deliver it. The problem is that the talent pool has not kept pace with the demand.</p>
+
+                <p>For hiring managers, that creates a real challenge. The candidates you want are almost always already employed, often fielding multiple approaches, and quick to walk away if the hiring process feels slow, vague, or out of touch with the market.</p>
+
+                <p>Here is what the most successful organisations I work with are doing differently.</p>
+
+                <h2>Stop writing job specs for the perfect candidate</h2>
+
+                <p>The single biggest mistake I see is the wish-list job description. Five years of Power Platform experience, Power Apps, Power Automate, Power BI, Dataverse, Azure integration, strong stakeholder management, and a Microsoft certification - all for a mid-level salary.</p>
+
+                <p>That person either does not exist or is already earning considerably more than you are offering. When you write a spec like that, you eliminate strong candidates who tick eight out of ten boxes and would excel in the role. Ask yourself:</p>
+
+                <ul>
+                    <li>What are the two or three skills that are genuinely non-negotiable for day one?</li>
+                    <li>Which competencies can realistically be developed on the job?</li>
+                    <li>Are you describing the role as it is, or the role you wish you had?</li>
+                </ul>
+
+                <p>A focused, realistic job description attracts better candidates and sets the right expectations from the outset.</p>
+
+                <h2>Understand what you are actually assessing</h2>
+
+                <p>Technical ability matters, but in the Power Platform space it is rarely the differentiator. Most strong candidates have broadly similar technical foundations. What separates the exceptional ones is how they think, how they communicate, and how they approach problems.</p>
+
+                <p>In your interview process, make sure you are assessing:</p>
+
+                <ul>
+                    <li>How the candidate translates business requirements into technical solutions</li>
+                    <li>Their ability to manage stakeholders and navigate ambiguity</li>
+                    <li>Whether they take ownership or wait to be directed</li>
+                    <li>How they talk about past projects - do they take pride in outcomes or just describe tasks?</li>
+                    <li>Cultural fit - will they complement your team's existing dynamic?</li>
+                </ul>
+
+                <p>A technical task or scenario-based exercise can be valuable, but keep it proportionate. Asking a candidate to spend several unpaid hours on a complex assessment is a fast way to lose them to a competitor with a lighter process.</p>
+
+                <h2>Move quickly or move on</h2>
+
+                <p>Speed is one of the most underrated elements of a successful hire. The best Power Platform professionals are typically in conversation with two or three organisations at any given time. A slow process - weeks between stages, delayed feedback, rescheduled interviews - signals disorganisation and erodes candidate confidence.</p>
+
+                <div class="highlight-box">
+                    <p>A structured two-stage process with clear timelines and prompt feedback will almost always outperform an elaborate five-stage process that drags on for two months. Respect the candidate's time and they will respect yours.</p>
+                </div>
+
+                <p>If you find yourself waiting for internal sign-off or alignment between stakeholders before progressing a strong candidate, consider whether those conversations could happen in parallel rather than sequence.</p>
+
+                <h2>Be honest about what you are offering</h2>
+
+                <p>Candidates in this space are well-informed. They know the market rate, they understand what hybrid working looks like at peer organisations, and they will find out quickly if what you described in the interview does not match reality once they join.</p>
+
+                <p>The organisations that build the strongest teams are the ones that are transparent from the start about:</p>
+
+                <ul>
+                    <li>Salary range and how it is structured</li>
+                    <li>Remote and hybrid working expectations</li>
+                    <li>The maturity of the Microsoft environment they will be working in</li>
+                    <li>Growth and progression opportunities - and how realistic they are</li>
+                    <li>The challenges as well as the opportunities</li>
+                </ul>
+
+                <p>Honesty builds trust. And in a market where talent is short, your reputation as an employer travels fast.</p>
+
+                <h2>Work with someone who knows the market</h2>
+
+                <p>A generalist recruiter working from a job board will give you volume. A specialist will give you fit. In a niche space like Power Platform, the difference matters enormously.</p>
+
+                <p>A recruiter who lives and breathes this market knows which candidates are open to a move before they update their LinkedIn profile. They understand the nuances of different seniority levels, can benchmark your salary against live market data, and will tell you honestly if your brief is unrealistic - saving you weeks of wasted process.</p>
+
+                <p>The best hires I have facilitated were rarely the result of a candidate applying to a job advert. They came from conversations, relationships, and a deep understanding of what both sides genuinely needed.</p>
+
+                <h2>The bottom line</h2>
+
+                <p>Hiring for the Microsoft Power Platform in the current market requires a clear brief, a fair and efficient process, and an honest employer proposition. Get those three things right and you will find the right people. Get them wrong and you will keep losing candidates to organisations that did.</p>
+
+                <p>If you are struggling to find the right Power Platform talent, or want an honest assessment of how your hiring process compares to the market, I am always happy to have that conversation. Feel free to <a href="index.html#contact" style="color: var(--copper); font-weight: 600;">get in touch</a>.</p>
+
+                <hr class="post-divider">
+
+                <div class="post-author">
+                    <strong>Gemma Peck</strong> is a specialist recruiter focused exclusively on Microsoft Power Platform, Dynamics 365, and Copilot. Visit <a href="https://www.gtptech.co.uk">www.gtptech.co.uk</a> to find out more.
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 GTP Tech Recruitment. All rights reserved. | Microsoft Dynamics &amp; Power Platform Recruitment Specialists | <a href="privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

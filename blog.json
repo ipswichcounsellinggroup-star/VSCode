@@ -1,11 +1,19 @@
 {
   "posts": [
     {
+      "id": "hiring-power-platform-talent-short-market",
+      "category": "Hiring Advice",
+      "date": "22 April 2026",
+      "title": "How to Hire for the Microsoft Power Platform in a Talent-Short Market",
+      "excerpt": "Demand for Power Platform talent has never been higher - but the talent pool hasn't kept pace. Here's what the most successful organisations are doing differently to attract and hire the right people.",
+      "url": "blog-hiring-power-platform-talent-short-market.html"
+    },
+    {
       "id": "beyond-the-pay-packet",
       "category": "Hiring Insights",
       "date": "13 February 2025",
       "title": "Beyond the Pay Packet: What Really Motivates Microsoft Dynamics & Power Platform Professionals",
-      "excerpt": "Salary matters, but it rarely seals the deal. After years specialising in the Microsoft Dynamics 365 and Power Platform space, one thing is consistently clear — what really moves the needle is autonomy and growth.",
+      "excerpt": "Salary matters, but it rarely seals the deal. After years specialising in the Microsoft Dynamics 365 and Power Platform space, one thing is consistently clear - what really moves the needle is autonomy and growth.",
       "url": "blog-beyond-the-pay-packet.html"
     }
   ]
