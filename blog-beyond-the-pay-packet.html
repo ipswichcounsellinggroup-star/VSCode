@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beyond the Pay Packet | GTP Tech Recruitment Blog</title>
+    <meta name="description" content="Salary matters, but it rarely seals the deal. Here's what the best employers in the Microsoft Dynamics & Power Platform space are getting right.">
+    <link rel="icon" type="image/png" href="assets/images/GTP-Tech.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-dark: rgb(34, 41, 51);
+            --text-gray: rgb(185, 189, 195);
+            --white: #ffffff;
+            --copper: #B38679;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-dark);
+            background: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(90deg, var(--primary-dark) 0%, #2a3242 50%, var(--primary-dark) 100%);
+            padding: 1.5rem 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img { height: 45px; width: auto; }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--copper);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover { color: var(--copper); }
+        nav a:hover::after { width: 100%; }
+        nav a.active { color: var(--copper); }
+        nav a.active::after { width: 100%; }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Hero */
+        .post-hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #2a3540 40%, #3b2d5e 70%, #4a3068 100%);
+            color: var(--white);
+            padding: 140px 5% 80px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--copper), transparent);
+        }
+
+        .post-hero .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .post-category {
+            color: var(--copper);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .post-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 1.2rem;
+        }
+
+        .post-meta {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Article */
+        .post-body {
+            padding: 4rem 5%;
+        }
+
+        .post-body .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .post-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+        }
+
+        .post-content p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .post-content h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 2.5rem 0 1rem;
+            text-align: left;
+            padding-left: 1rem;
+            border-left: 4px solid var(--copper);
+        }
+
+        .post-content h2::after { display: none; }
+
+        .post-content ul {
+            list-style: none;
+            margin: 1rem 0 1.5rem 0;
+            padding: 0;
+        }
+
+        .post-content ul li {
+            position: relative;
+            padding: 0.6rem 0 0.6rem 1.8rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .post-content ul li:last-child { border-bottom: none; }
+
+        .post-content ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background: #3b2d5e;
+            border-radius: 50%;
+        }
+
+        .post-content .highlight-box {
+            background: linear-gradient(135deg, #3b2d5e 0%, #4a3068 100%);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: var(--white);
+        }
+
+        .post-content .highlight-box p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0;
+            font-size: 1.05rem;
+        }
+
+        .post-divider {
+            border: none;
+            border-top: 2px solid #f0f0f0;
+            margin: 2.5rem 0;
+        }
+
+        .post-author {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2.5rem;
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .post-author a {
+            color: var(--copper);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .post-author a:hover { text-decoration: underline; }
+
+        /* Back link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--copper);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            transition: opacity 0.2s ease;
+        }
+
+        .back-link:hover { opacity: 0.7; }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: var(--text-gray);
+            text-align: center;
+            padding: 2rem 5%;
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--copper); text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-dark);
+                padding: 1rem 5%;
+                gap: 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            nav ul.active { display: flex; }
+
+            nav ul li a {
+                padding: 0.75rem 0;
+                display: block;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+            }
+
+            nav ul li:last-child a { border-bottom: none; }
+
+            .post-hero h1 { font-size: 2rem; }
+
+            .post-content { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/GTP-Tech.png" alt="GTP Tech Recruitment">
+                </a>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+                <li><a href="index.html#reviews">Reviews</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="post-hero">
+        <div class="container">
+            <div class="post-category">Hiring Insights</div>
+            <h1>Beyond the Pay Packet: What Really Motivates Microsoft Dynamics &amp; Power Platform Professionals</h1>
+            <div class="post-meta">By Gemma Peck &nbsp;·&nbsp; 13 February 2025</div>
+        </div>
+    </section>
+
+    <!-- Post Body -->
+    <section class="post-body">
+        <div class="container">
+            <a href="blog.html" class="back-link">← Back to Blog</a>
+
+            <div class="post-content">
+
+                <p>Career motivations are at the heart of every conversation I have with candidates. And after years of specialising in the Microsoft Dynamics 365 and Power Platform space, one thing is consistently clear: salary matters, but it rarely seals the deal.</p>
+
+                <p>Of course, people work to earn a living. But when a skilled D365 or Power Platform professional is weighing up a new opportunity, compensation is typically the starting point, not the deciding factor. What really moves the needle is autonomy and growth.</p>
+
+                <p>For employers competing to attract and retain top Microsoft talent, that's both a challenge and an opportunity. The good news is that building an environment where people genuinely thrive doesn't require an unlimited budget. It requires intent.</p>
+
+                <div class="highlight-box">
+                    <p>Here's what the best employers in this space are getting right.</p>
+                </div>
+
+                <h2>Invest in individual growth pathways</h2>
+
+                <p>Generic training programmes rarely resonate. The most forward-thinking Microsoft partners and end-user organisations I work with are building personalised development plans that reflect each person's unique goals and skill sets.</p>
+
+                <p>Growth means different things to different people. One Consultant wants to deepen their technical expertise in Power Automate; another wants to move into a Solution Architecture or Pre-Sales role. Recognising that distinction — and actively supporting it — signals that you see your people as individuals, not resources.</p>
+
+                <p>The wider D365 and Power Platform community is rich with learning opportunities:</p>
+
+                <ul>
+                    <li>Microsoft certification paths</li>
+                    <li>Community events and specialist workshops</li>
+                    <li>External training providers</li>
+                    <li>Internal mentoring and stretch assignments</li>
+                </ul>
+
+                <p>Facilitating access to these isn't just a perk — it's a direct investment in the quality of delivery your clients receive.</p>
+
+                <h2>Create genuine passion for what you do</h2>
+
+                <p>The transformational impact of Microsoft technology is real. Dynamics 365 and Power Platform implementations genuinely change the way organisations operate — improving efficiency, enabling better decisions, and delivering measurable value to end users.</p>
+
+                <p>When leadership communicates that story with conviction, it resonates. People want to feel that their work has meaning and tangible outcomes. If you as a leader are energised by the problems you're solving and the results you're achieving, that enthusiasm is infectious — and it's one of the most powerful retention tools you have.</p>
+
+                <h2>Offer real autonomy</h2>
+
+                <p>Treating people like the skilled professionals they are is the clearest signal of respect you can give. That means allowing genuine flexibility in how, where, and when people do their best work — not just in terms of remote working, but in how they develop and contribute.</p>
+
+                <p>Not everyone learns the same way. Some professionals thrive at:</p>
+
+                <ul>
+                    <li>In-person events and collaborative sessions</li>
+                    <li>Self-directed learning and online certifications</li>
+                    <li>Stretch assignments that expand their capabilities</li>
+                    <li>Mentoring relationships with senior colleagues</li>
+                </ul>
+
+                <p>Giving people the agency to choose their path, rather than mandating a one-size-fits-all approach, creates the kind of environment that talented people want to stay in.</p>
+
+                <h2>The bottom line</h2>
+
+                <p>The Microsoft talent market is competitive. Experienced D365 and Power Platform professionals have options, and they know it. If your employer proposition centres solely on salary, you will lose candidates to organisations that offer less money but a stronger sense of purpose, progression, and trust.</p>
+
+                <p>Building a culture of growth, passion, and autonomy isn't just the right thing to do — it directly improves morale, strengthens your company culture, and reduces the cost and disruption of staff turnover.</p>
+
+                <p>If you're thinking about how your employer proposition stacks up in the current market, I'm always happy to share what I'm hearing from candidates. Feel free to <a href="index.html#contact" style="color: var(--copper); font-weight: 600;">get in touch</a>.</p>
+
+                <hr class="post-divider">
+
+                <div class="post-author">
+                    <strong>Gemma Peck</strong> is a specialist recruiter focused exclusively on Microsoft Power Platform, Dynamics 365, and Copilot. Visit <a href="https://www.gtptech.co.uk">www.gtptech.co.uk</a> to find out more.
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 GTP Tech Recruitment. All rights reserved. | Microsoft Dynamics &amp; Power Platform Recruitment Specialists | <a href="privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

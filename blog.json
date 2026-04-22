@@ -1,3 +1,12 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "id": "beyond-the-pay-packet",
+      "category": "Hiring Insights",
+      "date": "13 February 2025",
+      "title": "Beyond the Pay Packet: What Really Motivates Microsoft Dynamics & Power Platform Professionals",
+      "excerpt": "Salary matters, but it rarely seals the deal. After years specialising in the Microsoft Dynamics 365 and Power Platform space, one thing is consistently clear — what really moves the needle is autonomy and growth.",
+      "url": "blog-beyond-the-pay-packet.html"
+    }
+  ]
 }
