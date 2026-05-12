@@ -1177,21 +1177,16 @@
 
     </div><!-- /form-wrapper -->
 
-    <!-- Hidden form — submits PDF + CV as real file attachments via FormSubmit -->
+    <!-- Hidden form — sends candidate details as text via FormSubmit -->
     <form id="registrationForm"
           action="https://formsubmit.co/gemma@gtptech.co.uk"
           method="POST"
-          enctype="multipart/form-data"
           style="display:none">
-        <input type="hidden" name="_captcha"  value="false">
-        <input type="hidden" name="_next"     value="https://www.gtptech.co.uk/register.html?done=1">
-        <input type="hidden" name="_subject"  id="fs_subject">
-        <input type="hidden" name="_replyto"  id="fs_replyto">
-        <input type="hidden" name="name"      id="fs_name">
-        <input type="hidden" name="email"     id="fs_email">
-        <input type="hidden" name="phone"     id="fs_phone">
-        <input type="file"   name="attachment" id="fs_pdf">
-        <input type="file"   name="cv"         id="fs_cv">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next"    value="https://www.gtptech.co.uk/register.html?done=1">
+        <input type="hidden" name="_subject" id="fs_subject">
+        <input type="hidden" name="_replyto" id="fs_replyto">
+        <textarea name="Registration Details" id="fs_details"></textarea>
     </form>
 
     <footer>
@@ -1600,6 +1595,61 @@
             return doc;
         }
 
+        // ── Build Registration Summary Text ───────────────────────────────
+        function buildRegistrationText() {
+            const lines = [];
+            const s = (label, value) => lines.push(label + ': ' + value);
+            const sep = (title) => { lines.push(''); lines.push('── ' + title + ' ──'); };
+
+            sep('PERSONAL DETAILS');
+            s('Full Name', val('fullName'));
+            s('Email', val('email'));
+            s('Phone', val('phone'));
+            s('Location', val('location'));
+            if (val('linkedin') !== '-') s('LinkedIn', val('linkedin'));
+
+            sep('PROFESSIONAL PROFILE');
+            s('Current Job Title', val('jobTitle'));
+            s('Microsoft Experience', val('experience'));
+            s('Specialisms', getCheckboxValues('specialism'));
+            s('Role Type', val('roleType'));
+            s('Working Arrangement', val('workingArrangement'));
+            if (val('currentSalary') !== '-') s('Current Salary', val('currentSalary'));
+            s('Desired Salary/Rate', val('desiredSalary'));
+            s('Notice Period', val('noticePeriod'));
+            s('Available From', val('availableFrom'));
+
+            sep('ELIGIBILITY & RIGHT TO WORK');
+            s('UK/Irish Citizen', getRadioValue('ukCitizen'));
+            s('Right to Work in UK', getRadioValue('rightToWork'));
+            if (val('rtwStatus') !== '-') s('RTW Status', val('rtwStatus'));
+            if (val('rtwNotes') !== '-') s('RTW Notes', val('rtwNotes'));
+            s('Willing to Travel', getRadioValue('travel'));
+            s('UK Driving Licence', getRadioValue('drivingLicence'));
+            s('Willing to Relocate', getRadioValue('relocate'));
+            s('Other Agencies', getRadioValue('otherAgencies'));
+
+            sep('REASONABLE ADJUSTMENTS');
+            s('Interview Adjustments', getRadioValue('interviewAdjustments'));
+            if (getRadioValue('interviewAdjustments') === 'Yes') s('Interview Details', val('interviewAdjustmentsDetail'));
+            s('Workplace Adjustments', getRadioValue('workplaceAdjustments'));
+            if (getRadioValue('workplaceAdjustments') === 'Yes') s('Workplace Details', val('workplaceAdjustmentsDetail'));
+
+            sep('EQUAL OPPORTUNITIES (VOLUNTARY)');
+            s('Gender', val('gender'));
+            s('Age Range', val('ageRange'));
+            s('Ethnicity', val('ethnicity'));
+            s('Disability/Health Condition', val('disability'));
+
+            sep('DECLARATION');
+            s('Signed by', val('fullName'));
+            s('Signed at', val('sigDate'));
+            const cv = document.getElementById('cvFile');
+            if (cv && cv.files[0]) s('CV uploaded', cv.files[0].name + ' (candidate holds PDF copy)');
+
+            return lines.join('\n');
+        }
+
         // ── Submit Form ───────────────────────────────────────────────────
         function submitForm() {
             const decls = [1,2,3,4,5,6];
@@ -1622,36 +1672,16 @@
             document.getElementById('submitError').classList.remove('visible');
 
             try {
-                const sigDataUrl = getSignatureDataUrl();
-
                 // 1. Generate PDF and download a copy for the candidate
-                const doc = generatePDF(sigDataUrl);
+                const doc = generatePDF(getSignatureDataUrl());
                 const fileName = 'GTP-Tech-Registration-' + val('fullName').replace(/\s+/g, '-') + '.pdf';
-                const pdfBlob = doc.output('blob');
                 doc.save(fileName);
 
-                // 2. Attach PDF to hidden form using DataTransfer
-                const pdfFile = new File([pdfBlob], fileName, { type: 'application/pdf' });
-                const pdfDt = new DataTransfer();
-                pdfDt.items.add(pdfFile);
-                document.getElementById('fs_pdf').files = pdfDt.files;
-
-                // 3. If CV uploaded, attach that too
-                const cvInput = document.getElementById('cvFile');
-                if (cvInput.files[0]) {
-                    const cvDt = new DataTransfer();
-                    cvDt.items.add(cvInput.files[0]);
-                    document.getElementById('fs_cv').files = cvDt.files;
-                }
-
-                // 4. Populate hidden text fields
+                // 2. Populate form fields and submit
                 document.getElementById('fs_subject').value  = 'New Candidate Registration - ' + val('fullName');
                 document.getElementById('fs_replyto').value  = val('email');
-                document.getElementById('fs_name').value     = val('fullName');
-                document.getElementById('fs_email').value    = val('email');
-                document.getElementById('fs_phone').value    = val('phone');
+                document.getElementById('fs_details').value  = buildRegistrationText();
 
-                // 5. Submit — FormSubmit sends the email then redirects to ?done=1
                 document.getElementById('registrationForm').submit();
 
             } catch (err) {
