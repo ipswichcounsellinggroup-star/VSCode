@@ -13,9 +13,8 @@
     <meta property="og:image" content="https://www.gtptech.co.uk/assets/images/GTP-Tech.png">
     <link rel="icon" type="image/png" href="assets/images/GTP Favicon.png">
     <link rel="shortcut icon" type="image/png" href="assets/images/GTP Favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Cabin:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Cabin:wght@700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -444,52 +443,35 @@
         .file-upload-area p { color: #888; font-size: 0.9rem; margin-top: 0.4rem; }
         .file-name-display { margin-top: 0.6rem; color: var(--purple-dark); font-weight: 600; font-size: 0.9rem; }
 
-        /* Signature Pad */
-        .signature-container {
-            border: 2px solid #ddd;
+        /* Generated Signature */
+        .signature-display {
+            border: 1.5px solid #ddd;
             border-radius: 10px;
-            overflow: hidden;
             background: #fff;
-            position: relative;
-        }
-
-        .signature-container canvas {
-            display: block;
-            width: 100%;
-            height: 160px;
-            cursor: crosshair;
-            touch-action: none;
-        }
-
-        .signature-placeholder {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ccc;
-            font-size: 0.9rem;
-            pointer-events: none;
-            text-align: center;
-        }
-
-        .signature-toolbar {
+            padding: 1.2rem 1.5rem 0.8rem;
+            min-height: 100px;
             display: flex;
-            justify-content: flex-end;
-            margin-top: 0.5rem;
+            align-items: flex-end;
         }
 
-        .btn-clear-sig {
-            background: none;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 0.3rem 0.8rem;
-            font-size: 0.8rem;
-            color: #888;
-            cursor: pointer;
-            transition: all 0.2s ease;
+        .signature-display::after {
+            display: none;
         }
 
-        .btn-clear-sig:hover { border-color: var(--error); color: var(--error); }
+        .signature-inner {
+            width: 100%;
+            border-bottom: 1.5px solid #ccc;
+            padding-bottom: 0.4rem;
+        }
+
+        #signatureText {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            line-height: 1.1;
+            display: block;
+        }
 
         /* Error messages */
         .error-message {
@@ -709,8 +691,8 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="phone">Phone Number <span class="required">*</span></label>
-                    <input type="tel" id="phone" name="phone" placeholder="+44 7700 000000" autocomplete="tel">
-                    <div class="error-message" id="err-phone">Please enter your phone number.</div>
+                    <input type="tel" id="phone" name="phone" placeholder="e.g. 07700 900000" autocomplete="tel">
+                    <div class="error-message" id="err-phone">Please enter a valid 11-digit phone number.</div>
                 </div>
                 <div class="form-group">
                     <label for="location">Current Location (City / Region) <span class="required">*</span></label>
@@ -722,6 +704,7 @@
             <div class="form-group">
                 <label for="linkedin">LinkedIn Profile URL <span class="optional">(optional)</span></label>
                 <input type="url" id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/yourname">
+                <div class="error-message" id="err-linkedin">Please enter a valid LinkedIn profile URL (e.g. https://www.linkedin.com/in/yourname).</div>
             </div>
 
             <hr class="section-divider">
@@ -1094,16 +1077,14 @@
             </div>
 
             <div class="form-group">
-                <label>Your Signature <span class="required">*</span> &nbsp;<span class="optional">— Draw your signature in the box below using your mouse or finger</span></label>
-                <div class="signature-container">
-                    <canvas id="signatureCanvas"></canvas>
-                    <div class="signature-placeholder" id="sigPlaceholder">Draw your signature here</div>
+                <label>Your Signature &nbsp;<span class="optional">— Generated from your name</span></label>
+                <div class="signature-display">
+                    <div class="signature-inner">
+                        <span id="signatureText"></span>
+                    </div>
                 </div>
-                <div class="signature-toolbar">
-                    <button type="button" class="btn-clear-sig" onclick="clearSignature()">Clear signature</button>
-                </div>
-                <div class="error-message" id="err-signature">Please provide your signature before submitting.</div>
             </div>
+            <canvas id="signatureCanvas" style="display:none; position:absolute; left:-9999px;"></canvas>
 
             <div class="submit-error" id="submitError">There was a problem submitting your form. Please try again or email us directly at <a href="mailto:gemma@gtptech.co.uk">gemma@gtptech.co.uk</a>.</div>
 
@@ -1164,12 +1145,6 @@
             document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
             document.getElementById('step-' + n).classList.add('active');
             updateProgress(n);
-            if (n === 4 && signaturePad) {
-                const data = signaturePad.toData();
-                canvas.width = canvas.offsetWidth;
-                canvas.height = 160;
-                signaturePad.fromData(data);
-            }
             window.scrollTo({ top: document.querySelector('.hero').offsetTop - 80, behavior: 'smooth' });
         }
 
@@ -1191,8 +1166,10 @@
             if (!validateStep(from)) return;
             currentStep = from + 1;
             if (currentStep === 4) {
-                document.getElementById('sigName').value = document.getElementById('fullName').value;
+                const name = document.getElementById('fullName').value;
+                document.getElementById('sigName').value = name;
                 document.getElementById('sigDate').value = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                document.getElementById('signatureText').textContent = name;
             }
             showStep(currentStep);
         }
@@ -1209,7 +1186,8 @@
             if (step === 1) {
                 valid = requireField('fullName') && valid;
                 valid = requireEmail('email') && valid;
-                valid = requireField('phone') && valid;
+                valid = requirePhone('phone') && valid;
+                valid = requireLinkedin('linkedin') && valid;
                 valid = requireField('location') && valid;
                 valid = requireField('jobTitle') && valid;
                 valid = requireSelect('experience') && valid;
@@ -1259,6 +1237,25 @@
             el.classList.remove('error'); if (errEl) errEl.classList.remove('visible'); return true;
         }
 
+        function requirePhone(id) {
+            const el = document.getElementById(id);
+            const errEl = document.getElementById('err-' + id);
+            const digits = el.value.replace(/[\s\-\(\)\+]/g, '');
+            const ok = /^\d{11}$/.test(digits);
+            if (!ok) { el.classList.add('error'); if (errEl) errEl.classList.add('visible'); return false; }
+            el.classList.remove('error'); if (errEl) errEl.classList.remove('visible'); return true;
+        }
+
+        function requireLinkedin(id) {
+            const el = document.getElementById(id);
+            const errEl = document.getElementById('err-' + id);
+            const v = el.value.trim();
+            if (!v) { el.classList.remove('error'); if (errEl) errEl.classList.remove('visible'); return true; }
+            const ok = /linkedin\.com\/in\//i.test(v);
+            if (!ok) { el.classList.add('error'); if (errEl) errEl.classList.add('visible'); return false; }
+            el.classList.remove('error'); if (errEl) errEl.classList.remove('visible'); return true;
+        }
+
         function requireSelect(id) {
             const el = document.getElementById(id);
             const errEl = document.getElementById('err-' + id);
@@ -1280,8 +1277,10 @@
             if (errEl) errEl.classList.remove('visible'); return true;
         }
 
-        // Validate email on blur
+        // Validate on blur
         document.getElementById('email').addEventListener('blur', () => requireEmail('email'));
+        document.getElementById('phone').addEventListener('blur', () => requirePhone('phone'));
+        document.getElementById('linkedin').addEventListener('blur', () => requireLinkedin('linkedin'));
 
         // Set minimum date for availability to today
         document.getElementById('availableFrom').min = new Date().toISOString().split('T')[0];
@@ -1337,41 +1336,28 @@
             }
         });
 
-        // ── Signature Pad ─────────────────────────────────────────────────
-        const canvas = document.getElementById('signatureCanvas');
-        let signaturePad;
-
+        // ── Signature ─────────────────────────────────────────────────────
         window.addEventListener('load', () => {
-            // Show success screen if redirected back after FormSubmit
             if (new URLSearchParams(window.location.search).get('done') === '1') {
                 document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
                 document.querySelector('.progress-wrapper').style.display = 'none';
                 document.getElementById('successScreen').classList.add('visible');
                 window.history.replaceState({}, '', '/register.html');
             }
-
-            canvas.width  = canvas.offsetWidth;
-            canvas.height = 160;
-            signaturePad = new SignaturePad(canvas, {
-                penColor: '#222933',
-                minWidth: 1,
-                maxWidth: 2.5
-            });
-            signaturePad.addEventListener('beginStroke', () => {
-                document.getElementById('sigPlaceholder').style.display = 'none';
-            });
         });
 
-        window.addEventListener('resize', () => {
-            const data = signaturePad.toData();
-            canvas.width = canvas.offsetWidth;
-            canvas.height = 160;
-            signaturePad.fromData(data);
-        });
-
-        function clearSignature() {
-            signaturePad.clear();
-            document.getElementById('sigPlaceholder').style.display = 'block';
+        function getSignatureDataUrl() {
+            const name = document.getElementById('fullName').value || '';
+            const canvas = document.getElementById('signatureCanvas');
+            canvas.width = 520;
+            canvas.height = 130;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.font = '700 62px "Dancing Script", cursive';
+            ctx.fillStyle = '#1a1a2e';
+            ctx.textBaseline = 'alphabetic';
+            ctx.fillText(name, 14, 100);
+            return canvas.toDataURL('image/png');
         }
 
         // ── Collect Form Data ─────────────────────────────────────────────
@@ -1536,19 +1522,13 @@
             }
             document.getElementById('err-declarations').classList.remove('visible');
 
-            if (signaturePad.isEmpty()) {
-                document.getElementById('err-signature').classList.add('visible');
-                return;
-            }
-            document.getElementById('err-signature').classList.remove('visible');
-
             const btn = document.getElementById('submitBtn');
             btn.disabled = true;
             btn.textContent = 'Submitting...';
             document.getElementById('submitError').classList.remove('visible');
 
             try {
-                const sigDataUrl = signaturePad.toDataURL('image/png');
+                const sigDataUrl = getSignatureDataUrl();
 
                 // 1. Generate PDF and download a copy for the candidate
                 const doc = generatePDF(sigDataUrl);
