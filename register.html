@@ -967,14 +967,6 @@
                 <div class="error-message" id="err-relocate">Please select an option.</div>
             </div>
 
-            <div class="form-group">
-                <label>Are you currently registered with any other recruitment agencies? <span class="required">*</span></label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="otherAgencies" value="Yes"> Yes</label>
-                    <label class="radio-option"><input type="radio" name="otherAgencies" value="No"> No</label>
-                </div>
-                <div class="error-message" id="err-otherAgencies">Please select an option.</div>
-            </div>
 
             <div class="form-nav">
                 <button class="btn-prev" onclick="prevStep(2)">&larr; Back</button>
@@ -1317,7 +1309,6 @@
                 valid = requireRadio('clientTravel', 'err-clientTravel') && valid;
                 valid = requireRadio('drivingLicence', 'err-drivingLicence') && valid;
                 valid = requireRadio('relocate', 'err-relocate') && valid;
-                valid = requireRadio('otherAgencies', 'err-otherAgencies') && valid;
             }
 
             if (step === 3) {
@@ -1590,7 +1581,6 @@
             row('Travel to Different Locations:', getRadioValue('clientTravel'));
             row('UK Driving Licence:', getRadioValue('drivingLicence'));
             row('Willing to Relocate:', getRadioValue('relocate'));
-            row('Other Agencies:', getRadioValue('otherAgencies'));
 
             sectionHeader('REASONABLE ADJUSTMENTS & ROLE REQUIREMENTS');
             row('Interview Adjustments Required:', getRadioValue('interviewAdjustments'));
@@ -1684,7 +1674,6 @@
             s('Travel to Different Locations', getRadioValue('clientTravel'));
             s('UK Driving Licence', getRadioValue('drivingLicence'));
             s('Willing to Relocate', getRadioValue('relocate'));
-            s('Other Agencies', getRadioValue('otherAgencies'));
 
             sep('REASONABLE ADJUSTMENTS');
             s('Interview Adjustments', getRadioValue('interviewAdjustments'));
