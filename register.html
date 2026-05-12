@@ -858,7 +858,7 @@
                 <div class="form-group">
                     <label for="availableFrom">Available From <span class="required">*</span></label>
                     <input type="date" id="availableFrom" name="availableFrom">
-                    <div class="error-message" id="err-availableFrom">Please enter your availability date.</div>
+                    <div class="error-message" id="err-availableFrom">Please enter a valid availability date (today or in the future).</div>
                 </div>
             </div>
 
@@ -1299,7 +1299,7 @@
                 valid = requireSelect('workingArrangement') && valid;
                 valid = requireField('desiredSalary') && valid;
                 valid = requireSelect('noticePeriod') && valid;
-                valid = requireField('availableFrom') && valid;
+                valid = requireFutureDate('availableFrom') && valid;
             }
 
             if (step === 2) {
@@ -1332,6 +1332,15 @@
             el.classList.remove('error');
             if (errEl) errEl.classList.remove('visible');
             return true;
+        }
+
+        function requireFutureDate(id) {
+            const el = document.getElementById(id);
+            const errEl = document.getElementById('err-' + id);
+            const today = new Date().toISOString().split('T')[0];
+            const ok = el.value && el.value >= today;
+            if (!ok) { el.classList.add('error'); if (errEl) errEl.classList.add('visible'); return false; }
+            el.classList.remove('error'); if (errEl) errEl.classList.remove('visible'); return true;
         }
 
         function requireEmail(id) {
