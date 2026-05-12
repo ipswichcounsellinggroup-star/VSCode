@@ -1084,14 +1084,6 @@
                         <option value="Other ethnic group">Other ethnic group</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="disability">Disability or Long-Term Health Condition <span class="optional">(optional)</span></label>
-                    <select id="disability" name="disability">
-                        <option value="Prefer not to say">Prefer not to say</option>
-                        <option value="No">No</option>
-                        <option value="Yes">Yes</option>
-                    </select>
-                </div>
             </div>
 
             <div class="form-nav">
@@ -1604,7 +1596,6 @@
             row('Gender:', val('gender'));
             row('Age Range:', val('ageRange'));
             row('Ethnic Background:', val('ethnicity'));
-            row('Disability/Health Condition:', val('disability'));
 
             if (y > 210) { doc.addPage(); y = 18; }
             sectionHeader('DECLARATION');
@@ -1699,7 +1690,6 @@
             s('Gender', val('gender'));
             s('Age Range', val('ageRange'));
             s('Ethnicity', val('ethnicity'));
-            s('Disability/Health Condition', val('disability'));
 
             sep('DECLARATION');
             s('Signed by', val('fullName'));
