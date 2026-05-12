@@ -1208,18 +1208,11 @@
 
     </div><!-- /form-wrapper -->
 
-    <!-- Hidden form — sends registration details + PDF attachment via FormSubmit -->
-    <form id="registrationForm"
-          action="https://formsubmit.co/gemma@gtptech.co.uk"
-          method="POST"
-          enctype="multipart/form-data"
-          style="display:none">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next"    value="https://www.gtptech.co.uk/register.html?done=1">
-        <input type="hidden" name="_subject" id="fs_subject">
-        <input type="hidden" name="_replyto" id="fs_replyto">
-        <textarea name="Registration Details" id="fs_details"></textarea>
-        <input type="file"   name="attachment" id="fs_pdf">
+    <!-- Netlify Forms detection — must be in static HTML at build time -->
+    <form name="candidate-registration" data-netlify="true" netlify-honeypot="bot-field" style="display:none">
+        <input name="bot-field">
+        <textarea name="Registration Details"></textarea>
+        <input type="file" name="attachment">
     </form>
 
     <footer>
@@ -1443,14 +1436,6 @@
         });
 
         // ── Signature ─────────────────────────────────────────────────────
-        window.addEventListener('load', () => {
-            if (new URLSearchParams(window.location.search).get('done') === '1') {
-                document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-                document.querySelector('.progress-wrapper').style.display = 'none';
-                document.getElementById('successScreen').classList.add('visible');
-                window.history.replaceState({}, '', '/register.html');
-            }
-        });
 
         function signDocument() {
             const name = document.getElementById('fullName').value;
@@ -1701,6 +1686,13 @@
         }
 
         // ── Submit Form ───────────────────────────────────────────────────
+        function showSuccess() {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.querySelector('.progress-wrapper').style.display = 'none';
+            document.getElementById('successScreen').classList.add('visible');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         function submitForm() {
             const decls = [1,2,3,4,5,6];
             const allChecked = decls.every(n => document.getElementById('decl' + n).checked);
@@ -1722,23 +1714,26 @@
             document.getElementById('submitError').classList.remove('visible');
 
             try {
-                // 1. Generate PDF — download to candidate and attach to email
+                // 1. Generate PDF and download to candidate
                 const doc = generatePDF(getSignatureDataUrl());
                 const fileName = 'GTP-Tech-Registration-' + val('fullName').replace(/\s+/g, '-') + '.pdf';
                 const pdfBlob = doc.output('blob');
                 doc.save(fileName);
 
-                const pdfFile = new File([pdfBlob], fileName, { type: 'application/pdf' });
-                const dt = new DataTransfer();
-                dt.items.add(pdfFile);
-                document.getElementById('fs_pdf').files = dt.files;
+                // 2. Build FormData for Netlify
+                const formData = new FormData();
+                formData.append('form-name', 'candidate-registration');
+                formData.append('Registration Details', buildRegistrationText());
+                formData.append('attachment', new File([pdfBlob], fileName, { type: 'application/pdf' }), fileName);
 
-                // 2. Populate text fields and submit
-                document.getElementById('fs_subject').value  = 'New Candidate Registration - ' + val('fullName');
-                document.getElementById('fs_replyto').value  = val('email');
-                document.getElementById('fs_details').value  = buildRegistrationText();
-
-                document.getElementById('registrationForm').submit();
+                // 3. Submit via fetch and show success inline
+                fetch('/', { method: 'POST', body: formData })
+                    .then(() => showSuccess())
+                    .catch(() => {
+                        btn.disabled = false;
+                        btn.textContent = 'Submit Registration';
+                        document.getElementById('submitError').classList.add('visible');
+                    });
 
             } catch (err) {
                 console.error(err);
