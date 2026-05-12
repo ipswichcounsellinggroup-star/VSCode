@@ -910,11 +910,22 @@
                 <input type="text" id="rtwNotes" name="rtwNotes" placeholder="e.g. visa expiry date, any conditions">
             </div>
 
+            <div class="form-group">
+                <label>Would you require a new employer to provide visa sponsorship? <span class="required">*</span></label>
+                <div class="info-box" style="margin:0.5rem 0 0.8rem;">Many clients are unable to offer sponsorship. Confirming this now ensures we only put you forward for roles where sponsorship is available if needed.</div>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="visaSponsorship" value="Yes"> Yes</label>
+                    <label class="radio-option"><input type="radio" name="visaSponsorship" value="No"> No</label>
+                    <label class="radio-option"><input type="radio" name="visaSponsorship" value="Unsure - please discuss"> Unsure</label>
+                </div>
+                <div class="error-message" id="err-visaSponsorship">Please select an option.</div>
+            </div>
+
             <hr class="section-divider">
             <div class="section-label">Work Preferences</div>
 
             <div class="form-group">
-                <label>Are you willing to travel as part of your role? <span class="required">*</span></label>
+                <label>Are you able and willing to travel as part of your role? <span class="required">*</span></label>
                 <div class="radio-group">
                     <label class="radio-option"><input type="radio" name="travel" value="Yes - regularly"> Yes, regularly</label>
                     <label class="radio-option"><input type="radio" name="travel" value="Yes - occasionally"> Yes, occasionally</label>
@@ -987,6 +998,27 @@
                 <div class="conditional" id="workplace-adj-detail">
                     <label for="workplaceAdjustmentsDetail" style="margin-top:0.5rem;">Please describe the adjustments required <span class="required">*</span></label>
                     <textarea id="workplaceAdjustmentsDetail" name="workplaceAdjustmentsDetail" placeholder="Please describe any adjustments that would help you..."></textarea>
+                </div>
+            </div>
+
+            <hr class="section-divider">
+            <div class="section-label">Role Requirements</div>
+
+            <div class="info-box">
+                Roles we work on may involve regular travel to client sites, office-based working, or other specific requirements. Please let us know if there are any factors that may affect your ability to meet these, so that we only put you forward for roles that are genuinely suitable for you.
+            </div>
+
+            <div class="form-group">
+                <label>Are there any factors that may affect your ability to meet typical role requirements, such as regular travel to client sites or office attendance? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="roleRequirements" value="No" onchange="toggleConditional('role-req-detail', false)"> No</label>
+                    <label class="radio-option"><input type="radio" name="roleRequirements" value="Yes" onchange="toggleConditional('role-req-detail', true)"> Yes</label>
+                    <label class="radio-option"><input type="radio" name="roleRequirements" value="Prefer to discuss" onchange="toggleConditional('role-req-detail', false)"> Prefer to discuss</label>
+                </div>
+                <div class="error-message" id="err-roleRequirements">Please select an option.</div>
+                <div class="conditional" id="role-req-detail">
+                    <label for="roleRequirementsDetail" style="margin-top:0.5rem;">Please briefly describe <span class="optional">(optional — only share what you are comfortable with)</span></label>
+                    <textarea id="roleRequirementsDetail" name="roleRequirementsDetail" placeholder="e.g. I am unable to travel more than 1 day per week, or I require advance notice for on-site visits"></textarea>
                 </div>
             </div>
 
@@ -1266,6 +1298,7 @@
             if (step === 2) {
                 valid = requireRadio('ukCitizen', 'err-ukCitizen') && valid;
                 valid = requireRadio('rightToWork', 'err-rightToWork') && valid;
+                valid = requireRadio('visaSponsorship', 'err-visaSponsorship') && valid;
                 valid = requireRadio('travel', 'err-travel') && valid;
                 valid = requireRadio('drivingLicence', 'err-drivingLicence') && valid;
                 valid = requireRadio('relocate', 'err-relocate') && valid;
@@ -1275,6 +1308,7 @@
             if (step === 3) {
                 valid = requireRadio('interviewAdjustments', 'err-interviewAdjustments') && valid;
                 valid = requireRadio('workplaceAdjustments', 'err-workplaceAdjustments') && valid;
+                valid = requireRadio('roleRequirements', 'err-roleRequirements') && valid;
             }
 
             return valid;
@@ -1536,16 +1570,19 @@
             row('Right to Work in UK:', getRadioValue('rightToWork'));
             row('Right to Work Status:', val('rtwStatus'));
             row('RTW Notes:', val('rtwNotes'));
-            row('Willing to Travel:', getRadioValue('travel'));
+            row('Visa Sponsorship Required:', getRadioValue('visaSponsorship'));
+            row('Able & Willing to Travel:', getRadioValue('travel'));
             row('UK Driving Licence:', getRadioValue('drivingLicence'));
             row('Willing to Relocate:', getRadioValue('relocate'));
             row('Other Agencies:', getRadioValue('otherAgencies'));
 
-            sectionHeader('REASONABLE ADJUSTMENTS');
+            sectionHeader('REASONABLE ADJUSTMENTS & ROLE REQUIREMENTS');
             row('Interview Adjustments Required:', getRadioValue('interviewAdjustments'));
             if (getRadioValue('interviewAdjustments') === 'Yes') row('Interview Adjustment Details:', val('interviewAdjustmentsDetail'));
             row('Workplace Adjustments Required:', getRadioValue('workplaceAdjustments'));
             if (getRadioValue('workplaceAdjustments') === 'Yes') row('Workplace Adjustment Details:', val('workplaceAdjustmentsDetail'));
+            row('Factors Affecting Role Requirements:', getRadioValue('roleRequirements'));
+            if (getRadioValue('roleRequirements') === 'Yes') row('Role Requirement Details:', val('roleRequirementsDetail'));
 
             sectionHeader('EQUAL OPPORTUNITIES (VOLUNTARY & ANONYMOUS)');
             row('Gender:', val('gender'));
@@ -1626,7 +1663,8 @@
             s('Right to Work in UK', getRadioValue('rightToWork'));
             if (val('rtwStatus') !== '-') s('RTW Status', val('rtwStatus'));
             if (val('rtwNotes') !== '-') s('RTW Notes', val('rtwNotes'));
-            s('Willing to Travel', getRadioValue('travel'));
+            s('Visa Sponsorship Required', getRadioValue('visaSponsorship'));
+            s('Able & Willing to Travel', getRadioValue('travel'));
             s('UK Driving Licence', getRadioValue('drivingLicence'));
             s('Willing to Relocate', getRadioValue('relocate'));
             s('Other Agencies', getRadioValue('otherAgencies'));
@@ -1636,6 +1674,10 @@
             if (getRadioValue('interviewAdjustments') === 'Yes') s('Interview Details', val('interviewAdjustmentsDetail'));
             s('Workplace Adjustments', getRadioValue('workplaceAdjustments'));
             if (getRadioValue('workplaceAdjustments') === 'Yes') s('Workplace Details', val('workplaceAdjustmentsDetail'));
+
+            sep('ROLE REQUIREMENTS');
+            s('Factors affecting role requirements', getRadioValue('roleRequirements'));
+            if (getRadioValue('roleRequirements') === 'Yes') s('Details', val('roleRequirementsDetail'));
 
             sep('EQUAL OPPORTUNITIES (VOLUNTARY)');
             s('Gender', val('gender'));
