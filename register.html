@@ -925,13 +925,27 @@
             <div class="section-label">Work Preferences</div>
 
             <div class="form-group">
-                <label>Are you able and willing to travel as part of your role? <span class="required">*</span></label>
+                <label>How many days per week are you able and willing to work on-site (at a client or office location)? <span class="required">*</span></label>
                 <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="travel" value="Yes - regularly"> Yes, regularly</label>
-                    <label class="radio-option"><input type="radio" name="travel" value="Yes - occasionally"> Yes, occasionally</label>
-                    <label class="radio-option"><input type="radio" name="travel" value="No"> No</label>
+                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Fully remote only"> Fully remote only</label>
+                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Up to 1 day per week"> Up to 1 day</label>
+                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Up to 2 days per week"> Up to 2 days</label>
+                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Up to 3 days per week"> Up to 3 days</label>
+                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Up to 4 days per week"> Up to 4 days</label>
+                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Fully on-site (5 days)"> Fully on-site</label>
+                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Flexible / no preference"> Flexible</label>
                 </div>
-                <div class="error-message" id="err-travel">Please select an option.</div>
+                <div class="error-message" id="err-onsiteDays">Please select an option.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Are you able and willing to travel to different client or office locations as part of your role? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="clientTravel" value="Yes - regularly"> Yes, regularly</label>
+                    <label class="radio-option"><input type="radio" name="clientTravel" value="Yes - occasionally"> Yes, occasionally</label>
+                    <label class="radio-option"><input type="radio" name="clientTravel" value="No"> No</label>
+                </div>
+                <div class="error-message" id="err-clientTravel">Please select an option.</div>
             </div>
 
             <div class="form-group">
@@ -1299,7 +1313,8 @@
                 valid = requireRadio('ukCitizen', 'err-ukCitizen') && valid;
                 valid = requireRadio('rightToWork', 'err-rightToWork') && valid;
                 valid = requireRadio('visaSponsorship', 'err-visaSponsorship') && valid;
-                valid = requireRadio('travel', 'err-travel') && valid;
+                valid = requireRadio('onsiteDays', 'err-onsiteDays') && valid;
+                valid = requireRadio('clientTravel', 'err-clientTravel') && valid;
                 valid = requireRadio('drivingLicence', 'err-drivingLicence') && valid;
                 valid = requireRadio('relocate', 'err-relocate') && valid;
                 valid = requireRadio('otherAgencies', 'err-otherAgencies') && valid;
@@ -1571,7 +1586,8 @@
             row('Right to Work Status:', val('rtwStatus'));
             row('RTW Notes:', val('rtwNotes'));
             row('Visa Sponsorship Required:', getRadioValue('visaSponsorship'));
-            row('Able & Willing to Travel:', getRadioValue('travel'));
+            row('On-site Days Per Week:', getRadioValue('onsiteDays'));
+            row('Travel to Different Locations:', getRadioValue('clientTravel'));
             row('UK Driving Licence:', getRadioValue('drivingLicence'));
             row('Willing to Relocate:', getRadioValue('relocate'));
             row('Other Agencies:', getRadioValue('otherAgencies'));
@@ -1664,7 +1680,8 @@
             if (val('rtwStatus') !== '-') s('RTW Status', val('rtwStatus'));
             if (val('rtwNotes') !== '-') s('RTW Notes', val('rtwNotes'));
             s('Visa Sponsorship Required', getRadioValue('visaSponsorship'));
-            s('Able & Willing to Travel', getRadioValue('travel'));
+            s('On-site Days Per Week', getRadioValue('onsiteDays'));
+            s('Travel to Different Locations', getRadioValue('clientTravel'));
             s('UK Driving Licence', getRadioValue('drivingLicence'));
             s('Willing to Relocate', getRadioValue('relocate'));
             s('Other Agencies', getRadioValue('otherAgencies'));
