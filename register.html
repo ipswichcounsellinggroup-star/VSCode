@@ -1177,16 +1177,18 @@
 
     </div><!-- /form-wrapper -->
 
-    <!-- Hidden form — sends candidate details as text via FormSubmit -->
+    <!-- Hidden form — sends registration details + PDF attachment via FormSubmit -->
     <form id="registrationForm"
           action="https://formsubmit.co/gemma@gtptech.co.uk"
           method="POST"
+          enctype="multipart/form-data"
           style="display:none">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_next"    value="https://www.gtptech.co.uk/register.html?done=1">
         <input type="hidden" name="_subject" id="fs_subject">
         <input type="hidden" name="_replyto" id="fs_replyto">
         <textarea name="Registration Details" id="fs_details"></textarea>
+        <input type="file"   name="attachment" id="fs_pdf">
     </form>
 
     <footer>
@@ -1672,12 +1674,18 @@
             document.getElementById('submitError').classList.remove('visible');
 
             try {
-                // 1. Generate PDF and download a copy for the candidate
+                // 1. Generate PDF — download to candidate and attach to email
                 const doc = generatePDF(getSignatureDataUrl());
                 const fileName = 'GTP-Tech-Registration-' + val('fullName').replace(/\s+/g, '-') + '.pdf';
+                const pdfBlob = doc.output('blob');
                 doc.save(fileName);
 
-                // 2. Populate form fields and submit
+                const pdfFile = new File([pdfBlob], fileName, { type: 'application/pdf' });
+                const dt = new DataTransfer();
+                dt.items.add(pdfFile);
+                document.getElementById('fs_pdf').files = dt.files;
+
+                // 2. Populate text fields and submit
                 document.getElementById('fs_subject').value  = 'New Candidate Registration - ' + val('fullName');
                 document.getElementById('fs_replyto').value  = val('email');
                 document.getElementById('fs_details').value  = buildRegistrationText();
