@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equal Opportunities Policy | GTP Tech Recruitment</title>
+    <meta name="description" content="GTP Tech Recruitment's equal opportunities policy, setting out our commitment to fair and inclusive recruitment in line with the Equality Act 2010.">
+    <link rel="icon" type="image/png" href="assets/images/GTP-Tech.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-dark: rgb(34, 41, 51);
+            --text-gray: rgb(185, 189, 195);
+            --white: #ffffff;
+            --copper: #B38679;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-dark);
+            background: #f8f9fa;
+        }
+
+        nav {
+            background: linear-gradient(90deg, var(--primary-dark) 0%, #2a3242 50%, var(--primary-dark) 100%);
+            padding: 1.5rem 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img { height: 45px; width: auto; }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--copper);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover { color: var(--copper); }
+        nav a:hover::after { width: 100%; }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #2a3540 40%, #3b2d5e 70%, #4a3068 100%);
+            color: var(--white);
+            padding: 120px 5% 60px;
+            margin-top: 70px;
+            position: relative;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--copper), transparent);
+        }
+
+        .page-hero .container { max-width: 900px; margin: 0 auto; }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-hero .updated {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .policy-body {
+            padding: 3rem 5%;
+        }
+
+        .policy-body .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .policy-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+        }
+
+        .policy-content p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.2rem;
+        }
+
+        .policy-content h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 2.5rem 0 1rem;
+            padding-left: 1rem;
+            border-left: 4px solid var(--copper);
+        }
+
+        .policy-content h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #3b2d5e;
+            margin: 1.8rem 0 0.6rem;
+        }
+
+        .policy-content ul {
+            list-style: none;
+            margin: 0.8rem 0 1.2rem 0;
+            padding: 0;
+        }
+
+        .policy-content ul li {
+            position: relative;
+            padding: 0.4rem 0 0.4rem 1.6rem;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #333;
+        }
+
+        .policy-content ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            width: 8px;
+            height: 8px;
+            background: #3b2d5e;
+            border-radius: 50%;
+        }
+
+        .policy-content a {
+            color: var(--copper);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .policy-content a:hover { text-decoration: underline; }
+
+        .highlight-box {
+            background: #f4f1f8;
+            border-left: 4px solid #3b2d5e;
+            border-radius: 0 8px 8px 0;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0 !important;
+            color: #3b2d5e !important;
+            font-weight: 500;
+        }
+
+        .protected-characteristics {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 0.75rem;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .characteristic-tag {
+            background: #f4f1f8;
+            border: 1px solid #d9d0ea;
+            border-radius: 6px;
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
+            color: #3b2d5e;
+            font-weight: 500;
+        }
+
+        .divider {
+            border: none;
+            border-top: 2px solid #f0f0f0;
+            margin: 2rem 0;
+        }
+
+        footer {
+            background: var(--primary-dark);
+            color: var(--text-gray);
+            text-align: center;
+            padding: 2rem 5%;
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--copper); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-dark);
+                padding: 1rem 5%;
+                gap: 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            nav ul.active { display: flex; }
+
+            nav ul li a {
+                padding: 0.75rem 0;
+                display: block;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+            }
+
+            nav ul li:last-child a { border-bottom: none; }
+
+            .page-hero h1 { font-size: 1.8rem; }
+            .policy-content { padding: 2rem 1.5rem; }
+
+            .protected-characteristics { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/GTP-Tech.png" alt="GTP Tech Recruitment">
+                </a>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+                <li><a href="index.html#reviews">Reviews</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Equal Opportunities Policy</h1>
+            <p class="updated">Last updated: 12 May 2026</p>
+        </div>
+    </section>
+
+    <section class="policy-body">
+        <div class="container">
+            <div class="policy-content">
+
+                <div class="highlight-box">
+                    <p>GTP Tech Recruitment is committed to providing equal opportunities in all of our recruitment activities. We will not discriminate on the basis of any protected characteristic and actively work to ensure that all candidates are treated fairly and with respect.</p>
+                </div>
+
+                <h2>1. Our Commitment</h2>
+                <p>We believe that diversity and inclusion strengthen the teams and organisations we work with. Our role as a specialist recruiter is to connect talented individuals with the right opportunities - and talent has no boundaries.</p>
+                <p>We are committed to ensuring that:</p>
+                <ul>
+                    <li>All candidates are assessed solely on their skills, experience and suitability for a role</li>
+                    <li>No candidate receives less favourable treatment on the basis of a protected characteristic</li>
+                    <li>Our processes are transparent, consistent and free from bias</li>
+                    <li>Clients are aware of their own equal opportunities obligations, and we will not assist with any discriminatory hiring brief</li>
+                </ul>
+
+                <h2>2. Protected Characteristics</h2>
+                <p>This policy covers all nine protected characteristics under the <strong>Equality Act 2010</strong>:</p>
+
+                <div class="protected-characteristics">
+                    <div class="characteristic-tag">Age</div>
+                    <div class="characteristic-tag">Disability</div>
+                    <div class="characteristic-tag">Gender reassignment</div>
+                    <div class="characteristic-tag">Marriage &amp; civil partnership</div>
+                    <div class="characteristic-tag">Pregnancy &amp; maternity</div>
+                    <div class="characteristic-tag">Race</div>
+                    <div class="characteristic-tag">Religion or belief</div>
+                    <div class="characteristic-tag">Sex</div>
+                    <div class="characteristic-tag">Sexual orientation</div>
+                </div>
+
+                <p>We recognise both direct and indirect discrimination, harassment and victimisation as forms of unlawful conduct that we are committed to preventing.</p>
+
+                <h2>3. Our Recruitment Process</h2>
+
+                <h3>Candidate selection</h3>
+                <p>All candidates are assessed against objective, role-relevant criteria. We evaluate skills, experience, qualifications and cultural fit as defined by the client's role requirements - not personal characteristics.</p>
+
+                <h3>Job briefs from clients</h3>
+                <p>We will not accept a recruitment brief that includes unlawful criteria or that indirectly discriminates against candidates with protected characteristics. Where a client's requirements are unclear, we will seek clarification and challenge any aspect that may be discriminatory.</p>
+
+                <h3>Reasonable adjustments</h3>
+                <p>We are committed to making reasonable adjustments to our recruitment process to accommodate candidates with disabilities or other needs. If you require any adjustments - for example to the format of an interview, access requirements, or additional time - please let us know and we will work with you and the client to accommodate these wherever possible.</p>
+
+                <h3>Language and advertising</h3>
+                <p>We use inclusive, neutral language in all job descriptions, communications and advertising. We actively avoid language that may deter candidates from underrepresented groups from applying.</p>
+
+                <h2>4. Equal Opportunities Monitoring</h2>
+                <p>To help us measure and improve the fairness of our processes, we ask candidates to voluntarily provide equal opportunities information as part of their registration. This includes:</p>
+                <ul>
+                    <li>Gender</li>
+                    <li>Age range</li>
+                    <li>Ethnicity</li>
+                    <li>Disability status</li>
+                </ul>
+                <p>This information is:</p>
+                <ul>
+                    <li><strong>Entirely voluntary</strong> - you are under no obligation to provide it</li>
+                    <li><strong>Anonymous</strong> - it cannot be used to identify you individually</li>
+                    <li><strong>Not shared with clients</strong> or used in any hiring decisions</li>
+                    <li><strong>Used only for aggregate monitoring</strong> to help us identify and address any disparities in our processes</li>
+                    <li>Processed under Article 9(2)(b) of UK GDPR in conjunction with our Equality Act 2010 obligations</li>
+                </ul>
+                <p>Individual equal opportunities data is anonymised within 12 months of collection.</p>
+
+                <h2>5. Disability and Reasonable Adjustments</h2>
+                <p>We recognise that disability can take many forms, including physical, sensory, mental health conditions and long-term health conditions. Under the Equality Act 2010, we have a duty to make reasonable adjustments to remove disadvantages faced by disabled candidates.</p>
+                <p>If you have a disability or health condition that may affect your ability to participate in the recruitment process, we encourage you to let us know. All disclosures are treated confidentially and will not negatively affect your application in any way.</p>
+                <p>Examples of adjustments we can make include:</p>
+                <ul>
+                    <li>Providing information in alternative formats</li>
+                    <li>Arranging interviews at accessible venues or via video call</li>
+                    <li>Allowing additional time for assessments</li>
+                    <li>Modifying the format of interview questions or tasks</li>
+                    <li>Liaising with the client on your behalf regarding workplace adjustments</li>
+                </ul>
+
+                <h2>6. Responsibilities</h2>
+                <p>As a recruitment agency, we take seriously our responsibility to:</p>
+                <ul>
+                    <li>Act as advocates for fair and inclusive hiring in the technology sector</li>
+                    <li>Educate and advise clients on best practice in diverse and inclusive recruitment</li>
+                    <li>Proactively source candidates from a range of backgrounds and communities</li>
+                    <li>Review our own processes regularly to identify and address any inadvertent bias</li>
+                </ul>
+
+                <h2>7. Raising a Concern</h2>
+                <p>If you believe you have been treated unfairly during any part of our recruitment process, or if you have a concern relating to equal opportunities, please contact us:</p>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:gemma@gtptech.co.uk">gemma@gtptech.co.uk</a></li>
+                    <li><strong>Website:</strong> <a href="index.html#contact">Contact form</a></li>
+                </ul>
+                <p>We will treat all concerns seriously, investigate promptly and respond in confidence.</p>
+                <p>You also have the right to contact the <strong>Equality and Human Rights Commission (EHRC)</strong> at <strong>equalityhumanrights.com</strong> or the <strong>Equality Advisory and Support Service (EASS)</strong> on 0808 800 0082 if you feel your concern has not been adequately addressed.</p>
+
+                <hr class="divider">
+
+                <h2>8. Review</h2>
+                <p>This policy is reviewed annually and updated as required to reflect changes in legislation or our practices. The current version is dated 12 May 2026.</p>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 GTP Tech Recruitment. All rights reserved. | Microsoft Dynamics &amp; Power Platform Recruitment Specialists | <a href="privacy-policy.html">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

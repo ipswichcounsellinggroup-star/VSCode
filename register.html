@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Registration | GTP Tech Recruitment</title>
+    <meta name="description" content="Register as a candidate with GTP Tech Recruitment - Microsoft Dynamics & Power Platform specialists.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta property="og:title" content="Candidate Registration | GTP Tech Recruitment">
+    <meta property="og:description" content="Register with GTP Tech Recruitment to find your next Microsoft Dynamics or Power Platform role.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.gtptech.co.uk/register">
+    <meta property="og:image" content="https://www.gtptech.co.uk/assets/images/GTP-Tech.png">
+    <link rel="icon" type="image/png" href="assets/images/GTP Favicon.png">
+    <link rel="shortcut icon" type="image/png" href="assets/images/GTP Favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Cabin:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-dark: rgb(34, 41, 51);
+            --text-gray: rgb(185, 189, 195);
+            --white: #ffffff;
+            --copper: #B38679;
+            --purple-dark: #3b2d5e;
+            --purple-mid: #4a3068;
+            --error: #d9534f;
+            --success: #4caf50;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: var(--primary-dark);
+            background: #f4f5f7;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Cabin', sans-serif; }
+
+        /* Nav */
+        nav {
+            background: linear-gradient(90deg, var(--primary-dark) 0%, #2a3242 50%, var(--primary-dark) 100%);
+            padding: 1.5rem 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img { height: 45px; width: auto; }
+
+        nav ul { list-style: none; display: flex; gap: 2.5rem; align-items: center; }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--copper);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover { color: var(--copper); }
+        nav a:hover::after { width: 100%; }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #2a3540 40%, var(--purple-dark) 70%, var(--purple-mid) 100%);
+            color: var(--white);
+            padding: 130px 5% 70px;
+            margin-top: 70px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--copper), transparent);
+        }
+
+        .hero h1 { font-size: 2.8rem; margin-bottom: 0.8rem; }
+        .hero p { font-size: 1.1rem; color: var(--text-gray); max-width: 600px; margin: 0 auto; }
+
+        /* Progress Bar */
+        .progress-wrapper {
+            max-width: 700px;
+            margin: 2.5rem auto 0;
+            padding: 0 1rem;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 18px;
+            left: 10%;
+            height: 2px;
+            background: var(--copper);
+            transition: width 0.4s ease;
+            width: 0;
+        }
+
+        .step-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .step-circle.active {
+            background: var(--copper);
+            border-color: var(--copper);
+            color: var(--white);
+        }
+
+        .step-circle.completed {
+            background: var(--copper);
+            border-color: var(--copper);
+            color: var(--white);
+        }
+
+        .step-label {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            transition: color 0.3s ease;
+            max-width: 70px;
+        }
+
+        .step-label.active { color: var(--copper); }
+        .step-label.completed { color: rgba(255,255,255,0.7); }
+
+        /* Form Container */
+        .form-wrapper {
+            max-width: 780px;
+            margin: 2.5rem auto 3rem;
+            padding: 0 1.5rem;
+        }
+
+        .form-step {
+            display: none;
+            background: var(--white);
+            border-radius: 14px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+        }
+
+        .form-step.active { display: block; }
+
+        .step-title {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .step-subtitle {
+            color: #777;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        /* Form Elements */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group.full { grid-column: 1 / -1; }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.4rem;
+        }
+
+        label .required { color: var(--copper); margin-left: 2px; }
+        label .optional { color: #999; font-weight: 400; font-size: 0.8rem; margin-left: 4px; }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1.5px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.95rem;
+            color: var(--primary-dark);
+            background: #fafafa;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--purple-dark);
+            box-shadow: 0 0 0 3px rgba(59,45,94,0.1);
+            background: var(--white);
+        }
+
+        input.error, select.error, textarea.error {
+            border-color: var(--error);
+            box-shadow: 0 0 0 3px rgba(217,83,79,0.1);
+        }
+
+        textarea { resize: vertical; min-height: 90px; }
+
+        select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+
+        /* Radio & Checkbox Groups */
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.4rem;
+        }
+
+        .radio-option, .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 1rem;
+            border: 1.5px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            background: #fafafa;
+        }
+
+        .radio-option:hover, .checkbox-option:hover {
+            border-color: var(--purple-dark);
+            background: rgba(59,45,94,0.04);
+        }
+
+        .radio-option input, .checkbox-option input { width: auto; accent-color: var(--purple-dark); }
+
+        .radio-option.selected, .checkbox-option.selected {
+            border-color: var(--purple-dark);
+            background: rgba(59,45,94,0.06);
+        }
+
+        /* Specialism checkboxes - grid layout */
+        .specialism-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 0.6rem;
+            margin-top: 0.4rem;
+        }
+
+        /* Conditional fields */
+        .conditional { display: none; margin-top: 0.8rem; }
+        .conditional.visible { display: block; }
+
+        /* Section divider */
+        .section-divider {
+            border: none;
+            border-top: 2px solid #f0f0f0;
+            margin: 1.8rem 0;
+        }
+
+        .section-label {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--purple-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e8e8e8;
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: rgba(59,45,94,0.06);
+            border-left: 4px solid var(--purple-dark);
+            border-radius: 0 8px 8px 0;
+            padding: 0.9rem 1.1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .info-box.optional-notice {
+            background: rgba(179,134,121,0.08);
+            border-left-color: var(--copper);
+        }
+
+        /* Declaration checkboxes */
+        .declaration-item {
+            display: flex;
+            gap: 0.9rem;
+            align-items: flex-start;
+            padding: 1rem;
+            border: 1.5px solid #e8e8e8;
+            border-radius: 10px;
+            margin-bottom: 0.8rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .declaration-item:hover { border-color: var(--purple-dark); }
+
+        .declaration-item.checked { border-color: var(--purple-dark); background: rgba(59,45,94,0.03); }
+
+        .declaration-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            margin-top: 2px;
+            accent-color: var(--purple-dark);
+            cursor: pointer;
+        }
+
+        .declaration-item label {
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: #444;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .declaration-item label strong { color: var(--primary-dark); }
+        .declaration-item label a { color: var(--copper); }
+
+        /* File Upload */
+        .file-upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            padding: 1.8rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #fafafa;
+        }
+
+        .file-upload-area:hover, .file-upload-area.dragover {
+            border-color: var(--purple-dark);
+            background: rgba(59,45,94,0.04);
+        }
+
+        .file-upload-area input[type="file"] { display: none; }
+        .file-upload-area p { color: #888; font-size: 0.9rem; margin-top: 0.4rem; }
+        .file-name-display { margin-top: 0.6rem; color: var(--purple-dark); font-weight: 600; font-size: 0.9rem; }
+
+        /* Signature Pad */
+        .signature-container {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #fff;
+            position: relative;
+        }
+
+        .signature-container canvas {
+            display: block;
+            width: 100%;
+            height: 160px;
+            cursor: crosshair;
+            touch-action: none;
+        }
+
+        .signature-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ccc;
+            font-size: 0.9rem;
+            pointer-events: none;
+            text-align: center;
+        }
+
+        .signature-toolbar {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 0.5rem;
+        }
+
+        .btn-clear-sig {
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.8rem;
+            color: #888;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-clear-sig:hover { border-color: var(--error); color: var(--error); }
+
+        /* Error messages */
+        .error-message {
+            color: var(--error);
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        .error-message.visible { display: block; }
+
+        /* Navigation buttons */
+        .form-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .btn-prev {
+            background: none;
+            border: 1.5px solid #ddd;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #777;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-prev:hover { border-color: var(--purple-dark); color: var(--purple-dark); }
+
+        .btn-next, .btn-submit {
+            background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-mid) 100%);
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 2rem;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-next:hover, .btn-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(59,45,94,0.35);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--copper) 0%, #c99e8a 100%);
+            padding: 0.85rem 2.5rem;
+            font-size: 1rem;
+        }
+
+        .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+        /* Success Screen */
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--white);
+            border-radius: 14px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+        }
+
+        .success-screen.visible { display: block; }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--purple-dark), var(--purple-mid));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .success-icon svg { width: 40px; height: 40px; }
+
+        .success-screen h2 { font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 0.8rem; }
+        .success-screen p { color: #666; font-size: 1rem; line-height: 1.7; max-width: 480px; margin: 0 auto 0.8rem; }
+
+        /* Submission error */
+        .submit-error {
+            background: rgba(217,83,79,0.08);
+            border: 1px solid rgba(217,83,79,0.3);
+            border-radius: 8px;
+            padding: 0.9rem 1.1rem;
+            color: var(--error);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .submit-error.visible { display: block; }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: var(--text-gray);
+            text-align: center;
+            padding: 2rem 5%;
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--copper); text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: var(--primary-dark);
+                padding: 1rem 5%;
+                gap: 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            nav ul.active { display: flex; }
+            nav ul li a { padding: 0.75rem 0; display: block; border-bottom: 1px solid rgba(255,255,255,0.08); }
+            nav ul li:last-child a { border-bottom: none; }
+
+            .hero h1 { font-size: 2rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-step { padding: 1.5rem; }
+            .step-label { display: none; }
+            .specialism-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="assets/images/GTP-Tech.png" alt="GTP Tech Recruitment"></a>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+                <li><a href="index.html#reviews">Reviews</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Candidate Registration</h1>
+        <p>Register with GTP Tech Recruitment and let us find your next Microsoft Dynamics or Power Platform opportunity.</p>
+        <div class="progress-wrapper">
+            <div class="progress-steps">
+                <div class="progress-line" id="progressLine"></div>
+                <div class="step-indicator">
+                    <div class="step-circle active" id="circle-1">1</div>
+                    <div class="step-label active" id="label-1">Your Details</div>
+                </div>
+                <div class="step-indicator">
+                    <div class="step-circle" id="circle-2">2</div>
+                    <div class="step-label" id="label-2">Eligibility</div>
+                </div>
+                <div class="step-indicator">
+                    <div class="step-circle" id="circle-3">3</div>
+                    <div class="step-label" id="label-3">Adjustments</div>
+                </div>
+                <div class="step-indicator">
+                    <div class="step-circle" id="circle-4">4</div>
+                    <div class="step-label" id="label-4">Declaration</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form -->
+    <div class="form-wrapper">
+
+        <!-- ==================== STEP 1 ==================== -->
+        <div class="form-step active" id="step-1">
+            <h2 class="step-title">Personal & Professional Details</h2>
+            <p class="step-subtitle">Tell us about yourself and your Microsoft experience. Fields marked <span style="color:var(--copper)">*</span> are required.</p>
+
+            <div class="section-label">Personal Details</div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fullName">Full Legal Name <span class="required">*</span></label>
+                    <input type="text" id="fullName" name="fullName" placeholder="e.g. Jane Smith" autocomplete="name">
+                    <div class="error-message" id="err-fullName">Please enter your full name.</div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email">
+                    <div class="error-message" id="err-email">Please enter a valid email address.</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="+44 7700 000000" autocomplete="tel">
+                    <div class="error-message" id="err-phone">Please enter your phone number.</div>
+                </div>
+                <div class="form-group">
+                    <label for="location">Current Location (City / Region) <span class="required">*</span></label>
+                    <input type="text" id="location" name="location" placeholder="e.g. Norwich, Norfolk">
+                    <div class="error-message" id="err-location">Please enter your location.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="linkedin">LinkedIn Profile URL <span class="optional">(optional)</span></label>
+                <input type="url" id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/yourname">
+            </div>
+
+            <hr class="section-divider">
+            <div class="section-label">Professional Profile</div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="jobTitle">Current / Most Recent Job Title <span class="required">*</span></label>
+                    <input type="text" id="jobTitle" name="jobTitle" placeholder="e.g. Power Platform Consultant">
+                    <div class="error-message" id="err-jobTitle">Please enter your job title.</div>
+                </div>
+                <div class="form-group">
+                    <label for="experience">Years of Microsoft Experience <span class="required">*</span></label>
+                    <select id="experience" name="experience">
+                        <option value="">Select...</option>
+                        <option>Less than 1 year</option>
+                        <option>1 - 2 years</option>
+                        <option>3 - 5 years</option>
+                        <option>6 - 10 years</option>
+                        <option>More than 10 years</option>
+                    </select>
+                    <div class="error-message" id="err-experience">Please select your experience level.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Microsoft Specialisms <span class="required">*</span> <span class="optional">(select all that apply)</span></label>
+                <div class="specialism-grid" id="specialismGrid">
+                    <label class="checkbox-option"><input type="checkbox" name="specialism" value="Power Platform (Power Apps, Power Automate, Power BI)"> Power Platform</label>
+                    <label class="checkbox-option"><input type="checkbox" name="specialism" value="Dynamics 365 CE / CRM"> Dynamics 365 CE / CRM</label>
+                    <label class="checkbox-option"><input type="checkbox" name="specialism" value="Dynamics 365 Finance &amp; Operations"> D365 Finance &amp; Operations</label>
+                    <label class="checkbox-option"><input type="checkbox" name="specialism" value="Business Central (NAV)"> Business Central (NAV)</label>
+                    <label class="checkbox-option"><input type="checkbox" name="specialism" value="Azure / Microsoft AI / Copilot"> Azure / AI / Copilot</label>
+                    <label class="checkbox-option"><input type="checkbox" name="specialism" value="Microsoft BizApps Sales"> Microsoft BizApps Sales</label>
+                    <label class="checkbox-option"><input type="checkbox" name="specialism" value="Other Microsoft Technology"> Other Microsoft Tech</label>
+                </div>
+                <div class="error-message" id="err-specialism">Please select at least one specialism.</div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="roleType">Type of Role Seeking <span class="required">*</span></label>
+                    <select id="roleType" name="roleType">
+                        <option value="">Select...</option>
+                        <option>Permanent</option>
+                        <option>Contract</option>
+                        <option>Either</option>
+                    </select>
+                    <div class="error-message" id="err-roleType">Please select a role type.</div>
+                </div>
+                <div class="form-group">
+                    <label for="workingArrangement">Preferred Working Arrangement <span class="required">*</span></label>
+                    <select id="workingArrangement" name="workingArrangement">
+                        <option value="">Select...</option>
+                        <option>Remote</option>
+                        <option>Hybrid</option>
+                        <option>Office-based</option>
+                        <option>Flexible</option>
+                    </select>
+                    <div class="error-message" id="err-workingArrangement">Please select a working arrangement.</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="currentSalary">Current / Most Recent Salary <span class="optional">(optional)</span></label>
+                    <input type="text" id="currentSalary" name="currentSalary" placeholder="e.g. £55,000">
+                </div>
+                <div class="form-group">
+                    <label for="desiredSalary">Desired Salary / Rate <span class="required">*</span></label>
+                    <input type="text" id="desiredSalary" name="desiredSalary" placeholder="e.g. £60,000 or £450/day">
+                    <div class="error-message" id="err-desiredSalary">Please enter your desired salary or rate.</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="noticePeriod">Notice Period <span class="required">*</span></label>
+                    <select id="noticePeriod" name="noticePeriod">
+                        <option value="">Select...</option>
+                        <option>Immediately available</option>
+                        <option>1 week</option>
+                        <option>2 weeks</option>
+                        <option>1 month</option>
+                        <option>2 months</option>
+                        <option>3 months</option>
+                        <option>More than 3 months</option>
+                    </select>
+                    <div class="error-message" id="err-noticePeriod">Please select your notice period.</div>
+                </div>
+                <div class="form-group">
+                    <label for="availableFrom">Available From <span class="required">*</span></label>
+                    <input type="date" id="availableFrom" name="availableFrom">
+                    <div class="error-message" id="err-availableFrom">Please enter your availability date.</div>
+                </div>
+            </div>
+
+            <div class="form-nav">
+                <div></div>
+                <button class="btn-next" onclick="nextStep(1)">Next: Eligibility &rarr;</button>
+            </div>
+        </div>
+
+        <!-- ==================== STEP 2 ==================== -->
+        <div class="form-step" id="step-2">
+            <h2 class="step-title">Eligibility & Work Preferences</h2>
+            <p class="step-subtitle">We are required to confirm your right to work in the UK before putting you forward for any role.</p>
+
+            <div class="section-label">Right to Work</div>
+
+            <div class="form-group">
+                <label>Are you a UK or Irish citizen? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="ukCitizen" value="Yes"> Yes</label>
+                    <label class="radio-option"><input type="radio" name="ukCitizen" value="No"> No</label>
+                </div>
+                <div class="error-message" id="err-ukCitizen">Please select an option.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Do you have the right to work in the UK? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="rightToWork" value="Yes" onchange="toggleConditional('rtw-type', true)"> Yes</label>
+                    <label class="radio-option"><input type="radio" name="rightToWork" value="No" onchange="toggleConditional('rtw-type', false)"> No</label>
+                </div>
+                <div class="error-message" id="err-rightToWork">Please select an option.</div>
+                <div class="conditional" id="rtw-type">
+                    <label for="rtwStatus" style="margin-top:0.5rem;">Right to work status <span class="required">*</span></label>
+                    <select id="rtwStatus" name="rtwStatus">
+                        <option value="">Select...</option>
+                        <option>British / Irish Citizen</option>
+                        <option>EU Settled Status</option>
+                        <option>EU Pre-Settled Status</option>
+                        <option>Skilled Worker Visa</option>
+                        <option>Graduate Visa</option>
+                        <option>Spousal / Dependent Visa</option>
+                        <option>Other - please specify below</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="rtwNotes">Additional notes on right to work <span class="optional">(optional)</span></label>
+                <input type="text" id="rtwNotes" name="rtwNotes" placeholder="e.g. visa expiry date, any conditions">
+            </div>
+
+            <hr class="section-divider">
+            <div class="section-label">Work Preferences</div>
+
+            <div class="form-group">
+                <label>Are you willing to travel as part of your role? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="travel" value="Yes - regularly"> Yes, regularly</label>
+                    <label class="radio-option"><input type="radio" name="travel" value="Yes - occasionally"> Yes, occasionally</label>
+                    <label class="radio-option"><input type="radio" name="travel" value="No"> No</label>
+                </div>
+                <div class="error-message" id="err-travel">Please select an option.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Do you hold a full UK driving licence? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="drivingLicence" value="Yes"> Yes</label>
+                    <label class="radio-option"><input type="radio" name="drivingLicence" value="No"> No</label>
+                </div>
+                <div class="error-message" id="err-drivingLicence">Please select an option.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Are you willing to relocate for the right role? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="relocate" value="Yes"> Yes</label>
+                    <label class="radio-option"><input type="radio" name="relocate" value="No"> No</label>
+                    <label class="radio-option"><input type="radio" name="relocate" value="Open to discussion"> Open to discussion</label>
+                </div>
+                <div class="error-message" id="err-relocate">Please select an option.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Are you currently registered with any other recruitment agencies? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="otherAgencies" value="Yes"> Yes</label>
+                    <label class="radio-option"><input type="radio" name="otherAgencies" value="No"> No</label>
+                </div>
+                <div class="error-message" id="err-otherAgencies">Please select an option.</div>
+            </div>
+
+            <div class="form-nav">
+                <button class="btn-prev" onclick="prevStep(2)">&larr; Back</button>
+                <button class="btn-next" onclick="nextStep(2)">Next: Adjustments &rarr;</button>
+            </div>
+        </div>
+
+        <!-- ==================== STEP 3 ==================== -->
+        <div class="form-step" id="step-3">
+            <h2 class="step-title">Adjustments & Equal Opportunities</h2>
+            <p class="step-subtitle">We are committed to an inclusive recruitment process. Please let us know if you need any support.</p>
+
+            <div class="section-label">Reasonable Adjustments</div>
+
+            <div class="form-group">
+                <label>Do you require any reasonable adjustments for the <strong>interview process</strong>? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="interviewAdjustments" value="Yes" onchange="toggleConditional('interview-adj-detail', true)"> Yes</label>
+                    <label class="radio-option"><input type="radio" name="interviewAdjustments" value="No" onchange="toggleConditional('interview-adj-detail', false)"> No</label>
+                </div>
+                <div class="error-message" id="err-interviewAdjustments">Please select an option.</div>
+                <div class="conditional" id="interview-adj-detail">
+                    <label for="interviewAdjustmentsDetail" style="margin-top:0.5rem;">Please describe the adjustments required <span class="required">*</span></label>
+                    <textarea id="interviewAdjustmentsDetail" name="interviewAdjustmentsDetail" placeholder="Please describe any adjustments that would help you..."></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Do you require any reasonable adjustments in the <strong>workplace</strong>? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="workplaceAdjustments" value="Yes" onchange="toggleConditional('workplace-adj-detail', true)"> Yes</label>
+                    <label class="radio-option"><input type="radio" name="workplaceAdjustments" value="No" onchange="toggleConditional('workplace-adj-detail', false)"> No</label>
+                </div>
+                <div class="error-message" id="err-workplaceAdjustments">Please select an option.</div>
+                <div class="conditional" id="workplace-adj-detail">
+                    <label for="workplaceAdjustmentsDetail" style="margin-top:0.5rem;">Please describe the adjustments required <span class="required">*</span></label>
+                    <textarea id="workplaceAdjustmentsDetail" name="workplaceAdjustmentsDetail" placeholder="Please describe any adjustments that would help you..."></textarea>
+                </div>
+            </div>
+
+            <hr class="section-divider">
+            <div class="section-label">Equal Opportunities Monitoring <span style="font-weight:400; color:#999; font-size:0.85rem; margin-left:0.5rem;">— All optional</span></div>
+
+            <div class="info-box optional-notice">
+                <strong>Why we collect this information:</strong> This data is collected voluntarily and anonymously for workforce monitoring purposes only, in line with the Equality Act 2010. It will never be used in any selection or recruitment decisions and is stored separately from your candidate profile. You are under no obligation to provide this information.
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="gender">Gender <span class="optional">(optional)</span></label>
+                    <select id="gender" name="gender">
+                        <option value="Prefer not to say">Prefer not to say</option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Non-binary">Non-binary</option>
+                        <option value="Self-describe">Prefer to self-describe</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ageRange">Age Range <span class="optional">(optional)</span></label>
+                    <select id="ageRange" name="ageRange">
+                        <option value="Prefer not to say">Prefer not to say</option>
+                        <option value="18-24">18 - 24</option>
+                        <option value="25-34">25 - 34</option>
+                        <option value="35-44">35 - 44</option>
+                        <option value="45-54">45 - 54</option>
+                        <option value="55-64">55 - 64</option>
+                        <option value="65+">65+</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="ethnicity">Ethnic Background <span class="optional">(optional)</span></label>
+                    <select id="ethnicity" name="ethnicity">
+                        <option value="Prefer not to say">Prefer not to say</option>
+                        <option value="White - British">White - British</option>
+                        <option value="White - Irish">White - Irish</option>
+                        <option value="White - Other">White - Other</option>
+                        <option value="Mixed - White &amp; Black Caribbean">Mixed - White &amp; Black Caribbean</option>
+                        <option value="Mixed - White &amp; Black African">Mixed - White &amp; Black African</option>
+                        <option value="Mixed - White &amp; Asian">Mixed - White &amp; Asian</option>
+                        <option value="Mixed - Other">Mixed - Other</option>
+                        <option value="Asian - Indian">Asian - Indian</option>
+                        <option value="Asian - Pakistani">Asian - Pakistani</option>
+                        <option value="Asian - Bangladeshi">Asian - Bangladeshi</option>
+                        <option value="Asian - Chinese">Asian - Chinese</option>
+                        <option value="Asian - Other">Asian - Other</option>
+                        <option value="Black - African">Black - African</option>
+                        <option value="Black - Caribbean">Black - Caribbean</option>
+                        <option value="Black - Other">Black - Other</option>
+                        <option value="Other ethnic group">Other ethnic group</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="disability">Disability or Long-Term Health Condition <span class="optional">(optional)</span></label>
+                    <select id="disability" name="disability">
+                        <option value="Prefer not to say">Prefer not to say</option>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-nav">
+                <button class="btn-prev" onclick="prevStep(3)">&larr; Back</button>
+                <button class="btn-next" onclick="nextStep(3)">Next: Declaration &rarr;</button>
+            </div>
+        </div>
+
+        <!-- ==================== STEP 4 ==================== -->
+        <div class="form-step" id="step-4">
+            <h2 class="step-title">Declaration, Consent & Signature</h2>
+            <p class="step-subtitle">Please read and agree to the following, upload your CV if you wish, and sign the declaration below.</p>
+
+            <div class="section-label">CV Upload</div>
+
+            <div class="form-group">
+                <div class="file-upload-area" id="fileUploadArea" onclick="document.getElementById('cvFile').click()">
+                    <input type="file" id="cvFile" name="cvFile" accept=".pdf,.doc,.docx">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <p><strong>Click to upload your CV</strong> or drag and drop here</p>
+                    <p>PDF, DOC or DOCX &nbsp;&bull;&nbsp; Optional</p>
+                    <div class="file-name-display" id="fileNameDisplay"></div>
+                </div>
+            </div>
+
+            <hr class="section-divider">
+            <div class="section-label">Declaration &amp; Consent</div>
+
+            <div class="info-box">
+                Please read each statement carefully. All boxes must be ticked before you can submit your registration.
+            </div>
+
+            <div class="declaration-item" id="decl-1-wrap">
+                <input type="checkbox" id="decl1" onchange="toggleDeclStyle(1)">
+                <label for="decl1">I confirm that all information provided on this form is <strong>accurate and complete</strong> to the best of my knowledge. I understand that providing false information may result in my registration being withdrawn.</label>
+            </div>
+
+            <div class="declaration-item" id="decl-2-wrap">
+                <input type="checkbox" id="decl2" onchange="toggleDeclStyle(2)">
+                <label for="decl2">I agree to <strong>GTP Tech Recruitment acting as my non-exclusive representative</strong> for the purpose of identifying and introducing me to suitable employment opportunities within the Microsoft technology sector.</label>
+            </div>
+
+            <div class="declaration-item" id="decl-3-wrap">
+                <input type="checkbox" id="decl3" onchange="toggleDeclStyle(3)">
+                <label for="decl3">I consent to <strong>GTP Tech Recruitment storing and processing my personal data</strong> for recruitment purposes in accordance with the <a href="privacy-policy.html" target="_blank">Privacy Policy</a> and UK GDPR. I understand I can withdraw consent at any time by contacting <a href="mailto:gemma@gtptech.co.uk">gemma@gtptech.co.uk</a>.</label>
+            </div>
+
+            <div class="declaration-item" id="decl-4-wrap">
+                <input type="checkbox" id="decl4" onchange="toggleDeclStyle(4)">
+                <label for="decl4">I consent to my <strong>information being shared with prospective employers</strong> where it is directly relevant to a specific opportunity, and only after I have been notified of the role.</label>
+            </div>
+
+            <div class="declaration-item" id="decl-5-wrap">
+                <input type="checkbox" id="decl5" onchange="toggleDeclStyle(5)">
+                <label for="decl5">I confirm that I have the <strong>right to work in the UK</strong> and that all information provided regarding my eligibility is accurate. I understand that GTP Tech Recruitment may request to see original documentation to verify this.</label>
+            </div>
+
+            <div class="declaration-item" id="decl-6-wrap">
+                <input type="checkbox" id="decl6" onchange="toggleDeclStyle(6)">
+                <label for="decl6">I have read and agree to GTP Tech Recruitment's <a href="privacy-policy.html" target="_blank">Privacy Policy</a> and <a href="equal-opportunities.html" target="_blank">Equal Opportunities Policy</a>.</label>
+            </div>
+
+            <div class="error-message" id="err-declarations" style="font-size:0.9rem; margin-bottom:1rem;">Please agree to all declarations before submitting.</div>
+
+            <hr class="section-divider">
+            <div class="section-label">Digital Signature</div>
+
+            <div class="info-box">
+                By signing below, you confirm that you have read, understood, and agree to all of the above declarations. This constitutes a legally binding electronic signature under the Electronic Communications Act 2000.
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Name (auto-filled from your registration)</label>
+                    <input type="text" id="sigName" readonly style="background:#f0f0f0; color:#777;">
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="text" id="sigDate" readonly style="background:#f0f0f0; color:#777;">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Your Signature <span class="required">*</span> &nbsp;<span class="optional">— Draw your signature in the box below using your mouse or finger</span></label>
+                <div class="signature-container">
+                    <canvas id="signatureCanvas"></canvas>
+                    <div class="signature-placeholder" id="sigPlaceholder">Draw your signature here</div>
+                </div>
+                <div class="signature-toolbar">
+                    <button type="button" class="btn-clear-sig" onclick="clearSignature()">Clear signature</button>
+                </div>
+                <div class="error-message" id="err-signature">Please provide your signature before submitting.</div>
+            </div>
+
+            <div class="submit-error" id="submitError">There was a problem submitting your form. Please try again or email us directly at <a href="mailto:gemma@gtptech.co.uk">gemma@gtptech.co.uk</a>.</div>
+
+            <div class="form-nav">
+                <button class="btn-prev" onclick="prevStep(4)">&larr; Back</button>
+                <button class="btn-submit" id="submitBtn" onclick="submitForm()">Submit Registration</button>
+            </div>
+        </div>
+
+        <!-- Success Screen -->
+        <div class="success-screen" id="successScreen">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#B38679" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h2>Registration Complete</h2>
+            <p>Thank you for registering with GTP Tech Recruitment. Your information has been received and Gemma will be in touch shortly.</p>
+            <p>A PDF copy of your registration has been downloaded to your device for your records.</p>
+            <p style="margin-top:1.5rem;"><a href="index.html" style="color:var(--copper); font-weight:700; text-decoration:none;">Return to Homepage &rarr;</a></p>
+        </div>
+
+    </div><!-- /form-wrapper -->
+
+    <!-- Hidden form — submits PDF + CV as real file attachments via FormSubmit -->
+    <form id="registrationForm"
+          action="https://formsubmit.co/gemma@gtptech.co.uk"
+          method="POST"
+          enctype="multipart/form-data"
+          style="display:none">
+        <input type="hidden" name="_captcha"  value="false">
+        <input type="hidden" name="_next"     value="https://www.gtptech.co.uk/register.html?done=1">
+        <input type="hidden" name="_subject"  id="fs_subject">
+        <input type="hidden" name="_replyto"  id="fs_replyto">
+        <input type="hidden" name="name"      id="fs_name">
+        <input type="hidden" name="email"     id="fs_email">
+        <input type="hidden" name="phone"     id="fs_phone">
+        <input type="file"   name="attachment" id="fs_pdf">
+        <input type="file"   name="cv"         id="fs_cv">
+    </form>
+
+    <footer>
+        <p>&copy; 2026 GTP Tech Recruitment. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="equal-opportunities.html">Equal Opportunities</a></p>
+    </footer>
+
+    <script>
+        // ── Mobile Nav ────────────────────────────────────────────────────
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu    = document.getElementById('navMenu');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // ── Step Navigation ───────────────────────────────────────────────
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        function showStep(n) {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step-' + n).classList.add('active');
+            updateProgress(n);
+            if (n === 4 && signaturePad) {
+                const data = signaturePad.toData();
+                canvas.width = canvas.offsetWidth;
+                canvas.height = 160;
+                signaturePad.fromData(data);
+            }
+            window.scrollTo({ top: document.querySelector('.hero').offsetTop - 80, behavior: 'smooth' });
+        }
+
+        function updateProgress(n) {
+            const pct = [(n - 1) / (totalSteps - 1) * 80];
+            document.getElementById('progressLine').style.width = pct + '%';
+            for (let i = 1; i <= totalSteps; i++) {
+                const circle = document.getElementById('circle-' + i);
+                const label  = document.getElementById('label-' + i);
+                circle.classList.remove('active', 'completed');
+                label.classList.remove('active', 'completed');
+                if (i < n)  { circle.classList.add('completed'); label.classList.add('completed'); circle.innerHTML = '&#10003;'; }
+                if (i === n) { circle.classList.add('active');    label.classList.add('active');    circle.textContent = i; }
+                if (i > n)  { circle.textContent = i; }
+            }
+        }
+
+        function nextStep(from) {
+            if (!validateStep(from)) return;
+            currentStep = from + 1;
+            if (currentStep === 4) {
+                document.getElementById('sigName').value = document.getElementById('fullName').value;
+                document.getElementById('sigDate').value = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+            }
+            showStep(currentStep);
+        }
+
+        function prevStep(from) {
+            currentStep = from - 1;
+            showStep(currentStep);
+        }
+
+        // ── Validation ────────────────────────────────────────────────────
+        function validateStep(step) {
+            let valid = true;
+
+            if (step === 1) {
+                valid = requireField('fullName') && valid;
+                valid = requireEmail('email') && valid;
+                valid = requireField('phone') && valid;
+                valid = requireField('location') && valid;
+                valid = requireField('jobTitle') && valid;
+                valid = requireSelect('experience') && valid;
+                valid = requireCheckboxGroup('specialism', 'err-specialism') && valid;
+                valid = requireSelect('roleType') && valid;
+                valid = requireSelect('workingArrangement') && valid;
+                valid = requireField('desiredSalary') && valid;
+                valid = requireSelect('noticePeriod') && valid;
+                valid = requireField('availableFrom') && valid;
+            }
+
+            if (step === 2) {
+                valid = requireRadio('ukCitizen', 'err-ukCitizen') && valid;
+                valid = requireRadio('rightToWork', 'err-rightToWork') && valid;
+                valid = requireRadio('travel', 'err-travel') && valid;
+                valid = requireRadio('drivingLicence', 'err-drivingLicence') && valid;
+                valid = requireRadio('relocate', 'err-relocate') && valid;
+                valid = requireRadio('otherAgencies', 'err-otherAgencies') && valid;
+            }
+
+            if (step === 3) {
+                valid = requireRadio('interviewAdjustments', 'err-interviewAdjustments') && valid;
+                valid = requireRadio('workplaceAdjustments', 'err-workplaceAdjustments') && valid;
+            }
+
+            return valid;
+        }
+
+        function requireField(id) {
+            const el = document.getElementById(id);
+            const errEl = document.getElementById('err-' + id);
+            if (!el.value.trim()) {
+                el.classList.add('error');
+                if (errEl) errEl.classList.add('visible');
+                return false;
+            }
+            el.classList.remove('error');
+            if (errEl) errEl.classList.remove('visible');
+            return true;
+        }
+
+        function requireEmail(id) {
+            const el = document.getElementById(id);
+            const errEl = document.getElementById('err-' + id);
+            const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+            if (!ok) { el.classList.add('error'); if (errEl) errEl.classList.add('visible'); return false; }
+            el.classList.remove('error'); if (errEl) errEl.classList.remove('visible'); return true;
+        }
+
+        function requireSelect(id) {
+            const el = document.getElementById(id);
+            const errEl = document.getElementById('err-' + id);
+            if (!el.value) { el.classList.add('error'); if (errEl) errEl.classList.add('visible'); return false; }
+            el.classList.remove('error'); if (errEl) errEl.classList.remove('visible'); return true;
+        }
+
+        function requireRadio(name, errId) {
+            const checked = document.querySelector('input[name="' + name + '"]:checked');
+            const errEl = document.getElementById(errId);
+            if (!checked) { if (errEl) errEl.classList.add('visible'); return false; }
+            if (errEl) errEl.classList.remove('visible'); return true;
+        }
+
+        function requireCheckboxGroup(name, errId) {
+            const checked = document.querySelectorAll('input[name="' + name + '"]:checked');
+            const errEl = document.getElementById(errId);
+            if (checked.length === 0) { if (errEl) errEl.classList.add('visible'); return false; }
+            if (errEl) errEl.classList.remove('visible'); return true;
+        }
+
+        // Validate email on blur
+        document.getElementById('email').addEventListener('blur', () => requireEmail('email'));
+
+        // Set minimum date for availability to today
+        document.getElementById('availableFrom').min = new Date().toISOString().split('T')[0];
+
+        // Live validation clearing
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+            el.addEventListener('input', () => {
+                el.classList.remove('error');
+                const errEl = document.getElementById('err-' + el.id);
+                if (errEl) errEl.classList.remove('visible');
+            });
+        });
+
+        // ── Conditional Fields ────────────────────────────────────────────
+        function toggleConditional(id, show) {
+            const el = document.getElementById(id);
+            el.classList.toggle('visible', show);
+        }
+
+        // ── Checkbox / Radio Styling ──────────────────────────────────────
+        document.querySelectorAll('.radio-option input, .checkbox-option input').forEach(inp => {
+            inp.addEventListener('change', () => {
+                if (inp.type === 'radio') {
+                    document.querySelectorAll('input[name="' + inp.name + '"]').forEach(r => r.closest('.radio-option').classList.remove('selected'));
+                }
+                inp.closest('.radio-option, .checkbox-option').classList.toggle('selected', inp.checked);
+            });
+        });
+
+        // ── Declaration Styling ───────────────────────────────────────────
+        function toggleDeclStyle(n) {
+            const cb = document.getElementById('decl' + n);
+            document.getElementById('decl-' + n + '-wrap').classList.toggle('checked', cb.checked);
+        }
+
+        // ── File Upload ───────────────────────────────────────────────────
+        const cvFile = document.getElementById('cvFile');
+        const fileArea = document.getElementById('fileUploadArea');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+
+        cvFile.addEventListener('change', () => {
+            if (cvFile.files[0]) fileNameDisplay.textContent = '✓ ' + cvFile.files[0].name;
+        });
+
+        fileArea.addEventListener('dragover', e => { e.preventDefault(); fileArea.classList.add('dragover'); });
+        fileArea.addEventListener('dragleave', () => fileArea.classList.remove('dragover'));
+        fileArea.addEventListener('drop', e => {
+            e.preventDefault();
+            fileArea.classList.remove('dragover');
+            if (e.dataTransfer.files[0]) {
+                cvFile.files = e.dataTransfer.files;
+                fileNameDisplay.textContent = '✓ ' + e.dataTransfer.files[0].name;
+            }
+        });
+
+        // ── Signature Pad ─────────────────────────────────────────────────
+        const canvas = document.getElementById('signatureCanvas');
+        let signaturePad;
+
+        window.addEventListener('load', () => {
+            // Show success screen if redirected back after FormSubmit
+            if (new URLSearchParams(window.location.search).get('done') === '1') {
+                document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+                document.querySelector('.progress-wrapper').style.display = 'none';
+                document.getElementById('successScreen').classList.add('visible');
+                window.history.replaceState({}, '', '/register.html');
+            }
+
+            canvas.width  = canvas.offsetWidth;
+            canvas.height = 160;
+            signaturePad = new SignaturePad(canvas, {
+                penColor: '#222933',
+                minWidth: 1,
+                maxWidth: 2.5
+            });
+            signaturePad.addEventListener('beginStroke', () => {
+                document.getElementById('sigPlaceholder').style.display = 'none';
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            const data = signaturePad.toData();
+            canvas.width = canvas.offsetWidth;
+            canvas.height = 160;
+            signaturePad.fromData(data);
+        });
+
+        function clearSignature() {
+            signaturePad.clear();
+            document.getElementById('sigPlaceholder').style.display = 'block';
+        }
+
+        // ── Collect Form Data ─────────────────────────────────────────────
+        function getRadioValue(name) {
+            const el = document.querySelector('input[name="' + name + '"]:checked');
+            return el ? el.value : 'Not answered';
+        }
+
+        function getCheckboxValues(name) {
+            const checked = document.querySelectorAll('input[name="' + name + '"]:checked');
+            return checked.length ? Array.from(checked).map(c => c.value).join(', ') : 'None selected';
+        }
+
+        function val(id) {
+            const el = document.getElementById(id);
+            return el ? (el.value || '-') : '-';
+        }
+
+        // ── Generate PDF ──────────────────────────────────────────────────
+        function generatePDF(sigDataUrl) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+            const W = 210, margin = 18, lineH = 6;
+            let y = 0;
+
+            doc.setFillColor(59, 45, 94);
+            doc.rect(0, 0, W, 28, 'F');
+            doc.setFillColor(179, 134, 121);
+            doc.rect(0, 28, W, 1.5, 'F');
+
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(16);
+            doc.setFont('helvetica', 'bold');
+            doc.text('GTP Tech Recruitment', margin, 11);
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.text('Candidate Registration & Representation Agreement', margin, 19);
+
+            const refNum = 'REF-' + Date.now().toString().slice(-6);
+            doc.text('Reference: ' + refNum, W - margin, 11, { align: 'right' });
+            doc.text('Date: ' + new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }), W - margin, 19, { align: 'right' });
+
+            y = 38;
+
+            function sectionHeader(title) {
+                if (y > 260) { doc.addPage(); y = 18; }
+                doc.setFillColor(245, 245, 248);
+                doc.rect(margin, y, W - margin * 2, 8, 'F');
+                doc.setFillColor(179, 134, 121);
+                doc.rect(margin, y, 3, 8, 'F');
+                doc.setTextColor(59, 45, 94);
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'bold');
+                doc.text(title, margin + 6, y + 5.5);
+                y += 13;
+            }
+
+            function row(label, value) {
+                if (y > 270) { doc.addPage(); y = 18; }
+                doc.setTextColor(100, 100, 110);
+                doc.setFontSize(8.5);
+                doc.setFont('helvetica', 'bold');
+                doc.text(label, margin, y);
+                doc.setTextColor(34, 41, 51);
+                doc.setFont('helvetica', 'normal');
+                const lines = doc.splitTextToSize(value || '-', W - margin * 2 - 55);
+                doc.text(lines, margin + 55, y);
+                y += Math.max(lineH, lines.length * lineH);
+            }
+
+            sectionHeader('PERSONAL DETAILS');
+            row('Full Name:', val('fullName'));
+            row('Email:', val('email'));
+            row('Phone:', val('phone'));
+            row('Location:', val('location'));
+            row('LinkedIn:', val('linkedin'));
+
+            sectionHeader('PROFESSIONAL PROFILE');
+            row('Current Job Title:', val('jobTitle'));
+            row('Microsoft Experience:', val('experience'));
+            row('Specialisms:', getCheckboxValues('specialism'));
+            row('Role Type:', val('roleType'));
+            row('Working Arrangement:', val('workingArrangement'));
+            row('Current Salary:', val('currentSalary'));
+            row('Desired Salary/Rate:', val('desiredSalary'));
+            row('Notice Period:', val('noticePeriod'));
+            row('Available From:', val('availableFrom'));
+
+            sectionHeader('ELIGIBILITY & RIGHT TO WORK');
+            row('UK/Irish Citizen:', getRadioValue('ukCitizen'));
+            row('Right to Work in UK:', getRadioValue('rightToWork'));
+            row('Right to Work Status:', val('rtwStatus'));
+            row('RTW Notes:', val('rtwNotes'));
+            row('Willing to Travel:', getRadioValue('travel'));
+            row('UK Driving Licence:', getRadioValue('drivingLicence'));
+            row('Willing to Relocate:', getRadioValue('relocate'));
+            row('Other Agencies:', getRadioValue('otherAgencies'));
+
+            sectionHeader('REASONABLE ADJUSTMENTS');
+            row('Interview Adjustments Required:', getRadioValue('interviewAdjustments'));
+            if (getRadioValue('interviewAdjustments') === 'Yes') row('Interview Adjustment Details:', val('interviewAdjustmentsDetail'));
+            row('Workplace Adjustments Required:', getRadioValue('workplaceAdjustments'));
+            if (getRadioValue('workplaceAdjustments') === 'Yes') row('Workplace Adjustment Details:', val('workplaceAdjustmentsDetail'));
+
+            sectionHeader('EQUAL OPPORTUNITIES (VOLUNTARY & ANONYMOUS)');
+            row('Gender:', val('gender'));
+            row('Age Range:', val('ageRange'));
+            row('Ethnic Background:', val('ethnicity'));
+            row('Disability/Health Condition:', val('disability'));
+
+            if (y > 210) { doc.addPage(); y = 18; }
+            sectionHeader('DECLARATION');
+            doc.setFontSize(8);
+            doc.setTextColor(80, 80, 90);
+            doc.setFont('helvetica', 'normal');
+            const declText = 'The candidate confirms that all information provided is accurate and complete. The candidate agrees to GTP Tech Recruitment acting as their non-exclusive representative for suitable Microsoft technology roles, consents to their personal data being stored and processed for recruitment purposes in accordance with the Privacy Policy and UK GDPR, consents to their information being shared with prospective employers where relevant, confirms their right to work in the UK, and agrees to GTP Tech Recruitment\'s Privacy Policy and Equal Opportunities Policy.';
+            const declLines = doc.splitTextToSize(declText, W - margin * 2);
+            doc.text(declLines, margin, y);
+            y += declLines.length * 4.5 + 8;
+
+            if (y > 230) { doc.addPage(); y = 18; }
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(59, 45, 94);
+            doc.text('Digital Signature:', margin, y);
+            y += 5;
+
+            doc.addImage(sigDataUrl, 'PNG', margin, y, 80, 25);
+            y += 30;
+
+            doc.setDrawColor(180, 180, 180);
+            doc.line(margin, y, margin + 80, y);
+            y += 4;
+            doc.setFontSize(8);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(120, 120, 130);
+            doc.text(val('fullName') + '  |  ' + val('sigDate'), margin, y);
+
+            const cvInput = document.getElementById('cvFile');
+            if (cvInput.files[0]) {
+                y += 10;
+                doc.setFontSize(8.5);
+                doc.setTextColor(80, 80, 90);
+                doc.text('CV attached: ' + cvInput.files[0].name, margin, y);
+            }
+
+            doc.setFontSize(7.5);
+            doc.setTextColor(160, 160, 170);
+            doc.text('GTP Tech Recruitment  |  gemma@gtptech.co.uk  |  www.gtptech.co.uk', W / 2, 290, { align: 'center' });
+            doc.text('This document constitutes a legally binding electronic agreement under the Electronic Communications Act 2000.', W / 2, 294, { align: 'center' });
+
+            return doc;
+        }
+
+        // ── Submit Form ───────────────────────────────────────────────────
+        function submitForm() {
+            const decls = [1,2,3,4,5,6];
+            const allChecked = decls.every(n => document.getElementById('decl' + n).checked);
+            if (!allChecked) {
+                document.getElementById('err-declarations').classList.add('visible');
+                return;
+            }
+            document.getElementById('err-declarations').classList.remove('visible');
+
+            if (signaturePad.isEmpty()) {
+                document.getElementById('err-signature').classList.add('visible');
+                return;
+            }
+            document.getElementById('err-signature').classList.remove('visible');
+
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.textContent = 'Submitting...';
+            document.getElementById('submitError').classList.remove('visible');
+
+            try {
+                const sigDataUrl = signaturePad.toDataURL('image/png');
+
+                // 1. Generate PDF and download a copy for the candidate
+                const doc = generatePDF(sigDataUrl);
+                const fileName = 'GTP-Tech-Registration-' + val('fullName').replace(/\s+/g, '-') + '.pdf';
+                const pdfBlob = doc.output('blob');
+                doc.save(fileName);
+
+                // 2. Attach PDF to hidden form using DataTransfer
+                const pdfFile = new File([pdfBlob], fileName, { type: 'application/pdf' });
+                const pdfDt = new DataTransfer();
+                pdfDt.items.add(pdfFile);
+                document.getElementById('fs_pdf').files = pdfDt.files;
+
+                // 3. If CV uploaded, attach that too
+                const cvInput = document.getElementById('cvFile');
+                if (cvInput.files[0]) {
+                    const cvDt = new DataTransfer();
+                    cvDt.items.add(cvInput.files[0]);
+                    document.getElementById('fs_cv').files = cvDt.files;
+                }
+
+                // 4. Populate hidden text fields
+                document.getElementById('fs_subject').value  = 'New Candidate Registration - ' + val('fullName');
+                document.getElementById('fs_replyto').value  = val('email');
+                document.getElementById('fs_name').value     = val('fullName');
+                document.getElementById('fs_email').value    = val('email');
+                document.getElementById('fs_phone').value    = val('phone');
+
+                // 5. Submit — FormSubmit sends the email then redirects to ?done=1
+                document.getElementById('registrationForm').submit();
+
+            } catch (err) {
+                console.error(err);
+                btn.disabled = false;
+                btn.textContent = 'Submit Registration';
+                document.getElementById('submitError').classList.add('visible');
+            }
+        }
+    </script>
+
+</body>
+</html>
