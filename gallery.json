@@ -11,11 +11,6 @@
       "alt": "East of England Power Platform Summit"
     },
     {
-      "id": "whatsapp-2026-05-04",
-      "filename": "WhatsApp Image 2026-05-04 at 16.10.38.jpeg",
-      "alt": "East of England Power Platform Summit"
-    },
-    {
       "id": "mg-0050",
       "filename": "_MG_0050.jpg",
       "alt": "East of England Power Platform Summit"
@@ -26,33 +21,58 @@
       "alt": "East of England Power Platform Summit"
     },
     {
-      "id": "mg-0058",
-      "filename": "_MG_0058.jpg",
-      "alt": "East of England Power Platform Summit"
-    },
-    {
       "id": "mg-0444",
       "filename": "_MG_0444.jpg",
       "alt": "East of England Power Platform Summit"
     },
     {
+      "id": "whatsapp-2026-05-04",
+      "filename": "WhatsApp Image 2026-05-04 at 16.10.38.jpeg",
+      "alt": "East of England Power Platform Summit"
+    },
+    {
+      "id": "whatsapp-2026-05-13a",
+      "filename": "WhatsApp Image 2026-05-13 at 18.56.20.jpeg",
+      "alt": "Gallery Photo"
+    },
+    {
+      "id": "whatsapp-2026-05-13b",
+      "filename": "WhatsApp Image 2026-05-13 at 18.56.34.jpeg",
+      "alt": "Gallery Photo"
+    },
+    {
+      "id": "whatsapp-2026-05-13c",
+      "filename": "WhatsApp Image 2026-05-13 at 18.57.25.jpeg",
+      "alt": "Gallery Photo"
+    },
+    {
+      "id": "1777794495072",
+      "filename": "1777794495072.jpg",
+      "alt": "Gallery Photo"
+    },
+    {
       "id": "gallery2",
       "filename": "gallery2.jpg",
-      "alt": "Gallery Image 2"
+      "alt": "Gallery Image"
     },
     {
       "id": "gallery4",
       "filename": "gallery4.jpg",
-      "alt": "Gallery Image 4"
+      "alt": "Gallery Image"
     },
     {
       "id": "gallery5",
       "filename": "gallery5.jpg",
-      "alt": "Gallery Image 5"
+      "alt": "Gallery Image"
     },
     {
       "id": "gallery",
       "filename": "gallery.jpg",
+      "alt": "Gallery Image"
+    },
+    {
+      "id": "gallery1",
+      "filename": "gallery1.jpg",
       "alt": "Gallery Image"
     },
     {
@@ -68,7 +88,7 @@
     {
       "id": "tammy",
       "filename": "tammy.jpg",
-      "alt": "Tammy"
+      "alt": "Gallery Photo"
     },
     {
       "id": "1000051787",
@@ -128,31 +148,6 @@
     {
       "id": "whatsapp-2026-02-09",
       "filename": "WhatsApp Image 2026-02-09 at 19.42.49.jpeg",
-      "alt": "Gallery Photo"
-    },
-    {
-      "id": "gallery1",
-      "filename": "gallery1.jpg",
-      "alt": "Gallery Image 1"
-    },
-    {
-      "id": "1777794495072",
-      "filename": "1777794495072.jpg",
-      "alt": "Gallery Photo"
-    },
-    {
-      "id": "whatsapp-2026-05-13a",
-      "filename": "WhatsApp Image 2026-05-13 at 18.56.20.jpeg",
-      "alt": "Gallery Photo"
-    },
-    {
-      "id": "whatsapp-2026-05-13b",
-      "filename": "WhatsApp Image 2026-05-13 at 18.56.34.jpeg",
-      "alt": "Gallery Photo"
-    },
-    {
-      "id": "whatsapp-2026-05-13c",
-      "filename": "WhatsApp Image 2026-05-13 at 18.57.25.jpeg",
       "alt": "Gallery Photo"
     }
   ]
