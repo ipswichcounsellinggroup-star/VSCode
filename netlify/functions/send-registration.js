@@ -25,8 +25,8 @@ exports.handler = async function (event) {
         },
         body: JSON.stringify({
             from: 'GTP Tech Registration <onboarding@resend.dev>',
-            to: ['gemma@gtptech.co.uk'],
-            reply_to: 'gemma@gtptech.co.uk',
+            to: ['recruitment@gtptech.co.uk'],
+            reply_to: 'recruitment@gtptech.co.uk',
             subject: `New candidate registration — ${candidateName}`,
             text: registrationText,
             attachments: [{
