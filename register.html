@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candidate Registration | GTP Tech Recruitment</title>
-    <meta name="description" content="Register as a candidate with GTP Tech Recruitment - Microsoft Dynamics & Power Platform specialists.">
+    <title>Candidate Submission | GTP Tech Recruitment</title>
+    <meta name="description" content="Submit your details to GTP Tech Recruitment - Microsoft Dynamics & Power Platform specialists.">
     <meta name="robots" content="noindex, nofollow">
-    <meta property="og:title" content="Candidate Registration | GTP Tech Recruitment">
-    <meta property="og:description" content="Register with GTP Tech Recruitment to find your next Microsoft Dynamics or Power Platform role.">
+    <meta property="og:title" content="Candidate Submission | GTP Tech Recruitment">
+    <meta property="og:description" content="To represent you effectively and match you with the right opportunities, we just need a few details from you.">`
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.gtptech.co.uk/register">
     <meta property="og:image" content="https://www.gtptech.co.uk/assets/images/GTP-Tech.png">
@@ -58,7 +58,7 @@
             align-items: center;
         }
 
-        .logo img { height: 45px; width: auto; }
+        .logo img { height: 75px; width: auto; mix-blend-mode: lighten; }
 
         nav ul { list-style: none; display: flex; gap: 2.5rem; align-items: center; }
 
@@ -148,8 +148,8 @@
             content: '';
             position: absolute;
             top: 18px;
-            left: 10%;
-            right: 10%;
+            left: 18px;
+            right: 18px;
             height: 2px;
             background: rgba(255,255,255,0.2);
         }
@@ -157,7 +157,7 @@
         .progress-line {
             position: absolute;
             top: 18px;
-            left: 10%;
+            left: 18px;
             height: 2px;
             background: var(--copper);
             transition: width 0.4s ease;
@@ -177,7 +177,7 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.15);
+            background: #2a3242;
             border: 2px solid rgba(255,255,255,0.3);
             display: flex;
             align-items: center;
@@ -442,6 +442,8 @@
         .file-upload-area input[type="file"] { display: none; }
         .file-upload-area p { color: #888; font-size: 0.9rem; margin-top: 0.4rem; }
         .file-name-display { margin-top: 0.6rem; color: var(--purple-dark); font-weight: 600; font-size: 0.9rem; }
+        .file-remove-btn { margin-top: 0.5rem; display: none; background: none; border: 1px solid #ccc; border-radius: 6px; padding: 0.3rem 0.8rem; font-size: 0.8rem; color: #888; cursor: pointer; }
+        .file-remove-btn:hover { border-color: var(--error); color: var(--error); }
 
         /* Generated Signature */
         .signature-display {
@@ -699,8 +701,8 @@
 
     <!-- Hero -->
     <section class="hero">
-        <h1>Candidate Registration</h1>
-        <p>Register with GTP Tech Recruitment and let us find your next Microsoft Dynamics or Power Platform opportunity.</p>
+        <h1>Candidate Submission</h1>
+        <p>To represent you effectively and match you with the right opportunities, we just need a few details from you.</p>
         <div class="progress-wrapper">
             <div class="progress-steps">
                 <div class="progress-line" id="progressLine"></div>
@@ -736,34 +738,36 @@
 
             <div class="form-row">
                 <div class="form-group">
-                    <label for="fullName">Full Name <span class="required">*</span></label>
-                    <input type="text" id="fullName" name="fullName" placeholder="e.g. Jane Smith" autocomplete="name">
-                    <div class="error-message" id="err-fullName">Please enter your full name.</div>
+                    <label for="firstName">First Name <span class="required">*</span></label>
+                    <input type="text" id="firstName" name="firstName" placeholder="e.g. Jane" autocomplete="given-name">
+                    <div class="error-message" id="err-firstName">Please enter your first name.</div>
                 </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name <span class="required">*</span></label>
+                    <input type="text" id="lastName" name="lastName" placeholder="e.g. Smith" autocomplete="family-name">
+                    <div class="error-message" id="err-lastName">Please enter your last name.</div>
+                </div>
+            </div>
+            <div class="form-row">
                 <div class="form-group">
                     <label for="email">Email Address <span class="required">*</span></label>
                     <input type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email">
                     <div class="error-message" id="err-email">Please enter a valid email address.</div>
                 </div>
+                <div class="form-group"></div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label for="phone">Phone Number <span class="required">*</span></label>
                     <input type="tel" id="phone" name="phone" placeholder="e.g. 07700 900000" autocomplete="tel">
-                    <div class="error-message" id="err-phone">Please enter a valid 11-digit phone number.</div>
+                    <div class="error-message" id="err-phone">Please enter a valid phone number.</div>
                 </div>
                 <div class="form-group">
                     <label for="location">Current Location (City / Region) <span class="required">*</span></label>
                     <input type="text" id="location" name="location" placeholder="e.g. Norwich, Norfolk">
                     <div class="error-message" id="err-location">Please enter your location.</div>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label for="linkedin">LinkedIn Profile URL <span class="optional">(optional)</span></label>
-                <input type="text" id="linkedin" name="linkedin" placeholder="e.g. linkedin.com/in/yourname">
-                <div class="error-message" id="err-linkedin">Please enter a valid LinkedIn profile URL (e.g. https://www.linkedin.com/in/yourname).</div>
             </div>
 
             <hr class="section-divider">
@@ -775,33 +779,7 @@
                     <input type="text" id="jobTitle" name="jobTitle" placeholder="e.g. Power Platform Consultant">
                     <div class="error-message" id="err-jobTitle">Please enter your job title.</div>
                 </div>
-                <div class="form-group">
-                    <label for="experience">Years of Microsoft Experience <span class="required">*</span></label>
-                    <select id="experience" name="experience">
-                        <option value="">Select...</option>
-                        <option>Less than 1 year</option>
-                        <option>1 - 2 years</option>
-                        <option>3 - 5 years</option>
-                        <option>6 - 10 years</option>
-                        <option>More than 10 years</option>
-                    </select>
-                    <div class="error-message" id="err-experience">Please select your experience level.</div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Microsoft Specialisms <span class="required">*</span> <span class="optional">(select all that apply)</span></label>
-                <div class="specialism-grid" id="specialismGrid">
-                    <label class="checkbox-option"><input type="checkbox" name="specialism" value="Power Platform (Power Apps, Power Automate, Power BI)"> Power Platform</label>
-                    <label class="checkbox-option"><input type="checkbox" name="specialism" value="Dynamics 365 CE / CRM"> Dynamics 365 CE / CRM</label>
-                    <label class="checkbox-option"><input type="checkbox" name="specialism" value="Dynamics 365 Finance &amp; Operations"> D365 Finance &amp; Operations</label>
-                    <label class="checkbox-option"><input type="checkbox" name="specialism" value="Business Central (NAV)"> Business Central (NAV)</label>
-                    <label class="checkbox-option"><input type="checkbox" name="specialism" value="Azure / Microsoft AI / Copilot"> Azure / AI / Copilot</label>
-                    <label class="checkbox-option"><input type="checkbox" name="specialism" value="Microsoft BizApps Sales"> Microsoft BizApps Sales</label>
-                    <label class="checkbox-option"><input type="checkbox" name="specialism" value="Microsoft 365"> Microsoft 365</label>
-                    <label class="checkbox-option"><input type="checkbox" name="specialism" value="Other Microsoft Technology"> Other Microsoft Tech</label>
-                </div>
-                <div class="error-message" id="err-specialism">Please select at least one specialism.</div>
+                <div class="form-group"></div>
             </div>
 
             <div class="form-row">
@@ -816,28 +794,23 @@
                     <div class="error-message" id="err-roleType">Please select a role type.</div>
                 </div>
                 <div class="form-group">
-                    <label for="workingArrangement">Preferred Working Arrangement <span class="required">*</span></label>
-                    <select id="workingArrangement" name="workingArrangement">
-                        <option value="">Select...</option>
-                        <option>Remote</option>
-                        <option>Hybrid</option>
-                        <option>Office-based</option>
-                        <option>Flexible</option>
-                    </select>
-                    <div class="error-message" id="err-workingArrangement">Please select a working arrangement.</div>
+                    <label>Preferred Working Arrangement <span class="required">*</span> <span class="optional">(select all that apply)</span></label>
+                    <div class="radio-group">
+                        <label class="checkbox-option"><input type="checkbox" name="workingArrangement" value="Remote"> Remote</label>
+                        <label class="checkbox-option"><input type="checkbox" name="workingArrangement" value="Office-based"> Office-based</label>
+                        <label class="checkbox-option"><input type="checkbox" name="workingArrangement" value="Hybrid"> Hybrid</label>
+                    </div>
+                    <div class="error-message" id="err-workingArrangement">Please select at least one option.</div>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label for="currentSalary">Current / Most Recent Salary <span class="optional">(optional)</span></label>
-                    <input type="text" id="currentSalary" name="currentSalary" placeholder="e.g. £55,000">
-                </div>
-                <div class="form-group">
                     <label for="desiredSalary">Desired Salary / Rate <span class="required">*</span></label>
                     <input type="text" id="desiredSalary" name="desiredSalary" placeholder="e.g. £60,000 or £450/day">
                     <div class="error-message" id="err-desiredSalary">Please enter your desired salary or rate.</div>
                 </div>
+                <div class="form-group"></div>
             </div>
 
             <div class="form-row">
@@ -854,11 +827,6 @@
                         <option>More than 3 months</option>
                     </select>
                     <div class="error-message" id="err-noticePeriod">Please select your notice period.</div>
-                </div>
-                <div class="form-group">
-                    <label for="availableFrom">Available From <span class="required">*</span></label>
-                    <input type="date" id="availableFrom" name="availableFrom">
-                    <div class="error-message" id="err-availableFrom">Please enter a valid availability date (today or in the future).</div>
                 </div>
             </div>
 
@@ -878,76 +846,68 @@
             <div class="form-group">
                 <label>Are you a UK or Irish citizen? <span class="required">*</span></label>
                 <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="ukCitizen" value="Yes"> Yes</label>
-                    <label class="radio-option"><input type="radio" name="ukCitizen" value="No"> No</label>
+                    <label class="radio-option"><input type="radio" name="ukCitizen" value="Yes" onchange="toggleNonCitizenQuestions(false)"> Yes</label>
+                    <label class="radio-option"><input type="radio" name="ukCitizen" value="No" onchange="toggleNonCitizenQuestions(true)"> No</label>
                 </div>
                 <div class="error-message" id="err-ukCitizen">Please select an option.</div>
             </div>
 
-            <div class="form-group">
-                <label>Do you have the right to work in the UK? <span class="required">*</span></label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="rightToWork" value="Yes" onchange="toggleConditional('rtw-type', true)"> Yes</label>
-                    <label class="radio-option"><input type="radio" name="rightToWork" value="No" onchange="toggleConditional('rtw-type', false)"> No</label>
+            <div id="nonCitizenQuestions" style="display:none;">
+                <div class="form-group">
+                    <label>Do you have the right to work in the UK? <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="rightToWork" value="Yes" onchange="toggleConditional('rtw-type', true)"> Yes</label>
+                        <label class="radio-option"><input type="radio" name="rightToWork" value="No" onchange="toggleConditional('rtw-type', false)"> No</label>
+                    </div>
+                    <div class="error-message" id="err-rightToWork">Please select an option.</div>
+                    <div class="conditional" id="rtw-type">
+                        <label for="rtwStatus" style="margin-top:0.5rem;">Right to work status <span class="required">*</span></label>
+                        <select id="rtwStatus" name="rtwStatus">
+                            <option value="">Select...</option>
+                            <option>EU Settled Status</option>
+                            <option>EU Pre-Settled Status</option>
+                            <option>Skilled Worker Visa</option>
+                            <option>Graduate Visa</option>
+                            <option>Spousal / Dependent Visa</option>
+                            <option>Other - please specify below</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="error-message" id="err-rightToWork">Please select an option.</div>
-                <div class="conditional" id="rtw-type">
-                    <label for="rtwStatus" style="margin-top:0.5rem;">Right to work status <span class="required">*</span></label>
-                    <select id="rtwStatus" name="rtwStatus">
-                        <option value="">Select...</option>
-                        <option>British / Irish Citizen</option>
-                        <option>EU Settled Status</option>
-                        <option>EU Pre-Settled Status</option>
-                        <option>Skilled Worker Visa</option>
-                        <option>Graduate Visa</option>
-                        <option>Spousal / Dependent Visa</option>
-                        <option>Other - please specify below</option>
-                    </select>
-                </div>
-            </div>
 
-            <div class="form-group">
-                <label for="rtwNotes">Additional notes on right to work <span class="optional">(optional)</span></label>
-                <input type="text" id="rtwNotes" name="rtwNotes" placeholder="e.g. visa expiry date, any conditions">
-            </div>
-
-            <div class="form-group">
-                <label>Would you require a new employer to provide visa sponsorship? <span class="required">*</span></label>
-                <div class="info-box" style="margin:0.5rem 0 0.8rem;">Many clients are unable to offer sponsorship. Confirming this now ensures we only put you forward for roles where sponsorship is available if needed.</div>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="visaSponsorship" value="Yes"> Yes</label>
-                    <label class="radio-option"><input type="radio" name="visaSponsorship" value="No"> No</label>
-                    <label class="radio-option"><input type="radio" name="visaSponsorship" value="Unsure - please discuss"> Unsure</label>
+                <div class="form-group">
+                    <label for="rtwNotes">Additional notes on right to work <span class="optional">(optional)</span></label>
+                    <input type="text" id="rtwNotes" name="rtwNotes" placeholder="e.g. visa expiry date, any conditions">
                 </div>
-                <div class="error-message" id="err-visaSponsorship">Please select an option.</div>
+
+                <div class="form-group">
+                    <label>Would you require a new employer to provide visa sponsorship? <span class="required">*</span></label>
+                    <div class="info-box" style="margin:0.5rem 0 0.8rem;">Many clients are unable to offer sponsorship. Confirming this now ensures we only put you forward for roles where sponsorship is available if needed.</div>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="visaSponsorship" value="Yes"> Yes</label>
+                        <label class="radio-option"><input type="radio" name="visaSponsorship" value="No"> No</label>
+                        <label class="radio-option"><input type="radio" name="visaSponsorship" value="Unsure - please discuss"> Unsure</label>
+                    </div>
+                    <div class="error-message" id="err-visaSponsorship">Please select an option.</div>
+                </div>
             </div>
 
             <hr class="section-divider">
             <div class="section-label">Work Preferences</div>
 
+            <div class="info-box">
+                Some roles may include travel, office-based working, or other requirements. We are committed to considering reasonable adjustments where appropriate. Please let us know if there is anything you would like us to take into account when identifying suitable opportunities.
+            </div>
+
             <div class="form-group">
-                <label>How many days per week are you able and willing to work on-site (at a client or office location)? <span class="required">*</span></label>
+                <label>Are you able and willing to travel as part of your role? <span class="required">*</span></label>
                 <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Fully remote only"> Fully remote only</label>
-                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Up to 1 day per week"> Up to 1 day</label>
-                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Up to 2 days per week"> Up to 2 days</label>
-                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Up to 3 days per week"> Up to 3 days</label>
-                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Up to 4 days per week"> Up to 4 days</label>
-                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Fully on-site (5 days)"> Fully on-site</label>
-                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Flexible / no preference"> Flexible</label>
+                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Yes - regularly"> Yes, regularly</label>
+                    <label class="radio-option"><input type="radio" name="onsiteDays" value="Yes - occasionally"> Yes, occasionally</label>
+                    <label class="radio-option"><input type="radio" name="onsiteDays" value="No"> No</label>
                 </div>
                 <div class="error-message" id="err-onsiteDays">Please select an option.</div>
             </div>
 
-            <div class="form-group">
-                <label>Are you able and willing to travel to different client or office locations as part of your role? <span class="required">*</span></label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="clientTravel" value="Yes - regularly"> Yes, regularly</label>
-                    <label class="radio-option"><input type="radio" name="clientTravel" value="Yes - occasionally"> Yes, occasionally</label>
-                    <label class="radio-option"><input type="radio" name="clientTravel" value="No"> No</label>
-                </div>
-                <div class="error-message" id="err-clientTravel">Please select an option.</div>
-            </div>
 
             <div class="form-group">
                 <label>Do you hold a full UK driving licence? <span class="required">*</span></label>
@@ -977,13 +937,17 @@
 
         <!-- ==================== STEP 3 ==================== -->
         <div class="form-step" id="step-3">
-            <h2 class="step-title">Adjustments & Equal Opportunities</h2>
+            <h2 class="step-title">Reasonable Adjustments</h2>
             <p class="step-subtitle">We are committed to an inclusive recruitment process. Please let us know if you need any support.</p>
 
             <div class="section-label">Reasonable Adjustments</div>
 
+            <div class="info-box">
+                Reasonable adjustments are changes an employer makes to remove or reduce disadvantages someone may face because of a disability or health condition. They can include changes to working arrangements, the work environment, or the support provided, to ensure fair access to opportunities.
+            </div>
+
             <div class="form-group">
-                <label>Do you require any reasonable adjustments for the <strong>interview process</strong>? <span class="required">*</span></label>
+                <label>Do you require, or would you like to request, any reasonable adjustments for the <strong>interview process</strong>? <span class="required">*</span></label>
                 <div class="radio-group">
                     <label class="radio-option"><input type="radio" name="interviewAdjustments" value="Yes" onchange="toggleConditional('interview-adj-detail', true)"> Yes</label>
                     <label class="radio-option"><input type="radio" name="interviewAdjustments" value="No" onchange="toggleConditional('interview-adj-detail', false)"> No</label>
@@ -996,7 +960,7 @@
             </div>
 
             <div class="form-group">
-                <label>Do you require any reasonable adjustments in the <strong>workplace</strong>? <span class="required">*</span></label>
+                <label>Do you require, or would you like to request, any reasonable adjustments in the <strong>workplace environment</strong>? <span class="required">*</span></label>
                 <div class="radio-group">
                     <label class="radio-option"><input type="radio" name="workplaceAdjustments" value="Yes" onchange="toggleConditional('workplace-adj-detail', true)"> Yes</label>
                     <label class="radio-option"><input type="radio" name="workplaceAdjustments" value="No" onchange="toggleConditional('workplace-adj-detail', false)"> No</label>
@@ -1008,83 +972,20 @@
                 </div>
             </div>
 
-            <hr class="section-divider">
-            <div class="section-label">Role Requirements</div>
-
-            <div class="info-box">
-                Roles we work on may involve regular travel to client sites, office-based working, or other specific requirements. Please let us know if there are any factors that may affect your ability to meet these, so that we only put you forward for roles that are genuinely suitable for you.
-            </div>
-
             <div class="form-group">
-                <label>Are there any factors that may affect your ability to meet typical role requirements, such as regular travel to client sites or office attendance? <span class="required">*</span></label>
+                <label>Do you require, or would you like to request, any reasonable adjustments to your <strong>working arrangement</strong>? <span class="required">*</span></label>
                 <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="roleRequirements" value="No" onchange="toggleConditional('role-req-detail', false)"> No</label>
-                    <label class="radio-option"><input type="radio" name="roleRequirements" value="Yes" onchange="toggleConditional('role-req-detail', true)"> Yes</label>
-                    <label class="radio-option"><input type="radio" name="roleRequirements" value="Prefer to discuss" onchange="toggleConditional('role-req-detail', false)"> Prefer to discuss</label>
+                    <label class="radio-option"><input type="radio" name="arrangementAdjustments" value="Yes" onchange="toggleConditional('arrangement-adj-detail', true)"> Yes</label>
+                    <label class="radio-option"><input type="radio" name="arrangementAdjustments" value="No" onchange="toggleConditional('arrangement-adj-detail', false)"> No</label>
                 </div>
-                <div class="error-message" id="err-roleRequirements">Please select an option.</div>
-                <div class="conditional" id="role-req-detail">
-                    <label for="roleRequirementsDetail" style="margin-top:0.5rem;">Please briefly describe <span class="optional">(optional — only share what you are comfortable with)</span></label>
-                    <textarea id="roleRequirementsDetail" name="roleRequirementsDetail" placeholder="e.g. I am unable to travel more than 1 day per week, or I require advance notice for on-site visits"></textarea>
-                </div>
-            </div>
-
-            <hr class="section-divider">
-            <div class="section-label">Equal Opportunities Monitoring <span style="font-weight:400; color:#999; font-size:0.85rem; margin-left:0.5rem;">— All optional</span></div>
-
-            <div class="info-box optional-notice">
-                <strong>Why we collect this information:</strong> This data is collected voluntarily and anonymously for workforce monitoring purposes only, in line with the Equality Act 2010. It will never be used in any selection or recruitment decisions and is stored separately from your candidate profile. You are under no obligation to provide this information.
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="gender">Gender <span class="optional">(optional)</span></label>
-                    <select id="gender" name="gender">
-                        <option value="Prefer not to say">Prefer not to say</option>
-                        <option value="Female">Female</option>
-                        <option value="Male">Male</option>
-                        <option value="Non-binary">Non-binary</option>
-                        <option value="Self-describe">Prefer to self-describe</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="ageRange">Age Range <span class="optional">(optional)</span></label>
-                    <select id="ageRange" name="ageRange">
-                        <option value="Prefer not to say">Prefer not to say</option>
-                        <option value="18-24">18 - 24</option>
-                        <option value="25-34">25 - 34</option>
-                        <option value="35-44">35 - 44</option>
-                        <option value="45-54">45 - 54</option>
-                        <option value="55-64">55 - 64</option>
-                        <option value="65+">65+</option>
-                    </select>
+                <div class="error-message" id="err-arrangementAdjustments">Please select an option.</div>
+                <div class="conditional" id="arrangement-adj-detail">
+                    <label for="arrangementAdjustmentsDetail" style="margin-top:0.5rem;">Please describe the adjustments required <span class="required">*</span></label>
+                    <textarea id="arrangementAdjustmentsDetail" name="arrangementAdjustmentsDetail" placeholder="Please describe any adjustments that would help you..."></textarea>
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="ethnicity">Ethnic Background <span class="optional">(optional)</span></label>
-                    <select id="ethnicity" name="ethnicity">
-                        <option value="Prefer not to say">Prefer not to say</option>
-                        <option value="White - British">White - British</option>
-                        <option value="White - Irish">White - Irish</option>
-                        <option value="White - Other">White - Other</option>
-                        <option value="Mixed - White &amp; Black Caribbean">Mixed - White &amp; Black Caribbean</option>
-                        <option value="Mixed - White &amp; Black African">Mixed - White &amp; Black African</option>
-                        <option value="Mixed - White &amp; Asian">Mixed - White &amp; Asian</option>
-                        <option value="Mixed - Other">Mixed - Other</option>
-                        <option value="Asian - Indian">Asian - Indian</option>
-                        <option value="Asian - Pakistani">Asian - Pakistani</option>
-                        <option value="Asian - Bangladeshi">Asian - Bangladeshi</option>
-                        <option value="Asian - Chinese">Asian - Chinese</option>
-                        <option value="Asian - Other">Asian - Other</option>
-                        <option value="Black - African">Black - African</option>
-                        <option value="Black - Caribbean">Black - Caribbean</option>
-                        <option value="Black - Other">Black - Other</option>
-                        <option value="Other ethnic group">Other ethnic group</option>
-                    </select>
-                </div>
-            </div>
+
 
             <div class="form-nav">
                 <button class="btn-prev" onclick="prevStep(3)">&larr; Back</button>
@@ -1107,6 +1008,7 @@
                     <p>PDF, DOC or DOCX &nbsp;&bull;&nbsp; Optional</p>
                     <div class="file-name-display" id="fileNameDisplay"></div>
                 </div>
+                <button type="button" class="file-remove-btn" id="fileRemoveBtn">&#10005; Remove file</button>
             </div>
 
             <hr class="section-divider">
@@ -1160,8 +1062,8 @@
                     <label>Name (auto-filled from your registration)</label>
                     <input type="text" id="sigName" readonly style="background:#f0f0f0; color:#777;">
                 </div>
-                <div class="form-group">
-                    <label>Date</label>
+                <div class="form-group" id="sigDateGroup" style="display:none;">
+                    <label>Date Signed</label>
                     <input type="text" id="sigDate" readonly style="background:#f0f0f0; color:#777;">
                 </div>
             </div>
@@ -1240,8 +1142,9 @@
         }
 
         function updateProgress(n) {
-            const pct = [(n - 1) / (totalSteps - 1) * 80];
-            document.getElementById('progressLine').style.width = pct + '%';
+            const fraction = (n - 1) / (totalSteps - 1);
+            document.getElementById('progressLine').style.width = fraction === 0 ? '0px' : `calc(${fraction * 100}% - ${fraction * 36}px)`;
+
             for (let i = 1; i <= totalSteps; i++) {
                 const circle = document.getElementById('circle-' + i);
                 const label  = document.getElementById('label-' + i);
@@ -1257,7 +1160,7 @@
             if (!validateStep(from)) return;
             currentStep = from + 1;
             if (currentStep === 4) {
-                document.getElementById('sigName').value = document.getElementById('fullName').value;
+                document.getElementById('sigName').value = document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
             }
             showStep(currentStep);
         }
@@ -1272,27 +1175,25 @@
             let valid = true;
 
             if (step === 1) {
-                valid = requireField('fullName') && valid;
+                valid = requireField('firstName') && valid;
+                valid = requireField('lastName') && valid;
                 valid = requireEmail('email') && valid;
                 valid = requirePhone('phone') && valid;
-                valid = requireLinkedin('linkedin') && valid;
                 valid = requireField('location') && valid;
                 valid = requireField('jobTitle') && valid;
-                valid = requireSelect('experience') && valid;
-                valid = requireCheckboxGroup('specialism', 'err-specialism') && valid;
                 valid = requireSelect('roleType') && valid;
-                valid = requireSelect('workingArrangement') && valid;
+                valid = requireCheckboxGroup('workingArrangement', 'err-workingArrangement') && valid;
                 valid = requireField('desiredSalary') && valid;
                 valid = requireSelect('noticePeriod') && valid;
-                valid = requireFutureDate('availableFrom') && valid;
             }
 
             if (step === 2) {
                 valid = requireRadio('ukCitizen', 'err-ukCitizen') && valid;
-                valid = requireRadio('rightToWork', 'err-rightToWork') && valid;
-                valid = requireRadio('visaSponsorship', 'err-visaSponsorship') && valid;
+                if (getRadioValue('ukCitizen') === 'No') {
+                    valid = requireRadio('rightToWork', 'err-rightToWork') && valid;
+                    valid = requireRadio('visaSponsorship', 'err-visaSponsorship') && valid;
+                }
                 valid = requireRadio('onsiteDays', 'err-onsiteDays') && valid;
-                valid = requireRadio('clientTravel', 'err-clientTravel') && valid;
                 valid = requireRadio('drivingLicence', 'err-drivingLicence') && valid;
                 valid = requireRadio('relocate', 'err-relocate') && valid;
             }
@@ -1300,7 +1201,7 @@
             if (step === 3) {
                 valid = requireRadio('interviewAdjustments', 'err-interviewAdjustments') && valid;
                 valid = requireRadio('workplaceAdjustments', 'err-workplaceAdjustments') && valid;
-                valid = requireRadio('roleRequirements', 'err-roleRequirements') && valid;
+                valid = requireRadio('arrangementAdjustments', 'err-arrangementAdjustments') && valid;
             }
 
             return valid;
@@ -1340,7 +1241,7 @@
             const el = document.getElementById(id);
             const errEl = document.getElementById('err-' + id);
             const digits = el.value.replace(/[\s\-\(\)\+]/g, '');
-            const ok = /^\d{11}$/.test(digits);
+            const ok = /^\d{7,15}$/.test(digits);
             if (!ok) { el.classList.add('error'); if (errEl) errEl.classList.add('visible'); return false; }
             el.classList.remove('error'); if (errEl) errEl.classList.remove('visible'); return true;
         }
@@ -1379,10 +1280,7 @@
         // Validate on blur
         document.getElementById('email').addEventListener('blur', () => requireEmail('email'));
         document.getElementById('phone').addEventListener('blur', () => requirePhone('phone'));
-        document.getElementById('linkedin').addEventListener('blur', () => requireLinkedin('linkedin'));
 
-        // Set minimum date for availability to today
-        document.getElementById('availableFrom').min = new Date().toISOString().split('T')[0];
 
         // Live validation clearing
         document.querySelectorAll('input, select, textarea').forEach(el => {
@@ -1397,6 +1295,10 @@
         function toggleConditional(id, show) {
             const el = document.getElementById(id);
             el.classList.toggle('visible', show);
+        }
+
+        function toggleNonCitizenQuestions(show) {
+            document.getElementById('nonCitizenQuestions').style.display = show ? '' : 'none';
         }
 
         // ── Checkbox / Radio Styling ──────────────────────────────────────
@@ -1419,10 +1321,24 @@
         const cvFile = document.getElementById('cvFile');
         const fileArea = document.getElementById('fileUploadArea');
         const fileNameDisplay = document.getElementById('fileNameDisplay');
+        const fileRemoveBtn = document.getElementById('fileRemoveBtn');
+
+        function setFile(name) {
+            fileNameDisplay.textContent = '✓ ' + name;
+            fileRemoveBtn.style.display = 'inline-block';
+        }
+
+        function clearFile() {
+            cvFile.value = '';
+            fileNameDisplay.textContent = '';
+            fileRemoveBtn.style.display = 'none';
+        }
 
         cvFile.addEventListener('change', () => {
-            if (cvFile.files[0]) fileNameDisplay.textContent = '✓ ' + cvFile.files[0].name;
+            if (cvFile.files[0]) setFile(cvFile.files[0].name);
         });
+
+        fileRemoveBtn.addEventListener('click', e => { e.stopPropagation(); clearFile(); });
 
         fileArea.addEventListener('dragover', e => { e.preventDefault(); fileArea.classList.add('dragover'); });
         fileArea.addEventListener('dragleave', () => fileArea.classList.remove('dragover'));
@@ -1431,20 +1347,21 @@
             fileArea.classList.remove('dragover');
             if (e.dataTransfer.files[0]) {
                 cvFile.files = e.dataTransfer.files;
-                fileNameDisplay.textContent = '✓ ' + e.dataTransfer.files[0].name;
+                setFile(e.dataTransfer.files[0].name);
             }
         });
 
         // ── Signature ─────────────────────────────────────────────────────
 
         function signDocument() {
-            const name = document.getElementById('fullName').value;
+            const name = (document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value).trim();
             const now = new Date();
             const timestamp = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
                             + ' at ' + now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
             document.getElementById('signatureText').textContent = name;
             document.getElementById('sigTimestamp').textContent = 'Signed ' + timestamp;
             document.getElementById('sigDate').value = timestamp;
+            document.getElementById('sigDateGroup').style.display = '';
             document.getElementById('sigUnsigned').style.display = 'none';
             document.getElementById('sigSigned').style.display = 'block';
             document.getElementById('err-signature').classList.remove('visible');
@@ -1454,12 +1371,13 @@
             document.getElementById('signatureText').textContent = '';
             document.getElementById('sigTimestamp').textContent = '';
             document.getElementById('sigDate').value = '';
+            document.getElementById('sigDateGroup').style.display = 'none';
             document.getElementById('sigUnsigned').style.display = 'flex';
             document.getElementById('sigSigned').style.display = 'none';
         }
 
         function getSignatureDataUrl() {
-            const name = document.getElementById('fullName').value || '';
+            const name = (document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value).trim();
             const canvas = document.getElementById('signatureCanvas');
             canvas.width = 520;
             canvas.height = 130;
@@ -1492,133 +1410,122 @@
         function generatePDF(sigDataUrl) {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF({ unit: 'mm', format: 'a4' });
-            const W = 210, margin = 18, lineH = 6;
+            const W = 210, margin = 14, lineH = 5;
             let y = 0;
 
             doc.setFillColor(59, 45, 94);
-            doc.rect(0, 0, W, 28, 'F');
+            doc.rect(0, 0, W, 26, 'F');
             doc.setFillColor(179, 134, 121);
-            doc.rect(0, 28, W, 1.5, 'F');
+            doc.rect(0, 26, W, 1.5, 'F');
 
             doc.setTextColor(255, 255, 255);
-            doc.setFontSize(16);
+            doc.setFontSize(15);
             doc.setFont('helvetica', 'bold');
-            doc.text('GTP Tech Recruitment', margin, 11);
-            doc.setFontSize(10);
+            doc.text('GTP Tech Recruitment', margin, 10);
+            doc.setFontSize(9.5);
             doc.setFont('helvetica', 'normal');
-            doc.text('Candidate Registration & Representation Agreement', margin, 19);
+            doc.text('Candidate Submission & Representation Agreement', margin, 18);
 
             const refNum = 'REF-' + Date.now().toString().slice(-6);
-            doc.text('Reference: ' + refNum, W - margin, 11, { align: 'right' });
-            doc.text('Date: ' + new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }), W - margin, 19, { align: 'right' });
+            doc.text('Reference: ' + refNum, W - margin, 10, { align: 'right' });
+            doc.text('Date: ' + new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }), W - margin, 18, { align: 'right' });
 
-            y = 38;
+            y = 34;
 
             function sectionHeader(title) {
-                if (y > 260) { doc.addPage(); y = 18; }
                 doc.setFillColor(245, 245, 248);
-                doc.rect(margin, y, W - margin * 2, 8, 'F');
+                doc.rect(margin, y, W - margin * 2, 6.5, 'F');
                 doc.setFillColor(179, 134, 121);
-                doc.rect(margin, y, 3, 8, 'F');
+                doc.rect(margin, y, 2.5, 6.5, 'F');
                 doc.setTextColor(59, 45, 94);
-                doc.setFontSize(10);
+                doc.setFontSize(8.5);
                 doc.setFont('helvetica', 'bold');
-                doc.text(title, margin + 6, y + 5.5);
-                y += 13;
+                doc.text(title, margin + 5, y + 4.5);
+                y += 10;
             }
 
             function row(label, value) {
-                if (y > 270) { doc.addPage(); y = 18; }
                 doc.setTextColor(100, 100, 110);
-                doc.setFontSize(8.5);
+                doc.setFontSize(7.5);
                 doc.setFont('helvetica', 'bold');
                 doc.text(label, margin, y);
                 doc.setTextColor(34, 41, 51);
                 doc.setFont('helvetica', 'normal');
-                const lines = doc.splitTextToSize(value || '-', W - margin * 2 - 55);
-                doc.text(lines, margin + 55, y);
+                const lines = doc.splitTextToSize(value || '-', W - margin * 2 - 52);
+                doc.text(lines, margin + 52, y);
                 y += Math.max(lineH, lines.length * lineH);
             }
 
             sectionHeader('PERSONAL DETAILS');
-            row('Full Name:', val('fullName'));
+            row('First Name:', val('firstName'));
+            row('Last Name:', val('lastName'));
             row('Email:', val('email'));
             row('Phone:', val('phone'));
             row('Location:', val('location'));
-            row('LinkedIn:', val('linkedin'));
 
             sectionHeader('PROFESSIONAL PROFILE');
             row('Current Job Title:', val('jobTitle'));
-            row('Microsoft Experience:', val('experience'));
-            row('Specialisms:', getCheckboxValues('specialism'));
             row('Role Type:', val('roleType'));
-            row('Working Arrangement:', val('workingArrangement'));
-            row('Current Salary:', val('currentSalary'));
+            row('Working Arrangement:', getCheckboxValues('workingArrangement'));
             row('Desired Salary/Rate:', val('desiredSalary'));
             row('Notice Period:', val('noticePeriod'));
-            row('Available From:', val('availableFrom'));
 
             sectionHeader('ELIGIBILITY & RIGHT TO WORK');
             row('UK/Irish Citizen:', getRadioValue('ukCitizen'));
-            row('Right to Work in UK:', getRadioValue('rightToWork'));
-            row('Right to Work Status:', val('rtwStatus'));
-            row('RTW Notes:', val('rtwNotes'));
-            row('Visa Sponsorship Required:', getRadioValue('visaSponsorship'));
-            row('On-site Days Per Week:', getRadioValue('onsiteDays'));
-            row('Travel to Different Locations:', getRadioValue('clientTravel'));
+            if (getRadioValue('ukCitizen') === 'No') {
+                row('Right to Work in UK:', getRadioValue('rightToWork'));
+                if (val('rtwStatus') !== '-') row('Right to Work Status:', val('rtwStatus'));
+                if (val('rtwNotes') !== '-') row('RTW Notes:', val('rtwNotes'));
+                row('Visa Sponsorship Required:', getRadioValue('visaSponsorship'));
+            }
+            row('Willing to Travel:', getRadioValue('onsiteDays'));
             row('UK Driving Licence:', getRadioValue('drivingLicence'));
             row('Willing to Relocate:', getRadioValue('relocate'));
 
-            sectionHeader('REASONABLE ADJUSTMENTS & ROLE REQUIREMENTS');
-            row('Interview Adjustments Required:', getRadioValue('interviewAdjustments'));
+            sectionHeader('REASONABLE ADJUSTMENTS');
+            row('Interview Adjustments:', getRadioValue('interviewAdjustments'));
             if (getRadioValue('interviewAdjustments') === 'Yes') row('Interview Adjustment Details:', val('interviewAdjustmentsDetail'));
-            row('Workplace Adjustments Required:', getRadioValue('workplaceAdjustments'));
+            row('Workplace Adjustments:', getRadioValue('workplaceAdjustments'));
             if (getRadioValue('workplaceAdjustments') === 'Yes') row('Workplace Adjustment Details:', val('workplaceAdjustmentsDetail'));
-            row('Factors Affecting Role Requirements:', getRadioValue('roleRequirements'));
-            if (getRadioValue('roleRequirements') === 'Yes') row('Role Requirement Details:', val('roleRequirementsDetail'));
+            row('Working Arrangement Adjustments:', getRadioValue('arrangementAdjustments'));
+            if (getRadioValue('arrangementAdjustments') === 'Yes') row('Working Arrangement Details:', val('arrangementAdjustmentsDetail'));
 
-            sectionHeader('EQUAL OPPORTUNITIES (VOLUNTARY & ANONYMOUS)');
-            row('Gender:', val('gender'));
-            row('Age Range:', val('ageRange'));
-            row('Ethnic Background:', val('ethnicity'));
-
-            if (y > 210) { doc.addPage(); y = 18; }
+            y += 2;
             sectionHeader('DECLARATION');
-            doc.setFontSize(8);
+            doc.setFontSize(7.5);
             doc.setTextColor(80, 80, 90);
             doc.setFont('helvetica', 'normal');
-            const declText = 'The candidate confirms that all information provided is accurate and complete. The candidate agrees to GTP Tech Recruitment acting as their non-exclusive representative for suitable Microsoft technology roles, consents to their personal data being stored and processed for recruitment purposes in accordance with the Privacy Policy and UK GDPR, consents to their information being shared with prospective employers where relevant, confirms their right to work in the UK, and agrees to GTP Tech Recruitment\'s Privacy Policy and Equal Opportunities Policy.';
+            const declText = 'The candidate confirms all information provided is accurate and complete. The candidate agrees to GTP Tech Recruitment acting as their non-exclusive representative for suitable Microsoft technology roles, consents to their personal data being stored and processed for recruitment purposes in accordance with the Privacy Policy and UK GDPR, consents to their information being shared with prospective employers where relevant, and confirms their right to work in the UK.';
             const declLines = doc.splitTextToSize(declText, W - margin * 2);
             doc.text(declLines, margin, y);
-            y += declLines.length * 4.5 + 8;
+            y += declLines.length * 4 + 5;
 
-            if (y > 230) { doc.addPage(); y = 18; }
-            doc.setFontSize(9);
+            doc.setFontSize(8.5);
             doc.setFont('helvetica', 'bold');
             doc.setTextColor(59, 45, 94);
             doc.text('Digital Signature:', margin, y);
-            y += 5;
+            y += 4;
 
-            doc.addImage(sigDataUrl, 'PNG', margin, y, 80, 25);
-            y += 30;
+            doc.addImage(sigDataUrl, 'PNG', margin, y, 75, 20);
+            y += 23;
 
             doc.setDrawColor(180, 180, 180);
-            doc.line(margin, y, margin + 80, y);
+            doc.line(margin, y, margin + 75, y);
             y += 4;
-            doc.setFontSize(8);
+            doc.setFontSize(7.5);
             doc.setFont('helvetica', 'normal');
             doc.setTextColor(120, 120, 130);
-            doc.text(val('fullName') + '  |  ' + val('sigDate'), margin, y);
+            doc.text((val('firstName') + ' ' + val('lastName')).trim() + '  |  ' + val('sigDate'), margin, y);
 
             const cvInput = document.getElementById('cvFile');
             if (cvInput.files[0]) {
-                y += 10;
-                doc.setFontSize(8.5);
+                y += 7;
+                doc.setFontSize(7.5);
                 doc.setTextColor(80, 80, 90);
                 doc.text('CV attached: ' + cvInput.files[0].name, margin, y);
             }
 
-            doc.setFontSize(7.5);
+            doc.setFontSize(7);
             doc.setTextColor(160, 160, 170);
             doc.text('GTP Tech Recruitment  |  gemma@gtptech.co.uk  |  www.gtptech.co.uk', W / 2, 290, { align: 'center' });
             doc.text('This document constitutes a legally binding electronic agreement under the Electronic Communications Act 2000.', W / 2, 294, { align: 'center' });
@@ -1633,31 +1540,28 @@
             const sep = (title) => { lines.push(''); lines.push('── ' + title + ' ──'); };
 
             sep('PERSONAL DETAILS');
-            s('Full Name', val('fullName'));
+            s('First Name', val('firstName'));
+            s('Last Name', val('lastName'));
             s('Email', val('email'));
             s('Phone', val('phone'));
             s('Location', val('location'));
-            if (val('linkedin') !== '-') s('LinkedIn', val('linkedin'));
 
             sep('PROFESSIONAL PROFILE');
             s('Current Job Title', val('jobTitle'));
-            s('Microsoft Experience', val('experience'));
-            s('Specialisms', getCheckboxValues('specialism'));
             s('Role Type', val('roleType'));
-            s('Working Arrangement', val('workingArrangement'));
-            if (val('currentSalary') !== '-') s('Current Salary', val('currentSalary'));
+            s('Working Arrangement', getCheckboxValues('workingArrangement'));
             s('Desired Salary/Rate', val('desiredSalary'));
             s('Notice Period', val('noticePeriod'));
-            s('Available From', val('availableFrom'));
 
             sep('ELIGIBILITY & RIGHT TO WORK');
             s('UK/Irish Citizen', getRadioValue('ukCitizen'));
-            s('Right to Work in UK', getRadioValue('rightToWork'));
-            if (val('rtwStatus') !== '-') s('RTW Status', val('rtwStatus'));
-            if (val('rtwNotes') !== '-') s('RTW Notes', val('rtwNotes'));
-            s('Visa Sponsorship Required', getRadioValue('visaSponsorship'));
-            s('On-site Days Per Week', getRadioValue('onsiteDays'));
-            s('Travel to Different Locations', getRadioValue('clientTravel'));
+            if (getRadioValue('ukCitizen') === 'No') {
+                s('Right to Work in UK', getRadioValue('rightToWork'));
+                if (val('rtwStatus') !== '-') s('RTW Status', val('rtwStatus'));
+                if (val('rtwNotes') !== '-') s('RTW Notes', val('rtwNotes'));
+                s('Visa Sponsorship Required', getRadioValue('visaSponsorship'));
+            }
+            s('Willing to Travel', getRadioValue('onsiteDays'));
             s('UK Driving Licence', getRadioValue('drivingLicence'));
             s('Willing to Relocate', getRadioValue('relocate'));
 
@@ -1666,18 +1570,13 @@
             if (getRadioValue('interviewAdjustments') === 'Yes') s('Interview Details', val('interviewAdjustmentsDetail'));
             s('Workplace Adjustments', getRadioValue('workplaceAdjustments'));
             if (getRadioValue('workplaceAdjustments') === 'Yes') s('Workplace Details', val('workplaceAdjustmentsDetail'));
+            s('Working Arrangement Adjustments', getRadioValue('arrangementAdjustments'));
+            if (getRadioValue('arrangementAdjustments') === 'Yes') s('Working Arrangement Details', val('arrangementAdjustmentsDetail'));
 
-            sep('ROLE REQUIREMENTS');
-            s('Factors affecting role requirements', getRadioValue('roleRequirements'));
-            if (getRadioValue('roleRequirements') === 'Yes') s('Details', val('roleRequirementsDetail'));
 
-            sep('EQUAL OPPORTUNITIES (VOLUNTARY)');
-            s('Gender', val('gender'));
-            s('Age Range', val('ageRange'));
-            s('Ethnicity', val('ethnicity'));
 
             sep('DECLARATION');
-            s('Signed by', val('fullName'));
+            s('Signed by', (val('firstName') + ' ' + val('lastName')).trim());
             s('Signed at', val('sigDate'));
             const cv = document.getElementById('cvFile');
             if (cv && cv.files[0]) s('CV uploaded', cv.files[0].name + ' (candidate holds PDF copy)');
@@ -1693,7 +1592,16 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function submitForm() {
+        function blobToBase64(blob) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onloadend = () => resolve(reader.result.split(',')[1]);
+                reader.onerror = reject;
+                reader.readAsDataURL(blob);
+            });
+        }
+
+        async function submitForm() {
             const decls = [1,2,3,4,5,6];
             const allChecked = decls.every(n => document.getElementById('decl' + n).checked);
             if (!allChecked) {
@@ -1716,24 +1624,41 @@
             try {
                 // 1. Generate PDF and download to candidate
                 const doc = generatePDF(getSignatureDataUrl());
-                const fileName = 'GTP-Tech-Registration-' + val('fullName').replace(/\s+/g, '-') + '.pdf';
+                const fileName = 'GTP-Tech-Registration-' + (val('firstName') + '-' + val('lastName')).replace(/\s+/g, '-') + '.pdf';
                 const pdfBlob = doc.output('blob');
                 doc.save(fileName);
 
-                // 2. Build FormData for Netlify
+                // 2. Convert PDF to base64 for email attachment
+                const pdfBase64 = await blobToBase64(pdfBlob);
+                const registrationText = buildRegistrationText();
+
+                // 3. Send email with PDF via serverless function + store in Netlify Forms
                 const formData = new FormData();
                 formData.append('form-name', 'candidate-registration');
-                formData.append('Registration Details', buildRegistrationText());
-                formData.append('attachment', new File([pdfBlob], fileName, { type: 'application/pdf' }), fileName);
+                formData.append('Registration Details', registrationText);
 
-                // 3. Submit via fetch and show success inline
-                fetch('/', { method: 'POST', body: formData })
-                    .then(() => showSuccess())
-                    .catch(() => {
-                        btn.disabled = false;
-                        btn.textContent = 'Submit Registration';
-                        document.getElementById('submitError').classList.add('visible');
-                    });
+                const [emailResult, formResult] = await Promise.allSettled([
+                    fetch('/.netlify/functions/send-registration', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            candidateName: (val('firstName') + ' ' + val('lastName')).trim(),
+                            registrationText,
+                            pdfBase64,
+                            pdfFileName: fileName
+                        })
+                    }).then(r => { if (!r.ok) throw new Error(r.status); return r; }),
+                    fetch('/', { method: 'POST', body: formData })
+                ]);
+
+                const emailOk = emailResult.status === 'fulfilled';
+                const formOk  = formResult.status === 'fulfilled';
+
+                if (emailOk || formOk) {
+                    showSuccess();
+                } else {
+                    throw new Error('Both submission methods failed');
+                }
 
             } catch (err) {
                 console.error(err);
