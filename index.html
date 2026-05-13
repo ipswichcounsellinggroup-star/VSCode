@@ -279,21 +279,21 @@
         }
 
         .about-content {
-            display: grid;
-            grid-template-columns: 2.5fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 2rem;
             margin-top: 2rem;
-            align-items: stretch;
         }
 
         .tech-areas {
             display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            flex-direction: row;
+            gap: 1.5rem;
         }
 
         .tech-areas .service-card {
-            padding: 1rem 1.25rem;
+            padding: 1.5rem;
+            flex: 1;
         }
 
         .tech-areas .service-card ul {
@@ -1313,20 +1313,6 @@
             <h2>Strategic headhunting for high&#8209;impact Microsoft talent</h2>
 
             <div class="about-content">
-                <div class="about-text">
-                    <h3>Why Choose Us?</h3>
-                    <p>At GTP Tech, we don't do generic recruitment. We deliver <strong>precision headhunting</strong> for Microsoft Partners who need high&#8209;calibre people that elevate capability, strengthen delivery, and accelerate growth.</p>
-                    <p>We've built a reputation for securing game&#8209;changing hires across the Microsoft Dynamics and Power Platform ecosystem - the people who don't apply to job ads, aren't on the market long, and genuinely move the needle.</p>
-                    <p>We understand the challenges you face:</p>
-                    <ul>
-                        <li><em>Talent shortages and fierce competition</em></li>
-                        <li><em>The rare blend of consulting, technical depth, and customer&#8209;facing skills</em></li>
-                        <li><em>Costly project delays caused by skill gaps</em></li>
-                        <li><em>The pressure to scale sustainably with the right people, not just those available</em></li>
-                    </ul>
-                    <p>Our approach is deliberately different: targeted, relationship&#8209;driven, and built on deep sector expertise.</p>
-                </div>
-
                 <div class="tech-areas">
                     <div class="service-card">
                         <div style="height: 65px; display: flex; align-items: center; margin-bottom: 0.25rem;">
@@ -1359,6 +1345,20 @@
                             <li>Azure Foundry</li>
                         </ul>
                     </div>
+                </div>
+
+                <div class="about-text">
+                    <h3>Why Choose Us?</h3>
+                    <p>At GTP Tech, we don't do generic recruitment. We deliver <strong>precision headhunting</strong> for Microsoft Partners who need high&#8209;calibre people that elevate capability, strengthen delivery, and accelerate growth.</p>
+                    <p>We've built a reputation for securing game&#8209;changing hires across the Microsoft Dynamics and Power Platform ecosystem - the people who don't apply to job ads, aren't on the market long, and genuinely move the needle.</p>
+                    <p>We understand the challenges you face:</p>
+                    <ul>
+                        <li><em>Talent shortages and fierce competition</em></li>
+                        <li><em>The rare blend of consulting, technical depth, and customer&#8209;facing skills</em></li>
+                        <li><em>Costly project delays caused by skill gaps</em></li>
+                        <li><em>The pressure to scale sustainably with the right people, not just those available</em></li>
+                    </ul>
+                    <p>Our approach is deliberately different: targeted, relationship&#8209;driven, and built on deep sector expertise.</p>
                 </div>
 
             </div>
