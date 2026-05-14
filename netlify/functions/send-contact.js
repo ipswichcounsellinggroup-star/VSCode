@@ -27,7 +27,7 @@ exports.handler = async function (event) {
 
     const payload = {
         from: 'GTP Tech Contact Form <onboarding@resend.dev>',
-        to: ['recruitment@gtptech.co.uk'],
+        to: ['gemma@gtptech.co.uk'],
         reply_to: email,
         subject: `New callback request — ${name}`,
         text: lines,
