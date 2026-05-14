@@ -1632,6 +1632,15 @@
                 const pdfBase64 = await blobToBase64(pdfBlob);
                 const registrationText = buildRegistrationText();
 
+                // 2b. Convert CV to base64 if uploaded
+                let cvBase64 = null, cvFileName = null, cvMimeType = null;
+                const cvInput = document.getElementById('cvFile');
+                if (cvInput.files[0]) {
+                    cvBase64 = await blobToBase64(cvInput.files[0]);
+                    cvFileName = cvInput.files[0].name;
+                    cvMimeType = cvInput.files[0].type || 'application/octet-stream';
+                }
+
                 // 3. Send email with PDF via serverless function + store in Netlify Forms
                 const formData = new FormData();
                 formData.append('form-name', 'candidate-registration');
@@ -1645,7 +1654,10 @@
                             candidateName: (val('firstName') + ' ' + val('lastName')).trim(),
                             registrationText,
                             pdfBase64,
-                            pdfFileName: fileName
+                            pdfFileName: fileName,
+                            cvBase64,
+                            cvFileName,
+                            cvMimeType
                         })
                     }).then(r => { if (!r.ok) throw new Error(r.status); return r; }),
                     fetch('/', { method: 'POST', body: formData })

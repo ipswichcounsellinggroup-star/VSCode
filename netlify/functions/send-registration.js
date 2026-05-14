@@ -10,11 +10,16 @@ exports.handler = async function (event) {
         return { statusCode: 400, body: 'Invalid JSON' };
     }
 
-    const { candidateName, registrationText, pdfBase64, pdfFileName } = body;
+    const { candidateName, registrationText, pdfBase64, pdfFileName, cvBase64, cvFileName } = body;
 
     if (!process.env.RESEND_API_KEY) {
         console.error('RESEND_API_KEY not configured');
         return { statusCode: 500, body: 'Email service not configured' };
+    }
+
+    const attachments = [{ filename: pdfFileName, content: pdfBase64 }];
+    if (cvBase64 && cvFileName) {
+        attachments.push({ filename: cvFileName, content: cvBase64 });
     }
 
     const response = await fetch('https://api.resend.com/emails', {
@@ -29,10 +34,7 @@ exports.handler = async function (event) {
             reply_to: 'gemma@gtptech.co.uk',
             subject: `New candidate registration — ${candidateName}`,
             text: registrationText,
-            attachments: [{
-                filename: pdfFileName,
-                content: pdfBase64
-            }]
+            attachments
         })
     });
 
