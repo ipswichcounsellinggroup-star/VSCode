@@ -169,6 +169,28 @@
             box-shadow: 0 4px 24px rgba(0,0,0,0.07);
         }
 
+        .post-featured-image {
+            margin: -3rem -3rem 2.5rem -3rem;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+            height: 380px;
+        }
+
+        .post-featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .post-featured-image figcaption {
+            font-size: 0.75rem;
+            color: #999;
+            text-align: right;
+            padding: 0.3rem 0.5rem;
+            background: #f8f9fa;
+        }
+
         .post-content p {
             font-size: 1.05rem;
             line-height: 1.8;
@@ -347,6 +369,11 @@
             <a href="blog.html" class="back-link">- Back to Blog</a>
 
             <div class="post-content">
+
+                <figure class="post-featured-image">
+                    <img src="assets/images/blog-hiring-talent.jpg" alt="Professional meeting between recruiter and candidate">
+                    <figcaption>Photo: Unsplash</figcaption>
+                </figure>
 
                 <p>Demand for Microsoft Power Platform talent has never been higher. Organisations across every sector are investing in Power Apps, Power Automate, Power BI, and Copilot Studio to transform their operations - and they need skilled people to deliver it. The problem is that the talent pool has not kept pace with the demand.</p>
 
