@@ -1666,6 +1666,13 @@
                 const emailOk = emailResult.status === 'fulfilled';
                 const formOk  = formResult.status === 'fulfilled';
 
+                if (!emailOk) {
+                    console.error('Email failed:', emailResult.reason);
+                }
+                if (!formOk) {
+                    console.error('Form backup failed:', formResult.reason);
+                }
+
                 if (emailOk || formOk) {
                     showSuccess();
                 } else {
