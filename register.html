@@ -1622,11 +1622,10 @@
             document.getElementById('submitError').classList.remove('visible');
 
             try {
-                // 1. Generate PDF and download to candidate
+                // 1. Generate PDF blob
                 const doc = generatePDF(getSignatureDataUrl());
                 const fileName = 'GTP-Tech-Registration-' + (val('firstName') + '-' + val('lastName')).replace(/\s+/g, '-') + '.pdf';
                 const pdfBlob = doc.output('blob');
-                doc.save(fileName);
 
                 // 2. Convert PDF to base64 for email attachment
                 const pdfBase64 = await blobToBase64(pdfBlob);
@@ -1662,6 +1661,9 @@
                     }).then(r => { if (!r.ok) throw new Error(r.status); return r; }),
                     fetch('/', { method: 'POST', body: formData })
                 ]);
+
+                // 4. Download PDF to candidate's device after network requests complete
+                doc.save(fileName);
 
                 const emailOk = emailResult.status === 'fulfilled';
                 const formOk  = formResult.status === 'fulfilled';
