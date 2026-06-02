@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Human Edge: What AI Can't Replace in the Microsoft Market | GTP Tech Recruitment Blog</title>
+    <meta name="description" content="AI is changing who Microsoft businesses want to hire. Here's what I'm hearing across the market — where the demand is, what's getting harder, and what it means for your next hire or career move.">
+    <meta property="og:title" content="The Human Edge: What AI Can't Replace in the Microsoft Market">
+    <meta property="og:description" content="AI is changing who Microsoft businesses want to hire. Here's what I'm hearing across the market — where the demand is, what's getting harder, and what it means for your next hire or career move.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.gtptech.co.uk/blog-human-edge-ai-cant-replace-microsoft-market.html">
+    <meta property="og:image" content="https://www.gtptech.co.uk/assets/images/GTP-Tech.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Human Edge: What AI Can't Replace in the Microsoft Market">
+    <meta name="twitter:description" content="AI is changing who Microsoft businesses want to hire. Here's what the market is really telling us.">
+    <meta name="twitter:image" content="https://www.gtptech.co.uk/assets/images/GTP-Tech.png">
+    <link rel="icon" type="image/png" href="assets/images/GTP-Tech.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-dark: rgb(34, 41, 51);
+            --text-gray: rgb(185, 189, 195);
+            --white: #ffffff;
+            --copper: #B38679;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-dark);
+            background: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(90deg, var(--primary-dark) 0%, #2a3242 50%, var(--primary-dark) 100%);
+            padding: 1.5rem 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img { height: 75px; width: auto; mix-blend-mode: lighten; }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--copper);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover { color: var(--copper); }
+        nav a:hover::after { width: 100%; }
+        nav a.active { color: var(--copper); }
+        nav a.active::after { width: 100%; }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Hero */
+        .post-hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #2a3540 40%, #3b2d5e 70%, #4a3068 100%);
+            color: var(--white);
+            padding: 140px 5% 80px;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--copper), transparent);
+        }
+
+        .post-hero .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .post-category {
+            color: var(--copper);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .post-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 1.2rem;
+        }
+
+        .post-meta {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Article */
+        .post-body {
+            padding: 4rem 5%;
+        }
+
+        .post-body .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .post-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+        }
+
+        .post-featured-image {
+            margin: -3rem -3rem 2.5rem -3rem;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+            height: 380px;
+        }
+
+        .post-featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .post-featured-image figcaption {
+            font-size: 0.75rem;
+            color: #999;
+            text-align: right;
+            padding: 0.3rem 0.5rem;
+            background: #f8f9fa;
+        }
+
+        .post-content p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .post-content h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 2.5rem 0 1rem;
+            text-align: left;
+            padding-left: 1rem;
+            border-left: 4px solid var(--copper);
+        }
+
+        .post-content h2::after { display: none; }
+
+        .post-content h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 1.8rem 0 0.7rem;
+        }
+
+        .post-content ul {
+            list-style: none;
+            margin: 1rem 0 1.5rem 0;
+            padding: 0;
+        }
+
+        .post-content ul li {
+            position: relative;
+            padding: 0.6rem 0 0.6rem 1.8rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .post-content ul li:last-child { border-bottom: none; }
+
+        .post-content ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background: #3b2d5e;
+            border-radius: 50%;
+        }
+
+        .post-content .highlight-box {
+            background: linear-gradient(135deg, #3b2d5e 0%, #4a3068 100%);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: var(--white);
+        }
+
+        .post-content .highlight-box p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0;
+            font-size: 1.05rem;
+        }
+
+        .salary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 1.5rem;
+            font-size: 1rem;
+        }
+
+        .salary-table th {
+            background: #3b2d5e;
+            color: var(--white);
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .salary-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            color: #333;
+        }
+
+        .salary-table tr:last-child td { border-bottom: none; }
+        .salary-table tr:nth-child(even) td { background: #f8f9fa; }
+
+        .post-divider {
+            border: none;
+            border-top: 2px solid #f0f0f0;
+            margin: 2.5rem 0;
+        }
+
+        .post-author {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2.5rem;
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .post-author a {
+            color: var(--copper);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .post-author a:hover { text-decoration: underline; }
+
+        /* Back link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--copper);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            transition: opacity 0.2s ease;
+        }
+
+        .back-link:hover { opacity: 0.7; }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: var(--text-gray);
+            text-align: center;
+            padding: 2rem 5%;
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--copper); text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-dark);
+                padding: 1rem 5%;
+                gap: 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            nav ul.active { display: flex; }
+
+            nav ul li a {
+                padding: 0.75rem 0;
+                display: block;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+            }
+
+            nav ul li:last-child a { border-bottom: none; }
+
+            .post-hero h1 { font-size: 2rem; }
+
+            .post-content { padding: 2rem 1.5rem; }
+
+            .salary-table { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/GTP-Tech.png" alt="GTP Tech Recruitment">
+                </a>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navMenu">
+                <li><a href="index.html">Services</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+                <li><a href="index.html#reviews">Reviews</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="post-hero">
+        <div class="container">
+            <div class="post-category">Market Insights</div>
+            <h1>The Human Edge: What AI Can't Replace in the Microsoft Market</h1>
+            <div class="post-meta">By Gemma Peck &nbsp;·&nbsp; 2 June 2026</div>
+        </div>
+    </section>
+
+    <!-- Post Body -->
+    <section class="post-body">
+        <div class="container">
+            <a href="blog.html" class="back-link">← Back to Blog</a>
+
+            <div class="post-content">
+
+                <figure class="post-featured-image">
+                    <img src="assets/images/motivation-laptop-coffee.jpg" alt="Laptop and coffee on a desk">
+                    <figcaption>Photo: Pexels</figcaption>
+                </figure>
+
+                <p>If you hire in the Microsoft world, or you're building a career in it, this one is for you. Here's what I'm genuinely hearing across the market right now — where the demand is, what people are paying, what's getting harder, and what it all means for you. No fluff, no sales pitch. Just honest insights from someone who's in these conversations every day.</p>
+
+                <h2>The most in-demand Microsoft hire right now</h2>
+
+                <p>The clearest signal I'm picking up across the market is a shift in who businesses want to hire. The hands-on senior developer, long the backbone of every Microsoft delivery team, is quietly changing.</p>
+
+                <h3>1. The rise of the AI-literate business analyst / developer</h3>
+
+                <p>As AI tooling takes on more of the actual build, employers are placing far more value on people who can scope requirements with customers, translate them into solutions, and review and guide what the AI produces. Someone who knows the AI technical landscape and can position the technology to solve real business problems.</p>
+
+                <p>When AI can generate a working solution in a fraction of the time, the bottleneck moves. It's no longer just the building — it's understanding what to build and making sure that what's built is right.</p>
+
+                <p>If you're hiring: widen your lens beyond pure technical skill. Communication and requirements skills are now mission critical. If you're a developer: leaning into customer-facing, solution-shaping work is fast becoming the smartest career move you can make.</p>
+
+                <h3>2. Copilot is now the thing winning the work</h3>
+
+                <p>Microsoft partners are increasingly winning projects specifically on the strength of their Copilot capability. More than one person has described it to me as the factor that tips a deal over the line. This is feeding straight into hiring, with demand concentrating hard on Copilot-focused skills. Copilot has moved from interesting to expected.</p>
+
+                <p>If you have real Copilot project experience, now is the time to make it visible and market your skills.</p>
+
+                <h2>By the numbers</h2>
+
+                <p>Current Power Platform salary bands, based on recent conversations:</p>
+
+                <table class="salary-table">
+                    <thead>
+                        <tr>
+                            <th>Role</th>
+                            <th>Salary Range (UK)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Business Analyst</td>
+                            <td>£40,000 – £60,000</td>
+                        </tr>
+                        <tr>
+                            <td>Developer</td>
+                            <td>£60,000 – £80,000</td>
+                        </tr>
+                        <tr>
+                            <td>Power Platform / Automation Lead</td>
+                            <td>£60,000 – £90,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>My take</h2>
+
+                <p>"Developers are redundant" is the kind of line that grabs headlines — and I've genuinely heard versions of it. But I don't think it's quite right.</p>
+
+                <div class="highlight-box">
+                    <p>The skill losing value is typing code. The skills gaining value are understanding a business problem, designing the right solution, and knowing when the AI has got it wrong. These have always been what separated good technologists from great ones.</p>
+                </div>
+
+                <p>AI hasn't made developers redundant. It's made the thinking part of the job the whole job. The people who'll thrive are the ones who were never just coders to begin with.</p>
+
+                <h2>The agent economy, and why hiring hasn't caught up</h2>
+
+                <p>The biggest structural shift I'm watching right now is the move from training staff to navigate complex software toward deploying AI agents that handle those interactions on their behalf. Roles defined around knowing a specific ERP, CRM, or finance platform are losing relevance. The hiring question is shifting from "does this person know the tool?" to "can this person direct an agent that uses it?"</p>
+
+                <p>The most in-demand profile sits in the middle of a widening divide: technically confident practitioners who can build and deploy production-grade agents without needing full engineering support. Organisations that can identify and develop this profile internally will move faster than those trying to hire it from the market.</p>
+
+                <p>A new governance discipline is also emerging — agent observability, control, and security. That doesn't exist in most current org charts. For candidates with a background in IT governance, compliance, or solutions architecture, this is an early-mover opportunity.</p>
+
+                <h2>The AI readiness gap is a hiring problem</h2>
+
+                <p>Most organisations know they need to act on AI but haven't defined what good looks like internally. Hiring briefs are often vague, reactive, or misaligned with actual need. Two things stand out:</p>
+
+                <ul>
+                    <li><strong>Change management is now a core technical hiring criterion.</strong> Up to 30% of employees would actively undermine AI deployment without proper communication and training. Candidates who can demonstrate experience leading AI adoption are increasingly sought after across functions — not just in technical roles.</li>
+                    <li><strong>The 15-month ROI reality.</strong> The average time from AI investment to measurable return is around 15 months, and the delay is almost always organisational, not technical. Candidates who demonstrate AI-augmented productivity — not just experience — are the stronger hire at shortlist stage.</li>
+                </ul>
+
+                <h2>From pilot to production: where most organisations are stuck</h2>
+
+                <p>Across businesses of all sizes, staff are consistently found to be using only around 5% of the AI tools they've already paid for. The bottleneck isn't budget — it's adoption. This is creating real demand for AI enablement roles:</p>
+
+                <ul>
+                    <li>Internal trainers and AI champions who can close the gap between deployment and actual use</li>
+                    <li>Change managers embedded in technology programmes</li>
+                    <li>AI programme governance roles focused on use case prioritisation and outcome accountability</li>
+                    <li>Data engineers and architects — disorganised or inaccessible data remains the single most common reason AI pilots stall before reaching production</li>
+                </ul>
+
+                <p>If you're hiring in the Microsoft space this year, or you're a candidate working out where the market is heading, I'd love to hear from you. Feel free to <a href="index.html#contact" style="color: var(--copper); font-weight: 600;">get in touch</a>.</p>
+
+                <hr class="post-divider">
+
+                <div class="post-author">
+                    <strong>Gemma Peck</strong> is a specialist recruiter focused exclusively on Microsoft Power Platform, Dynamics 365, and Copilot. Visit <a href="https://www.gtptech.co.uk">www.gtptech.co.uk</a> to find out more.
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 GTP Tech Recruitment. All rights reserved. | Microsoft Dynamics &amp; Power Platform Recruitment Specialists | <a href="privacy-policy.html">Privacy Policy</a> | <a href="equal-opportunities.html">Equal Opportunities</a></p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
