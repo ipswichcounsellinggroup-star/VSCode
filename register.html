@@ -1110,13 +1110,6 @@
 
     </div><!-- /form-wrapper -->
 
-    <!-- Netlify Forms detection — must be in static HTML at build time -->
-    <form name="candidate-registration" data-netlify="true" netlify-honeypot="bot-field" style="display:none">
-        <input name="bot-field">
-        <textarea name="Registration Details"></textarea>
-        <input type="file" name="attachment">
-    </form>
-
     <footer>
         <p>&copy; 2026 GTP Tech Recruitment. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="equal-opportunities.html">Equal Opportunities</a></p>
     </footer>
@@ -1661,13 +1654,10 @@
                     cvMimeType = cvInput.files[0].type || 'application/octet-stream';
                 }
 
-                // 3. Send email with PDF via serverless function + store in Netlify Forms
-                const formData = new FormData();
-                formData.append('form-name', 'candidate-registration');
-                formData.append('Registration Details', registrationText);
-
-                const [emailResult, formResult] = await Promise.allSettled([
-                    fetch('/.netlify/functions/send-registration', {
+                // 3. Send email with PDF via serverless function
+                let emailOk = false;
+                try {
+                    const r = await fetch('/.netlify/functions/send-registration', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -1679,27 +1669,20 @@
                             cvFileName,
                             cvMimeType
                         })
-                    }).then(r => { if (!r.ok) throw new Error(r.status); return r; }),
-                    fetch('/', { method: 'POST', body: formData })
-                ]);
+                    });
+                    emailOk = r.ok;
+                    if (!emailOk) console.error('Email failed:', r.status);
+                } catch (err) {
+                    console.error('Email failed:', err);
+                }
 
                 // 4. Download PDF to candidate's device after network requests complete
                 doc.save(fileName);
 
-                const emailOk = emailResult.status === 'fulfilled';
-                const formOk  = formResult.status === 'fulfilled';
-
-                if (!emailOk) {
-                    console.error('Email failed:', emailResult.reason);
-                }
-                if (!formOk) {
-                    console.error('Form backup failed:', formResult.reason);
-                }
-
-                if (emailOk || formOk) {
+                if (emailOk) {
                     showSuccess();
                 } else {
-                    throw new Error('Both submission methods failed');
+                    throw new Error('Submission failed');
                 }
 
             } catch (err) {
